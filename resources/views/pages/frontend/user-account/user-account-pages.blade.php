@@ -1,132 +1,210 @@
 @extends('layouts.frontend.master')
-@if(Request::is('user/account'))
-  @section('title',  trans('frontend.frontend_user_dashboard_title') .' < '. get_site_title() )
-@elseif (Request::is('user/account/dashboard'))
-  @section('title',  trans('frontend.frontend_user_dashboard_title') .' < '. get_site_title() )
-@elseif (Request::is('user/account/my-address'))
-  @section('title',  trans('frontend.frontend_user_address_title') .' < '. get_site_title() )
-@elseif (Request::is('user/account/my-address/add'))
-  @section('title',  trans('frontend.frontend_user_address_add_title') .' < '. get_site_title() ) 
-@elseif (Request::is('user/account/my-address/edit'))
-  @section('title',  trans('frontend.frontend_user_address_edit_title') .' < '. get_site_title() )
-@elseif (Request::is('user/account/my-profile'))
-  @section('title',  trans('frontend.frontend_user_profile_edit_title') .' < '. get_site_title() )
-@elseif (Request::is('user/account/my-orders'))
-  @section('title',  trans('frontend.frontend_my_order_title') .' < '. get_site_title() )
-@elseif (Request::is('user/account/my-saved-items'))
-  @section('title',  trans('frontend.frontend_wishlist_items_title') .' < '. get_site_title() ) 
-@elseif (Request::is('user/account/my-coupons'))
-  @section('title',  trans('frontend.frontend_coupons_items_title') .' < '. get_site_title() )
-@elseif (Request::is('user/account/download'))
-  @section('title',  trans('frontend.frontend_download_options_title') .' < '. get_site_title() )  
-@elseif(Request::is('user/account/order-details/*'))
-  @section('title',  trans('frontend.user_order_details_page_title') .' < '. get_site_title() )  
-@endif
 
 @section('content')
-<div id="user_account" class="container new-container">
-  <br> 
-  <div class="row">
-    <div class="col-md-12 account-type"><h5><i class="fa fa-user-plus"></i> {!! trans('frontend.user_account_label') !!}</h5><hr></div>
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2">
-      <div class="account-tab-main">
-        <ul class="nav flex-column">
-          @if(Request::is('user/account/dashboard') || Request::is('user/account'))
-          <li class="nav-item"><a class="nav-link active" href="{{ route('user-dashboard-page') }}"><i class="fa fa-dashboard"></i> {{ trans('frontend.dashboard') }}</a></li>
-          @else
-          <li class="nav-item"><a class="nav-link" href="{{ route('user-dashboard-page') }}"><i class="fa fa-dashboard"></i> {{ trans('frontend.dashboard') }}</a></li>
-          @endif
-          
-          @if( Request::is('user/account/my-address') ||  Request::is('user/account/my-address/add') ||  Request::is('user/account/my-address/edit') )
-            <li class="nav-item"><a class="nav-link active" href="{{ route('my-address-page') }}"><i class="fa fa-map-marker"></i> {{ trans('frontend.my_address') }}</a></li>
-          @else
-            <li class="nav-item"><a class="nav-link" href="{{ route('my-address-page') }}"><i class="fa fa-map-marker"></i> {{ trans('frontend.my_address') }}</a></li>
-          @endif
-          
-          @if(Request::is('user/account/my-orders') || Request::is('user/account/order-details/**'))
-            <li class="nav-item"><a class="nav-link active" href="{{ route('my-orders-page') }}"><i class="fa fa-file-text-o"></i> {{ trans('frontend.my_orders') }}</a></li>
-          @else
-            <li class="nav-item"><a class="nav-link" href="{{ route('my-orders-page') }}"><i class="fa fa-file-text-o"></i> {{ trans('frontend.my_orders') }}</a></li>
-          @endif
-          
-          @if(Request::is('user/account/my-saved-items'))
-            <li class="nav-item"><a class="nav-link active" href="{{ route('my-saved-items-page') }}"><i class="fa fa-save"></i> {{ trans('frontend.my_saved_items') }}</a></li>
-          @else
-            <li class="nav-item"><a class="nav-link" href="{{ route('my-saved-items-page') }}"><i class="fa fa-save"></i> {{ trans('frontend.my_saved_items') }}</a></li>
-          @endif
-          
-          @if(Request::is('user/account/my-coupons'))
-            <li class="nav-item"><a class="nav-link active" href="{{ route('my-coupons-page') }}"><i class="fa fa-scissors"></i> {{ trans('frontend.my_coupons') }}</a></li>
-          @else
-            <li class="nav-item"><a class="nav-link" href="{{ route('my-coupons-page') }}"><i class="fa fa-scissors"></i> {{ trans('frontend.my_coupons') }}</a></li>
-          @endif
-          
-          @if(Request::is('user/account/download'))
-            <li class="nav-item"><a class="nav-link active" href="{{ route('download-page') }}"><i class="fa fa-download"></i> {{ trans('frontend.user_account_download_title') }}</a></li>
-          @else
-            <li class="nav-item"><a class="nav-link" href="{{ route('download-page') }}"><i class="fa fa-download"></i> {{ trans('frontend.user_account_download_title') }}</a></li>
-          @endif
-          
-          @if(Request::is('user/account/my-profile'))
-            <li class="nav-item"><a class="nav-link active" href="{{ route('my-profile-page') }}"><i class="fa fa-user"></i> {{ trans('frontend.my_profile') }}</a></li>
-          @else
-            <li class="nav-item"><a class="nav-link" href="{{ route('my-profile-page') }}"><i class="fa fa-user"></i> {{ trans('frontend.my_profile') }}</a></li>
-          @endif
-          
-          @if(is_frontend_user_logged_in())
-          <form method="post" action="{{ route('user-logout') }}" enctype="multipart/form-data">
-            @include('includes.csrf-token')
-            <li><button type="submit" class="btn btn-default btn-block"><i class="fa fa-circle-o-notch"></i> {!! trans('admin.sign_out') !!}</button>  </li>
-          </form>
-          @endif
-        </ul>
-      </div>  
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
-      <div class="panel panel-default">
-        <div class="panel-heading text-right">
-          <div class="new-media">
-            <div class="new-media-left">
-              @if($login_user_details['user_photo_url'])
-                <img class="new-media-object" src="{{ get_image_url($login_user_details['user_photo_url']) }}" alt="">
-              @else
-                <img class="new-media-object" src="{{ default_avatar_img_src() }}" alt="">
-              @endif
+    
+    <!-- Whole Body Wrapper Starts -->
+    <section id="dashboard-wrapper">
+        
+        @include('includes.frontend.header')
+        
+        <!-- Breadcrumbs -->
+        <section id="breadcrumb-wrapper" class="position-relative">
+            <div class="image">
+                <img src="frontend/assets/images/product-images/3.jpg" alt="breadcrumb-image" class="img-fluid">
             </div>
-              
-            <div class="new-media-body">
-              <h5 class="new-media-heading">{{ $login_user_details['user_display_name'] }}</h5>
-              <h6 class="new-media-heading">{!! trans('frontend.member_since_label') !!} {!! Carbon\Carbon::parse($login_user_details['member_since'])->format('d, M Y') !!}</h6>
-             </div>
-          </div>
-        </div>
-        <div class="panel-body">
-          @if(Request::is('user/account/dashboard') || Request::is('user/account'))
-            @include('pages.frontend.user-account.my-dashboard')
-          @elseif(Request::is('user/account/my-address'))  
-            @include('pages.frontend.user-account.my-address')
-          @elseif(Request::is('user/account/my-address/add'))  
-            @include('pages.frontend.user-account.add-address')
-          @elseif(Request::is('user/account/my-address/edit'))  
-            @include('pages.frontend.user-account.edit-address')
-          @elseif(Request::is('user/account/my-profile') )  
-            @include('pages.frontend.user-account.user-profile')  
-          @elseif(Request::is('user/account/my-orders') )
-            @include('pages.frontend.user-account.my-orders') 
-          @elseif(Request::is('user/account/view-orders-details/*') )
-            @include('pages.frontend.user-account.user-order-details')
-          @elseif(Request::is('user/account/my-saved-items') )
-            @include('pages.frontend.user-account.my-wishlist') 
-          @elseif(Request::is('user/account/my-coupons') )
-            @include('pages.frontend.user-account.my-coupons')
-          @elseif(Request::is('user/account/download') )
-            @include('pages.frontend.user-account.download')  
-          @elseif(Request::is('user/account/order-details/*') )
-            @include('pages.frontend.user-account.order-details')  
-          @endif
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-@endsection  
+            <div class="overlay position-absolute">
+                <div class="title p-4">Product Listing</div>
+            </div>
+        </section>
+        <!-- Breadcrumbs Ends -->
+        <!-- Order-Status -->
+        <section id="order-wrapper" class="py-3">
+            <div class="container">
+                <div class="row py-xl-5 py-md-3 py-0">
+                    <div class="col-xl-3 col-lg-3 col-md-12 col-12 mb-xl-0 mb-lg-0 mb-3">
+                        <div class="dashboard-list py-lg-5 px-lg-3 d-lg-block d-none">
+                            <div class="d-user-avater text-center mb-4">
+                                <img src="frontend/assets/images/product-images/1.jpg" class="img-fluid avater" alt="profile-image">
+                                <h5>Adam Harshvardhan</h5>
+                                <a href=""> <span class="mr-1"><i class="fa fa-pencil" aria-hidden="true"></i></span> Upload Image</a>
+                            </div>
+                            <ul class="sidebar">
+                                <li class="active mb-3 p-2">
+                                    <a href="dashboard-profile.html"><span class="mr-2"><i class="fa fa-user" aria-hidden="true"></i></span>Profile</a>
+                                </li>
+                                <li class="mb-3 p-2">
+                                    <a href="dashboard-order-status.html"><span class="mr-2"><i class="fa fa-sort" aria-hidden="true"></i></span>Order Status</a>
+                                </li>
+                                <li class="mb-3 p-2">
+                                    <a href="dashboard-cart.html"><span class="mr-2"><i class="fa fa-shopping-bag" aria-hidden="true"></i></span>My Cart</a>
+                                </li>
+                                <li class="mb-3 p-2">
+                                    <a href="dashboard-wishlist.html"><span class="mr-2"><i class="fa fa-shopping-bag" aria-hidden="true"></i></span>Wishlist</a>
+                                </li>
+                                <li class="mb-3 p-2 ">
+                                    <a href="dashboard-change-password.html"><span class="mr-2"><i class="fa fa-lock" aria-hidden="true"></i></span>Change Password</a>
+                                </li>
+                                <li class="mb-3 p-2 ">
+                                    <a href="index.html"><span class="mr-2"><i class="fa fa-sign-out" aria-hidden="true"></i></span>Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Mobile Profile Nav -->
+                        <ul class="mobile-profile-nav d-lg-none d-flex flex justify-content-around align-items-center h-100 " data-toggle="modal" data-target="#profilemobilenav">
+                            <li>
+                                <span class="active"><i class="fa fa-user " aria-hidden="true "></i></span>
+                            </li>
+                            <li>
+                                <span><i class="fa fa-sort " aria-hidden="true "></i></span>
+                            </li>
+                            <li>
+                                <span><i class="fa fa-shopping-bag " aria-hidden="true "></i></span>
+                            </li>
+                            <li>
+                                <span><i class="fa fa-lock " aria-hidden="true "></i></span>
+                            </li>
+                            <li>
+                                <span><i class="fa fa-sign-out " aria-hidden="true "></i></span>
+                            </li>
+                        </ul>
+                        </button>
+                        <!-- Mobile Profile Nav Ends-->
+                    </div>
+                    <div class="col-xl-9 col-lg-9 col-md-12 col-12 ">
+                        <div class="dashboard-content d-flex align-items-center">
+                            <div class="shopping-cart-table">
+                                <div class="table-responsive-xl">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" class="cart-product-id item">Order ID </th>
+                                                <th scope="col" class="cart-product-date item">Date </th>
+                                                <th scope="col" class="cart-description item">Image</th>
+                                                <th scope="col" class="cart-product-name item">Product Name</th>
+                                                <th scope="col" class="cart-qty item">Quantity</th>
+                                                <th scope="col" class="cart-total last-item">Total</th>
+                                                <th scope="col" class="cart-total last-item">Status</th>
+                                                <th scope="col" class="cart-romove item"></th>
+                                            </tr>
+                                        </thead>
+                                        <!-- /thead -->
+                                        <tbody>
+                                            <tr>
+                                                <td class="cart-product-order-id">
+                                                    <span>#123456</span>
+                                                </td>
+                                                <td class="cart-product-order-date">
+                                                    <span>6/24/2021</span>
+                                                </td>
+                                                <td class="cart-image">
+                                                    <a class="entry-thumbnail" href="detail.html">
+                                                        <img src="frontend/assets/images/product-images/8.jpg" class="img-fluid">
+                                                    </a>
+                                                </td>
+                                                <td class="cart-product-name-info">
+                                                    <h4 class="cart-product-description"><a href="detail.html">Yoga Mat</a></h4>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <div class="rating rateit-small"></div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.row -->
+                                                </td>
+                                                <td class="cart-product-quantity">
+                                                    <div class="quant-input">
+                                                        <span>1</span>
+                                                    </div>
+                                                </td>
+                                                <td class="cart-product-grand-total"><span class="cart-grand-total-price">$300.00</span>
+                                                </td>
+                                                <td class="cart-product-order-date">
+                                                    <span class="bg-success text-white px-3 py-2">Delivered</span>
+                                                </td>
+                                                <td class="view-item"><a href="#" title="cancel" class="icon">
+                                                        View</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="cart-product-order-id">
+                                                    <span>#123456</span>
+                                                </td>
+                                                <td class="cart-product-order-date">
+                                                    <span>6/24/2021</span>
+                                                </td>
+                                                <td class="cart-image">
+                                                    <a class="entry-thumbnail" href="detail.html">
+                                                        <img src="frontend/assets/images/product-images/6.jpg" class="img-fluid">
+                                                    </a>
+                                                </td>
+                                                <td class="cart-product-name-info">
+                                                    <h4 class="cart-product-description"><a href="detail.html">Yoga Mat</a></h4>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <div class="rating rateit-small"></div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.row -->
+                                                </td>
+                                                <td class="cart-product-quantity">
+                                                    <div class="quant-input">
+                                                        <span>1</span>
+                                                    </div>
+                                                </td>
+                                                <td class="cart-product-grand-total"><span class="cart-grand-total-price">$300.00</span>
+                                                </td>
+                                                <td class="cart-product-order-date">
+                                                    <span class="bg-warning text-white px-3 py-2">Pending</span>
+                                                </td>
+                                                <td class="view-item"><a href="#" title="cancel" class="icon">
+                                                        View</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="cart-product-order-id">
+                                                    <span>#123456</span>
+                                                </td>
+                                                <td class="cart-product-order-date">
+                                                    <span>6/24/2021</span>
+                                                </td>
+                                                <td class="cart-image">
+                                                    <a class="entry-thumbnail" href="detail.html">
+                                                        <img src="frontend/assets/images/product-images/7.jpg" class="img-fluid">
+                                                    </a>
+                                                </td>
+                                                <td class="cart-product-name-info">
+                                                    <h4 class="cart-product-description"><a href="detail.html">Yoga Mat</a></h4>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <div class="rating rateit-small"></div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.row -->
+                                                </td>
+                                                <td class="cart-product-quantity">
+                                                    <div class="quant-input">
+                                                        <span>1</span>
+                                                    </div>
+                                                </td>
+                                                <td class="cart-product-grand-total"><span class="cart-grand-total-price">$300.00</span>
+                                                </td>
+                                                <td class="cart-product-order-date">
+                                                    <span class="bg-danger text-white px-3 py-2">Cancelled</span>
+                                                </td>
+                                                <td class="view-item"><a href="#" title="cancel" class="icon">
+                                                        View</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <!-- /tbody -->
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+        <!-- Order-Status Ends -->
+
+@endsection
