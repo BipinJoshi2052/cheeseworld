@@ -3,6 +3,11 @@
 
 @section('content')
 
-    @include( 'frontend-templates.product.' .$appearance_settings['products']. '.' .$appearance_settings['products'] )
+    <!-- Whole Body Wrapper Starts -->
+    <section id="product-listing-page">
+        
+        @include('includes.frontend.header')
+
+        @include( 'frontend-templates.product.' .$appearance_settings['products']. '.' .$appearance_settings['products'] )
 
 @endsection
