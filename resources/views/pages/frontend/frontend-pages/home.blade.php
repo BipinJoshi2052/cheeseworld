@@ -8,6 +8,6 @@
 
         @include('includes.frontend.header')
 
-        @include( 'frontend-templates.product.' .$appearance_settings['products']. '.' .$appearance_settings['products'] )
+        @include( 'frontend-templates.home.' .$appearance_settings['home']. '.' .$appearance_settings['home'] )
 
 @endsection
