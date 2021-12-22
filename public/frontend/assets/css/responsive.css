@@ -1,0 +1,171 @@
+                                                        @media (min-width: 1400px) {
+                                                            .container,
+                                                            .container-lg,
+                                                            .container-md,
+                                                            .container-sm,
+                                                            .container-xl,
+                                                            .container-xxl {
+                                                                max-width: 1300px !important;
+                                                            }
+                                                        }
+                                                        
+                                                        @media (max-width: 1026px) {
+                                                            .navbar.header-sticky {
+                                                                justify-content: start;
+                                                            }
+                                                            .desk-nav {
+                                                                position: absolute;
+                                                                right: 0;
+                                                                transform: translateX(-8px);
+                                                            }
+                                                            .desk-nav label {
+                                                                display: none;
+                                                            }
+                                                            .desk-nav .nav-link.add-on span:nth-child(3) {
+                                                                display: none;
+                                                            }
+                                                            .mega-menu-wrapper {
+                                                                width: 650px;
+                                                            }
+                                                            .cart-wishlist .nav-item:hover .profilenav-dropdown {
+                                                                right: 0;
+                                                                transform: translateX(-15px);
+                                                                width: unset;
+                                                            }
+                                                        }
+                                                        
+                                                        @media (max-width: 769px) {
+                                                            #leftsidebarfilter .left-side-wrapper {
+                                                                box-shadow: none;
+                                                            }
+                                                            #leftsidebarfilter .modal-content {
+                                                                height: 100%;
+                                                                overflow-y: scroll;
+                                                            }
+                                                            #leftsidebarfilter .modal-body {
+                                                                padding: 0;
+                                                            }
+                                                            #footer-wrapper a {
+                                                                justify-content: center;
+                                                            }
+                                                            #footer-wrapper .heading .head::before {
+                                                                display: none;
+                                                            }
+                                                            #footer-wrapper .head h2 {
+                                                                padding-left: unset;
+                                                            }
+                                                            a.anchor-btn {
+                                                                padding: 8px 12px;
+                                                                font-size: 15px;
+                                                            }
+                                                            a.anchor-btn2 {
+                                                                padding: 8px 12px;
+                                                                font-size: 15px;
+                                                            }
+                                                            .search-button {
+                                                                display: block;
+                                                                position: absolute;
+                                                                right: 0;
+                                                                font-size: 20px;
+                                                                transform: translateX(-110px);
+                                                                padding-bottom: 0;
+                                                                color: var(--third-color) !important;
+                                                            }
+                                                            #searchpopupmodal .modal-body input {
+                                                                font-size: 20px;
+                                                            }
+                                                        }
+                                                        
+                                                        @media (max-width: 600px) {
+                                                            .heading .head::before {
+                                                                display: none;
+                                                            }
+                                                            .head h2 {
+                                                                padding: unset;
+                                                            }
+                                                            .about-us-image-discription {
+                                                                justify-content: center !important;
+                                                                align-items: center !important;
+                                                            }
+                                                            .text-right {
+                                                                text-align: center !important;
+                                                            }
+                                                            #about-us-wrapper .about-us-image img {
+                                                                max-height: 220px;
+                                                                min-height: 220px;
+                                                            }
+                                                            .about-us-video-wrapper .video-info img {
+                                                                max-height: 220px;
+                                                                min-height: 220px;
+                                                            }
+                                                            .product-carousel .gallery-top {
+                                                                height: 200px !important;
+                                                            }
+                                                            #first {
+                                                                width: 100% !important;
+                                                            }
+                                                            .about-us-video-wrapper .video-overlay iframe {
+                                                                height: auto;
+                                                                width: auto;
+                                                            }
+                                                            #breadcrumb-wrapper {
+                                                                height: 160px;
+                                                                overflow: hidden;
+                                                            }
+                                                            #breadcrumb-wrapper .overlay .title {
+                                                                font-size: 15px;
+                                                            }
+                                                        }
+                                                        
+                                                        @media (max-width: 426px) {
+                                                            #banner-wrapper .image img {
+                                                                max-height: 160px;
+                                                                min-height: 160px;
+                                                            }
+                                                            .slick-slide img {
+                                                                max-height: 320px;
+                                                                min-height: 320px;
+                                                                object-fit: cover;
+                                                                object-position: center;
+                                                                width: 100%;
+                                                            }
+                                                            .slick-next,
+                                                            .slick-prev {
+                                                                display: none !important;
+                                                            }
+                                                            .product-grid-item2 .product-grid-image2 img {
+                                                                max-height: 250px;
+                                                                min-height: 250px;
+                                                                object-position: center;
+                                                                object-fit: cover;
+                                                                width: 100%;
+                                                            }
+                                                            .discription2 {
+                                                                left: 40%;
+                                                            }
+                                                            .slick-item .discription {
+                                                                left: 40%;
+                                                            }
+                                                            #parallax {
+                                                                min-height: 40vh;
+                                                                max-height: 40vh;
+                                                            }
+                                                            .head h1 {
+                                                                font-size: 45px;
+                                                            }
+                                                            .discription3 {
+                                                                padding: 10px 8px;
+                                                            }
+                                                            #change-password-wrapper .form-group a {
+                                                                font-size: 13px;
+                                                            }
+                                                            #login-register-wrapper form:hover {
+                                                                transform: translate(-5px);
+                                                            }
+                                                        }
+                                                        
+                                                        @media(max-width:360px) {
+                                                            .search-button {
+                                                                transform: translateX(-70px);
+                                                            }
+                                                        }
