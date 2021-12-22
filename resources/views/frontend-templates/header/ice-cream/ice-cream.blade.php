@@ -1,436 +1,219 @@
-<!-- Navigation Starts -->
-<section id="navigation-wrapper" class="navigation-wrap">
-    <nav class="navbar header-sticky">
-        <div class="image">
-            <a class="navbar-brand" href="index.html">
-                <!-- <img src="frontend/assets/images/logo/logo.png" alt="navigation-logo" class="img-fluid"> -->
-                <h3 class="m-0 font-weight-bold"><span>Cheese</span> World !</h3>
-            </a>
-        </div>
-        <div class="navbar-menus d-xl-block d-lg-block d-none" id="navbarmain">
-            <ul class="navbar-nav py-4 py-md-0 d-flex flex-row flex-wrap" role="menu">
-                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                    <a class="nav-link active" href="index.html">Home</a>
-                </li>
-                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                    <a class="nav-link" href="">
-                    Products
-                    <span class="ml-1">
-                        <i class="fa fa-angle-down" aria-hidden="true"></i>
-                    </span>
+<div id="header_content">
+  <div class="header-content-top">
+    <div class="container">
+        <div class="row">
+          <div class="col-5 col-md-6">
+            <div class="currency-lang">
+              <div class="dropdown change-multi-currency">
+                @if(get_frontend_selected_currency())
+                <a class="dropdown-toggle" href="#" data-hover="dropdown" data-toggle="dropdown">
+                  <span class="d-none d-md-inline">{!! get_currency_name_by_code( get_frontend_selected_currency() ) !!}</span>
+                  <span class="d-md-none d-xs-inline  fa fa-money money-icon"></span>
+                  @if(count(get_frontend_selected_currency_data()) >0)
+                  <span class="caret"></span>
+                  @endif
                 </a>
-                    <div class="mega-menu-wrapper">
-                        <div class="row p-4">
+                @endif
+                <div class="dropdown-content">
+                  @if(count(get_frontend_selected_currency_data()) >0)
+                    @foreach(get_frontend_selected_currency_data() as $val)
+                      <a href="#" data-currency_name="{{ $val }}">{!! get_currency_name_by_code( $val ) !!}</a>
+                    @endforeach
+                  @endif
+                </div>
+              </div>
 
-                            <!-- /.col-md-3  -->
-                            <div class="col-md-3">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 27</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 1</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 2</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /.col-md-3  -->
-                            <div class="col-md-3">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 27</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 1</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 2</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /.col-md-3  -->
-                            <div class="col-md-3">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 27</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 1</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 2</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /.col-md-3  -->
-                            <div class="col-md-3">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 27</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 1</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 2</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /.col-md-3  -->
-                            <div class="col-md-3">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 27</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 1</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 2</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-md-3">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 29</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 1</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 2</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /.col-md-3  -->
-                            <div class="col-md-3">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 27</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 1</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 2</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-md-3">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 29</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 1</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 2</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /.col-md-3  -->
-                            <div class="col-md-3">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 27</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 1</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 2</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+              <div class="dropdown language-list">
+                @if(count(get_frontend_selected_languages_data()) > 0)
+                  @if(get_frontend_selected_languages_data()['lang_code'] == 'en')
+                    <a class="dropdown-toggle" href="#" data-hover="dropdown" data-toggle="dropdown">
+                      <img src="{{ asset('public/images/'. get_frontend_selected_languages_data()['lang_sample_img']) }}" alt="lang"> <span class="d-none d-md-inline"> &nbsp; {!! get_frontend_selected_languages_data()['lang_name'] !!}</span> <span class="caret"></span>
+                    </a>
+                  @else
+                    <a class="dropdown-toggle" href="#" data-hover="dropdown" data-toggle="dropdown">
+                      <img src="{{ get_image_url(get_frontend_selected_languages_data()['lang_sample_img']) }}" alt="lang"> <span class="d-none d-md-inline"> &nbsp; {!! get_frontend_selected_languages_data()['lang_name'] !!}</span> <span class="caret"></span>
+                    </a>
+                  @endif
+                @endif
+                <?php $available_lang = get_available_languages_data_frontend();?>  
 
-                    </div>
-                </li>
-                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                    <a class="nav-link toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    Recipes
-                    <span class="ml-1">
-                        <i class="fa fa-angle-down" aria-hidden="true"></i>
-                    </span>
-                </a>
-                    <div class="mega-menu-wrapper">
-                        <div class="row p-4">
+                @if(is_array($available_lang) && count($available_lang) >0)
+                  <div class="dropdown-content">
+                    @foreach(get_available_languages_data_frontend() as $key => $val)
+                      @if($val['lang_code'] == 'en')
+                        <a href="#" data-lang_name="{{ $val['lang_code'] }}"><img src="{{ asset('public/images/'. $val['lang_sample_img']) }}" alt="lang"> &nbsp;{!! ucwords($val['lang_name']) !!}</a>
+                      @else
+                        <a href="#" data-lang_name="{{ $val['lang_code'] }}"><img src="{{ get_image_url($val['lang_sample_img']) }}" alt="lang"> &nbsp;{!! ucwords($val['lang_name']) !!}</a>
+                      @endif
+                    @endforeach
+                  </div>
+                @endif
+              </div>
+            </div>
+          </div>
+            
+          <div class="col-7 col-md-6">
+            <div class="float-right">
+              <ul class="right-menu top-right-menu">
+                <li class="wishlist-content">
+                  <a class="main" href="{{ route('my-saved-items-page') }}">
+                    <i class="fa fa-heart"></i> 
+                    <span class="d-none d-md-inline">{!! trans('frontend.frontend_wishlist') !!}</span> 
+                  </a>    
+                </li>  
 
-                            <!-- /.col-md-3  -->
-                            <div class="col-md-3">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 27</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 1</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 2</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /.col-md-3  -->
-                            <div class="col-md-3">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 27</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 1</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 2</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /.col-md-3  -->
-                            <div class="col-md-3">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 27</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 1</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 2</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /.col-md-3  -->
-                            <div class="col-md-3">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 27</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 1</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 2</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /.col-md-3  -->
-                            <div class="col-md-3">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 27</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 1</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 2</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-md-3">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 29</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 1</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 2</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /.col-md-3  -->
-                            <div class="col-md-3">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 27</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 1</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 2</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-md-3">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 29</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 1</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 2</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /.col-md-3  -->
-                            <div class="col-md-3">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 27</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 1</a>
-                                    </li>
-                                    <li class="nav-item p-0">
-                                        <a class="nav-link" href="under-construction.html">Item 2</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                <li class="users-vendors-login dropdown"><a href="#" class="main selected dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i class="fa fa-user" aria-hidden="true"></i> <span class="d-none d-md-inline">{!! trans('frontend.menu_my_account') !!}</span><span class="caret"></span></a>
+                  <div class="new-dropdown-menu dropdown-content my-account-menu">
+                    @if (Session::has('shopist_frontend_user_id'))
+                    <a href="{{ route('user-account-page') }}">{!! trans('frontend.user_account_label') !!}</a>
+                    @else
+                    <a href="{{ route('user-login-page') }}">{!! trans('frontend.frontend_user_login') !!}</a>
+                    @endif
 
-                    </div>
-                </li>
-                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    Categories
-                    <span class="ml-1">
-                        <i class="fa fa-angle-down" aria-hidden="true"></i>
-                    </span>
-                </a>
-                    <div class="mega-menu-wrapper">
-                        <!-- <a class="dropdown-item" href="">Product 1</a>
-                    <a class="dropdown-item" href="">Product 2</a> -->
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 29</a>
-                                        </li>
-                                        <li class="nav-item p-0">
-                                            <a class="nav-link" href="under-construction.html">Item 1</a>
-                                        </li>
-                                        <li class="nav-item p-0">
-                                            <a class="nav-link" href="under-construction.html">Item 2</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <!-- /.col-md-3  -->
-                                <div class="col-md-3">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 27</a>
-                                        </li>
-                                        <li class="nav-item p-0">
-                                            <a class="nav-link" href="under-construction.html">Item 1</a>
-                                        </li>
-                                        <li class="nav-item p-0">
-                                            <a class="nav-link" href="under-construction.html">Item 2</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-3">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 29</a>
-                                        </li>
-                                        <li class="nav-item p-0">
-                                            <a class="nav-link" href="under-construction.html">Item 1</a>
-                                        </li>
-                                        <li class="nav-item p-0">
-                                            <a class="nav-link" href="under-construction.html">Item 2</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <!-- /.col-md-3  -->
-                                <div class="col-md-3">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 27</a>
-                                        </li>
-                                        <li class="nav-item p-0">
-                                            <a class="nav-link" href="under-construction.html">Item 1</a>
-                                        </li>
-                                        <li class="nav-item p-0">
-                                            <a class="nav-link" href="under-construction.html">Item 2</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-3">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 29</a>
-                                        </li>
-                                        <li class="nav-item p-0">
-                                            <a class="nav-link" href="under-construction.html">Item 1</a>
-                                        </li>
-                                        <li class="nav-item p-0">
-                                            <a class="nav-link" href="under-construction.html">Item 2</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <!-- /.col-md-3  -->
-                                <div class="col-md-3">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 27</a>
-                                        </li>
-                                        <li class="nav-item p-0">
-                                            <a class="nav-link" href="under-construction.html">Item 1</a>
-                                        </li>
-                                        <li class="nav-item p-0">
-                                            <a class="nav-link" href="under-construction.html">Item 2</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @if (Session::has('shopist_admin_user_id') && !empty(get_current_vendor_user_info()['user_role_slug']) && get_current_vendor_user_info()['user_role_slug'] == 'vendor')
+                     <a target="_blank" href="{{ route('admin.dashboard') }}">{!! trans('frontend.vendor_account_label') !!}</a>
+                    @else
+                     <a target="_blank" href="{{ route('admin.login') }}">{!! trans('frontend.frontend_vendor_login') !!}</a>
+                    @endif
+
+                    <a href="{{ route('vendor-registration-page') }}">{!! trans('frontend.vendor_registration') !!}</a>
+                  </div>
                 </li>
 
-
-                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                    <a class="nav-link" href="portfolio.html">Contact Us</a>
+                <li class="mini-cart-content">
+                  @include('pages.ajax-pages.mini-cart-html2')
                 </li>
-                <!-- Popup Saerch Modal Anchor -->
-                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                    <a class="btn" data-toggle="modal" data-target="#searchpopupmodal"><i class="fa fa-search"></i></a>
-                </li>
-            </ul>
+              </ul>
+            </div> 
+          </div>   
         </div>
-        <div class="cart-wishlist desk-nav d-xl-block d-lg-block d-none">
-            <ul class="d-flex align-items-center justify-content-between m-0">
-                <li>
-                    <a class="nav-link add-on px-xl-2 px-lg-1 px-md-2 px-2" data-toggle="modal" data-target="#nav-cart">
-                        <span class="mr-1"><i class="fa fa-shopping-bag" aria-hidden="true"></i></span> <sup class="cart-items text-white">2</sup>
-                    </a>
-                </li>
-                <li>
-                    <a class="nav-link add-on px-xl-2 px-lg-1 px-md-2 px-2" data-toggle="modal" data-target="#nav-cart">
-                        <span class="mr-1"><i class="fa fa-heart-o" aria-hidden="true"></i></span> <sup class="cart-items text-white">2</sup>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link m-auto add-on" href="#" id="profilenav">
-                        <span class="mr-1"><i class="fa fa-user-o" aria-hidden="true"></i></span> <label class="mb-0">Profile</label> <span class="ml-1">
-                            <i class="fa fa-angle-down" aria-hidden="true"></i>
-                        </span>
-                    </a>
-                    <div class="profilenav-dropdown custom-position p-0" aria-labelledby="profilenav">
-                        <a class="dropdown-item" href="under-construction.html"> <span class="mr-2"><i class="fa fa-sign-in" aria-hidden="true"></i></span>Login</a>
-                        <a class="dropdown-item" href="under-construction.html"> <span class="mr-2"><i class="fa fa-paper-plane" aria-hidden="true"></i></span>Register</a>
-                    </div>
-                </li>
-            </ul>
+    </div>
+  </div>
+    
+  <div class="header-content-bottom-all">  
+    <div class="header-content-middle">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            @if(get_site_logo_image())
+              <div class="logo text-center"><img src="{{ get_site_logo_image() }}" title="{{ trans('frontend.your_store_label') }}" alt="{{ trans('frontend.your_store_label') }}"></div>
+            @endif
+          </div>  
         </div>
-        <!-- Mobile Popup Search Modal Anchor -->
-        <a class="btn d-xl-none d-lg-none d-md-block search-button" data-toggle="modal" data-target="#searchpopupmodal"><i class="fa fa-search"></i></a>
+        <div class="row">
+          <div class="col text-center search-and-compare-item">
+            <div class="terms-search-option">  
+              <form id="search_option" action="{{ route('shop-page') }}" method="get">
+                <div class="input-group">
+                  <input type="text" id="srch_term" name="srch_term" class="form-control" placeholder="{{ trans('frontend.search_for_label') }}">
+                  <span class="input-group-btn">
+                    <button id="btn-search" type="submit" class="btn btn-light search-btn">
+                      <span class="fa fa-search"></span>
+                    </button>
+                  </span>
+                </div>
+              </form>
+              <div class="dropdown searchBox" id="searchBox">
+                <ul class="dropdown-menu search-menud" style="width: 100%; overflow-y: auto; max-height: 400px; min-height:auto">
+                    
+                </ul>
+            </div>
+            </div>
+            <div class="items-compare-list"><a href="{{ route('product-comparison-page') }}" class="btn btn-light btn-compare"><i class="fa fa-exchange"></i> <span class="d-none d-lg-inline"> &nbsp; {!! trans('frontend.compare_label') !!}</span> <span class="compare-value"> (<?php echo $total_compare_item;?>)</span></a></div>  
+          </div>  
+        </div>  
+      </div>
+    </div> 
+    <div class="header-content-menu">
+      <div id="sticky_nav">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="navbar navbar-expand-lg navbar-dark nav-main" id="navbar">
+              <a class="navbar-brand" href="#"></a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-menu-small">{!! trans('frontend.menu_label') !!}</span>
+              </button>
 
-        <!-- Mobile Popup Search Modal Anchor Ends -->
-        <!-- Small Desktop & mobile Cart-wishlist and Profile -->
-        <!-- Button trigger modal -->
-        <div class="mobile-menu d-lg-none d-md-block mr-4 position-absolute" data-toggle="modal" data-target="#rightsidebarfilter"><span><i class="fa fa-bars fa-2x" aria-hidden="true"></i></span> </div>
-        <!-- Button trigger modal -->
-
-        <!-- Small Desktop & mobile Cart-wishlist and Profile End-->
-    </nav>
-</section>
-<!-- Navigation Ends -->
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto nav-list-main">
+                {!! $dynamic_menu !!}  
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+      </div>       
+    </div> 
+  </div>
+    
+  <div class="header-cat-slider-content">
+    <div class="container">
+      <div class="slider-cat-content clearfix">
+        <div class="cat-content">
+        {!! $dynamic_vertical_megamenu !!}  
+        </div>
+        <div class="slider-content">
+        @if($appearance_all_data['header_details']['slider_visibility'] == true && Request::is('/'))
+          <?php $count = count(get_appearance_header_settings_data());?>
+          @if($count > 0)
+          <div class="header-with-slider">
+            <div id="slider_carousel" class="carousel slide" data-ride="carousel">
+              
+              <ol class="carousel-indicators">
+                @for($i = 0; $i < $count; $i++)  
+                  @if($i== 0)
+                    <li data-target="#slider_carousel" data-slide-to="{{ $i }}" class="active"></li>
+                  @else
+                    <li data-target="#slider_carousel" data-slide-to="{{ $i }}"></li>
+                  @endif
+                @endfor   
+              </ol> 
+                
+              <?php $numb = 1; ?>
+              <div class="carousel-inner">
+                @foreach(get_appearance_header_settings_data() as $img)
+                  @if($numb == 1)
+                    <div class="carousel-item active">
+                      @if($img->img_url)
+                        <img src="{{ get_image_url($img->img_url) }}" class="d-block w-100" alt="" />
+                      @endif
+                    </div>
+                  @else
+                    <div class="carousel-item">
+                      @if($img->img_url)
+                        <img src="{{ get_image_url($img->img_url) }}" class="d-block w-100" alt="" />
+                      @endif
+                    </div>
+                  @endif
+                  <?php $numb++ ; ?>
+                @endforeach
+              </div>
+              <a class="carousel-control-prev" href="#slider_carousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#slider_carousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>  
+            </div>
+          </div>
+          @else
+          <div class="header-with-slider">
+            <div id="slider_carousel" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="{{ asset('public/images/sunglass.jpg') }}" class="d-block w-100" alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+          @endif
+        @endif 
+        </div>
+      </div>
+    </div>
+  </div>  
+</div>
