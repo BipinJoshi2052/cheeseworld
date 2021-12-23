@@ -2,7 +2,7 @@
 <section id="navigation-wrapper" class="navigation-wrap">
     <nav class="navbar header-sticky">
         <div class="image">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="{{ url('/') }}">
                 <!-- <img src="frontend/assets/images/logo/logo.png" alt="navigation-logo" class="img-fluid"> -->
                 <h3 class="m-0 font-weight-bold"><span>Cheese</span> World !</h3>
             </a>
@@ -10,7 +10,7 @@
         <div class="navbar-menus d-xl-block d-lg-block d-none" id="navbarmain">
             <ul class="navbar-nav py-4 py-md-0 d-flex flex-row flex-wrap" role="menu">
                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                    <a class="nav-link active" href="index.html">Home</a>
+                    <a class="nav-link active" href="{{ url('/') }}">Home</a>
                 </li>
                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                     <a class="nav-link" href="">
@@ -411,10 +411,11 @@
                         </div>
                     </div>
                 </li>
-
-
                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                    <a class="nav-link" href="portfolio.html">Contact Us</a>
+                    <a class="nav-link" href="{{ url('/shop') }}">Shop</a>
+                </li>
+                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                    <a class="nav-link" href="{{ url('/contact') }}">Contact Us</a>
                 </li>
                 <!-- Popup Saerch Modal Anchor -->
                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
