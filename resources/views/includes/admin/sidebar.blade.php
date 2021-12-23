@@ -32,6 +32,25 @@
 
                 </li>
             @endif
+
+            @if (Request::is('admin/contacts'))
+
+            
+                <li class="active">
+                    <a href="{{ route('admin.get-contacts') }}" class="active">
+                        <i class="fa fa-picture-o"></i> <span>Contact</span>
+                    </a>
+
+                </li>
+            @else
+
+                <li>
+                    <a href="{{ route('admin.get-contacts') }}">
+                        <i class="fa fa-picture-o"></i> <span>Contact</span>
+                    </a>
+
+                </li>
+            @endif
             @if (!$sidebar_data['is_vendor_login'])
                 @if (check_permission_menu_heading('cms', $user_permission_list))
                     <li class="sidebar-cms-title">{!! trans('admin.sidebar_cms_title') !!}</li>

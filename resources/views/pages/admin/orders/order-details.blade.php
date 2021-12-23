@@ -1,7 +1,11 @@
 @extends('layouts.admin.master')
 @section('title', trans('admin.orders_details') .' < '. get_site_title())
-
+<?php 
+  $print_route = route('admin.order_invoice', $order_data_by_id['_order_id']);
+?>
 @section('content')
+
+
 <form class="form-horizontal" method="post" action="" enctype="multipart/form-data">
   @include('includes.csrf-token')
   <div class="box box-solid">
@@ -56,7 +60,10 @@
           </div>
           <div class="col-sm-9">
             <button class="btn btn-primary" type="submit">{!! trans('admin.save_change') !!}</button>
-            <a class="btn btn-primary" href="{{ route('admin.order_invoice', $order_data_by_id['_order_id']) }}" target="_blank">{!! trans('admin.print_invoice_label') !!}</a>
+            
+            {{-- <a class="btn btn-primary" href="javascript: w=window.open('{{ $print_route }}', 'jpt'); w.print(); w.close();">{!! trans('admin.print_invoice_label') !!}</a> --}}
+            <a class="btn btn-primary printInvoice" href="#" onclick="openPrintWindow('{{ $print_route }}')">{!! trans('admin.print_invoice_label') !!}</a>
+            {{-- <a class="btn btn-primary" href="{{ route('admin.order_invoice', $order_data_by_id['_order_id']) }}" target="_blank">{!! trans('admin.print_invoice_label') !!}</a> --}}
           </div>
         </div>    
       </div>
@@ -268,4 +275,19 @@
     </div>
   </div>
 </div>
+<script>
+
+  function openPrintWindow(url) {
+    var printWindow = window.open(url, 'jpt');
+    var printAndClose = function () {
+      if (printWindow.document.readyState == 'complete') {
+        clearInterval(sched);
+        printWindow.print();
+        printWindow.close();
+     }
+    }  
+      var sched = setInterval(printAndClose, 200);
+   };
+
+</script>
 @endsection

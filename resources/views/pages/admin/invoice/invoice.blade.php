@@ -26,7 +26,8 @@
     #order_invoice hr{ border-bottom:4px solid #e1e1e1;}
 </style>
 </head>
-<body id="order_invoice" onload="window.print(); window.close();">
+{{-- <body id="order_invoice" onload="window.print(); window.close();"> --}}
+<body id="order_invoice">
   <div class="container">
     <div class="row">
       <div class="col-12">

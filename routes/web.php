@@ -17,6 +17,17 @@ Route::get('login/{provider}/callback','Auth\LoginController@Callback')->name('p
 Route::post('get-product-by-title', 'ProductsController@getProductByTitle')->name("getProductByTitle");
 //banner
 
+//banner
+
+Route::resource('/admin/banners',BannerController::class)->middleware('verifyLoginPage', 'admin', 'sufficientPermission');
+
+//cancel order
+Route::resource('user/account/cancel-orders',\Frontend\CancelOrderController::class)->middleware('userAdmin', 'verifyLoginPage');
+
+//cancelled order
+Route::get('/admin/cancelled-orders',[CancelOrdersController::class,'index'])->middleware('verifyLoginPage', 'admin', 'sufficientPermission')->name('cancel_orders');
+
+
 
 Route::resource('/admin/banners',BannerController::class)->middleware('verifyLoginPage', 'admin', 'sufficientPermission');
 
@@ -197,6 +208,16 @@ Route::group(['prefix' => 'admin'], function () {
   Route::get('blog/update/{blog_slug}', [
     'uses' => 'CMSController@blogUpdateContent',
     'as'   => 'admin.update_blog'
+  ])->middleware('verifyLoginPage', 'admin', 'sufficientPermission');
+
+  Route::get('contacts', [
+    'uses' => 'Admin\ContactController@index',
+    'as'   => 'admin.get-contacts'
+  ])->middleware('verifyLoginPage', 'admin', 'sufficientPermission');
+
+  Route::get('delete/{id}', [
+    'uses' => 'Admin\ContactController@delete',
+    'as'   => 'admin.delete-contact'
   ])->middleware('verifyLoginPage', 'admin', 'sufficientPermission');
   
   
