@@ -18,7 +18,7 @@
                         <a href="">
                             <div class="row">
                                 <div class="col-2">
-                                    <div class="image"> <img src="frontend/assets/images/product-images/1.jpg" alt="search-list-image" class="img-fluid"></div>
+                                    <div class="image"> <img src="{{ asset('public/frontend/assets/images/product-images/1.jpg') }}" alt="search-list-image" class="img-fluid"></div>
                                 </div>
                                 <div class="col-10 m-auto">
                                     <p class="m-0">Ham Cheese Burger</p>
@@ -30,7 +30,7 @@
                         <a href="">
                             <div class="row">
                                 <div class="col-2">
-                                    <div class="image"> <img src="frontend/assets/images/product-images/1.jpg" alt="search-list-image" class="img-fluid"></div>
+                                    <div class="image"> <img src="{{ asset('public/frontend/assets/images/product-images/1.jpg') }}" alt="search-list-image" class="img-fluid"></div>
                                 </div>
                                 <div class="col-10 m-auto">
                                     <p class="m-0">Ham Cheese Burger</p>
@@ -42,7 +42,7 @@
                         <a href="">
                             <div class="row">
                                 <div class="col-2">
-                                    <div class="image"> <img src="frontend/assets/images/product-images/1.jpg" alt="search-list-image" class="img-fluid"></div>
+                                    <div class="image"> <img src="{{ asset('public/frontend/assets/images/product-images/1.jpg') }}" alt="search-list-image" class="img-fluid"></div>
                                 </div>
                                 <div class="col-10 m-auto">
                                     <p class="m-0">Ham Cheese Burger</p>
@@ -71,7 +71,7 @@
                     <tbody>
                         <tr>
                             <td class="pr-4 py-3">
-                                <img src="frontend/assets/images/product-images/1.jpg" class="img-fluid">
+                                <img src="{{ asset('public/frontend/assets/images/product-images/1.jpg') }}" class="img-fluid">
                             </td>
                             <td class="px-4 py-3">
                                 <a href="">
@@ -89,7 +89,7 @@
                         </tr>
                         <tr>
                             <td class="pr-4 py-3">
-                                <img src="frontend/assets/images/product-images/6.jpg" class="img-fluid">
+                                <img src="{{ asset('public/frontend/assets/images/product-images/6.jpg') }}" class="img-fluid">
                             </td>
                             <td class="px-4 py-3">
                                 <a href="">
@@ -107,7 +107,7 @@
                         </tr>
                         <tr>
                             <td class="pr-4 py-3">
-                                <img src="frontend/assets/images/product-images/5.jpg" class="img-fluid">
+                                <img src="{{ asset('public/frontend/assets/images/product-images/5.jpg') }}" class="img-fluid">
                             </td>
                             <td class="px-4 py-3">
                                 <a href="">
@@ -125,7 +125,7 @@
                         </tr>
                         <tr>
                             <td class="pr-4 py-3">
-                                <img src="frontend/assets/images/product-images/3.jpg" class="img-fluid">
+                                <img src="{{ asset('public/frontend/assets/images/product-images/3.jpg') }}" class="img-fluid">
                             </td>
                             <td class="px-4 py-3">
                                 <a href="">
@@ -143,7 +143,7 @@
                         </tr>
                         <tr>
                             <td class="pr-4 py-3">
-                                <img src="frontend/assets/images/product-images/2.jpg" class="img-fluid">
+                                <img src="{{ asset('public/frontend/assets/images/product-images/2.jpg') }}" class="img-fluid">
                             </td>
                             <td class="px-4 py-3">
                                 <a href="">
@@ -161,7 +161,7 @@
                         </tr>
                         <tr>
                             <td class="pr-4 py-3">
-                                <img src="frontend/assets/images/product-images/1.jpg" class="img-fluid">
+                                <img src="{{ asset('public/frontend/assets/images/product-images/1.jpg') }}" class="img-fluid">
                             </td>
                             <td class="px-4 py-3">
                                 <a href="">
@@ -612,7 +612,7 @@
                 <div class="cart-wishlist">
                     <div class="image">
                         <a class="navbar-brand" href="index.html">
-                            <!-- <img src="frontend/assets/images/logo/logo.png" alt="navigation-logo" class="img-fluid"> -->
+                            <!-- <img src="{{ asset('public/frontend/assets/images/logo/logo.png') }}" alt="navigation-logo" class="img-fluid"> -->
                             <h2 class="m-0 font-weight-bold"><span>Cheese</span> World !</h2>
                         </a>
                     </div>
@@ -1038,7 +1038,7 @@
             <div class="modal-body d-flex align-items-center justify-content-around h-100 w-100 p-0">
                 <div class="dashboard-list2 px-2 py-0">
                     <div class="d-user-avater text-center mb-4">
-                        <img src="frontend/assets/images/product-images/1.jpg" class="img-fluid avater" alt="profile-image">
+                        <img src="{{ asset('public/frontend/assets/images/product-images/1.jpg') }}" class="img-fluid avater" alt="profile-image">
                         <h5>Adam Harshvardhan</h5>
                         <a href=""> <span class="mr-1"><i class="fa fa-pencil" aria-hidden="true"></i></span> Upload Image</a>
                     </div>
