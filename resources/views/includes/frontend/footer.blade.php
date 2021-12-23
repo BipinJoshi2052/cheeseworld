@@ -1,40 +1,75 @@
-@include( 'frontend-templates.footer.black-crazy.black-crazy' )
-
+<!-- Footer -->
+<section id="footer-wrapper" class="text-white py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-6 col-12 mb-2">
+                <div class="image">
+                    <a href="index.html"> <img src="frontend/assets/images/logo/2.png" alt="footer-logo-image" class="img-fluid"></a>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-6 col-12 mb-2">
+                <ul class="footer-nav-list">
+                    <div class="heading">
+                        <div class="head">
+                            <a href="">
+                                <h2>Connect with Us</h2>
+                            </a>
+                        </div>
+                    </div>
+                    <li>
+                        <a href=" mailto:webmaster@example.com"><span class="mr-2"><i class="fa fa-envelope-square" aria-hidden="true"></i></span>cheeseworld@gmail.com</a>
+                        </h5>
+                    </li>
+                    <li>
+                        <a href="tel:+4733378901"><span class="mr-2"><i class="fa fa-phone" aria-hidden="true"></i></span>01-123456789</a></h5>
+                    </li>
+                    <li>
+                        <a href=""><span class="mr-2"><i class="fa fa-map" aria-hidden="true"></i></span>Kathmandu, Nepal</a></h5>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-6 col-12 mb-2">
+                <ul class="footer-nav-list">
+                    <div class="heading">
+                        <div class="head">
+                            <a href="">
+                                <h2>Resources</h2>
+                            </a>
+                        </div>
+                    </div>
+                    <li>
+                        <a href="">Email Support</a></h5>
+                    </li>
+                    <li>
+                        <a href="">Contact Us</a></h5>
+                    </li>
+                    <li>
+                        <a href="">About Us</a></h5>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-6 col-12 mb-2">
+                <ul class="footer-nav-list">
+                    <div class="heading">
+                        <div class="head">
+                            <a href="">
+                                <h2>Follow Us</h2>
+                            </a>
+                        </div>
+                    </div>
+                    <li>
+                        <a href=""><span class="mr-2"><i class="fa fa-facebook-official" aria-hidden="true"></i></span>Facebook_name</a>
+                        </h5>
+                    </li>
+                    <li>
+                        <a href=""><span class="mr-2"><i class="fa fa-instagram" aria-hidden="true"></i></span>Instagram_name</a></h5>
+                    </li>
+                    <li>
+                        <a href=""><span class="mr-2"><i class="fa fa-snapchat-square" aria-hidden="true"></i></span>Snapchat_name</a></h5>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </section>
-<!-- Whole Body Wrapper Ends -->
-
-<!-- 1st Jquery Link Starts-->
-<script src="{{ asset('public/frontend/assets/jquery-3.5.1/jquery-3.5.1.js') }}"></script>
-<!-- Jquery Link Ends-->
-
-<!-- 2nd Popper Js Starts -->
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN " crossorigin="anonymous "></script>
-<!-- Popper Js Ends -->
-
-<!-- 3rd Bootstrap Js Link Starts -->
-<script src="{{ asset('public/frontend/assets/bootstrap-4.3.1/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('public/frontend/assets/bootstrap-4.3.1/js/bootstrap.min.js.map') }}"></script>
-<!-- Bootstrap Js Link Ends -->
-
-<!-- Slick Js -->
-<script src="{{ asset('public/frontend/assets/slick/slick.min.js') }}"></script>
-<!-- Slick Js Ends-->
-
-<!-- 1st Jquery Link Starts-->
-<script src="{{ asset('public/frontend/assets/jquery-3.5.1/jquery-3.5.1.js') }}"></script>
-<!-- Jquery Link Ends-->
-<!-- 2nd Popper Js Starts -->
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<!-- Popper Js Ends -->
-<!-- 3rd Bootstrap Js Link Starts -->
-<script src="{{ asset('public/frontend/assets/bootstrap-4.3.1/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('public/frontend/assets/bootstrap-4.3.1/js/bootstrap.min.js.map') }}"></script>
-<!-- Bootstrap Js Link Ends -->
-<!-- Slick Js -->
-<script src="{{ asset('public/frontend/assets/slick/slick.min.js') }}"></script>
-<!-- Slick Js Ends-->
-
-<!-- Custom Js Starts -->
-<script src="{{ asset('public/frontend/assets/js/main.js') }}"></script>
-<!-- Custom Js Ends -->
+<!-- Footer Ends -->
