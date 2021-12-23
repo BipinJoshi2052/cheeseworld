@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Request;
+use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\Input;
 use App\Library\GetFunction;
 use App\Models\Post;
@@ -1683,15 +1684,16 @@ class FrontendManagerController extends Controller
 
   public function getContact()
   {
-    return view('pages.frontend.frontend-pages.contact');
+    return view('pages.frontend.frontend-pages.contact-us');
   }
 
-  public function saveContact(Request $request)
+  public function saveContact(HttpRequest $request)
   {
       $validator = Validator::make($request->all(),[
           'name' => ["required"],
           'email' => ["required", "email"],
           'phone' => ["required"],
+          'message' => ["required"],
       ]);
 
       if($validator->fails()){
@@ -1708,7 +1710,7 @@ class FrontendManagerController extends Controller
           return redirect()->back()->with(notify('success', 'Your message has been submitted successfully'));
         } catch(\Exception $e){
           DB::rollBack();
-          return redirect()->back()->with(notify('errors', $e->getMessage()));
+          return redirect()->back()->with(notify('error', $e->getMessage()));
         }
       }
   }

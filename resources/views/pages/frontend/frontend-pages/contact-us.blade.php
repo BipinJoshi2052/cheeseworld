@@ -31,24 +31,37 @@
                     width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-8 col-12 p-0">
-                <form class="contact-form p-xl-5 p-lg-4 p-md-5 p-3">
+                <form class="contact-form p-xl-5 p-lg-4 p-md-5 p-3" method="POST">
+                    @csrf
                     <div class="form-group">
                         <label>Name</label>
-                        <input type="text" class="form-control">
+                        <input type="text" name="name" value="{{ old('name') }}" class="form-control">
+                        @error('name')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="email" class="form-control">
+                        <input type="email" name="email" value="{{ old('email') }}" class="form-control">
+                        @error('email')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label>Phone</label>
-                        <input type="text" class="form-control">
+                        <input type="text" name="phone" value="{{ old('phone') }}" class="form-control">
+                        @error('phone')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control " rows="4" placeholder="Your Message"></textarea>
+                        <textarea class="form-control" name="message" rows="4" placeholder="Your Message">{{ old('message') }}</textarea>
+                        @error('message')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group text-center">
-                        <button class="effect px-5">Send</button>
+                        <button type="submit" class="effect px-5">Send</button>
                     </div>
                 </form>
             </div>
