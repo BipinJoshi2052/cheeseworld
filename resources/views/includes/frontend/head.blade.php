@@ -21,5 +21,17 @@
 <!-- Font Link Ends -->
 <link rel="stylesheet" href="{{ asset('public/frontend/assets/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('public/frontend/assets/css/responsive.css') }}">
+<link rel="stylesheet" href="{{ URL::asset('public/frontend/css/toastr.min.css') }}">
+
+<style>
+    .toast-top-container {
+        position: absolute;
+        top: 65px;
+        width: 280px;
+        right: 40px;
+        height: auto;
+    }
+
+</style>
 
 @yield('style')
