@@ -1,5 +1,6 @@
 <?php
 use App\Library\GetFunction;
+use App\VendorType;
 
 /**
  * Get function for product title
@@ -1346,11 +1347,18 @@ function is_all_tables_created(){
 }
 
 
-if(!function_exists('notify')){
-  function notify($type, $msg){
-    return array(
-        "type" => $type,
-        "message" => $msg,
-    );
+
+function getImage($img, $path){
+  if($img != null && file_exists($path.$img)) {
+    return asset($path.$img);
+  } else {
+    
+    return asset('images/no-image.png');
+  }
+}
+
+if(!function_exists('checkVendorType')){
+  function checkVendorType(){
+    return VendorType::first()->vendor_status;
   }
 }

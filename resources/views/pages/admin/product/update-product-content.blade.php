@@ -194,7 +194,7 @@
                 <option value="simple_product">{!! trans('admin.simple_product') !!}</option>
               @endif
               
-              @if($product_post_data['post_type'] == 'configurable_product')
+              {{-- @if($product_post_data['post_type'] == 'configurable_product')
                 <option selected="selected" value="configurable_product">{!! trans('admin.configurable_product') !!}</option>
               @else
                 <option value="configurable_product">{!! trans('admin.configurable_product') !!}</option>
@@ -210,7 +210,7 @@
                 <option selected="selected" value="downloadable_product">{!! trans('admin.downloadable_product') !!}</option>
               @else
                 <option value="downloadable_product">{!! trans('admin.downloadable_product') !!}</option>
-              @endif
+              @endif --}}
             </select>
           </div>
         </div>

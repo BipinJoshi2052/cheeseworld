@@ -71,7 +71,7 @@ class OptionController extends Controller
   public function getPaymentMethodData(){
     $get_payment = null;
     $get_payment_option = $this->getOptionData('_payment_method_data');
-    
+    // dd($get_payment_option);
     if(!empty($get_payment_option)){
       $get_payment = unserialize($get_payment_option->option_value);
     }
@@ -247,7 +247,6 @@ class OptionController extends Controller
   public function getOptionData($option_name){
     $get_option = null;
     $get_option_data = Option :: where('option_name', $option_name)->first();
-    
     if(!empty($get_option_data)){
       $get_option = $get_option_data;
     }
