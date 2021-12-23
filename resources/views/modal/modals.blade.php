@@ -185,8 +185,8 @@
                     Total : <span class="font-weight-bold">Rs 1500</span>
                 </div>
                 <div class="d-flex justify-content-around align-items-center w-100">
-                    <button type="button" class="effect m-auto">View Cart</button>
-                    <button type="button" class="effect m-auto">Proceed Checkout</button>
+                    <a href="{{ url('/cart') }}"><button type="button" class="effect m-auto">View Cart</button></a>
+                    <a href="{{ url('/checkout') }}"><button type="button" class="effect m-auto">Proceed Checkout</button></a>
                 </div>
             </div>
         </div>
