@@ -10,7 +10,7 @@
         <!-- Breadcrumbs -->
         <section id="breadcrumb-wrapper" class="position-relative">
             <div class="image">
-                <img src="{{ asset('frontend/assets/images/product-images/1.jpg') }}" alt="breadcrumb-image" class="img-fluid">
+                <img src="{{ asset('public/frontend/assets/images/product-images/1.jpg') }}" alt="breadcrumb-image" class="img-fluid">
             </div>
             <div class="overlay position-absolute">
                 <div class="title p-4">About Us</div>
@@ -30,12 +30,12 @@
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 order-xl-2 order-lg-2 order-md-2 order-1 mb-2">
                             <div class="about-us-image">
-                                <img src="{{ asset('frontend/assets/images/product-images/10.jpg') }} " class="img-fluid ">
+                                <img src="{{ asset('public/frontend/assets/images/product-images/10.jpg') }} " class="img-fluid ">
                             </div>
                         </div>
                         <section id="video-wrapper" class="about-us-video-wrapper my-4 order-xl-3 order-lg-3 col-12 mb-4">
                             <div class="video-info position-relative">
-                                <img src="{{ asset('frontend/assets/images/product-images/5.jpg') }}" class="img-fluid" alt="video-image">
+                                <img src="{{ asset('public/frontend/assets/images/product-images/5.jpg') }}" class="img-fluid" alt="video-image">
                                 <a id="play-video" class="video-play-button" href="#">
                                     <span></span>
                                 </a>
@@ -46,7 +46,7 @@
                         </section>
                         <div class="col-xl-6 col-lg-6 col-md-6 order-xl-4 order-lg-4 order-md-4 order-4 mb-2">
                             <div class="about-us-image ">
-                                <img src="{{ asset('frontend/assets/images/product-images/7.jpg') }} " class="img-fluid ">
+                                <img src="{{ asset('public/frontend/assets/images/product-images/7.jpg') }} " class="img-fluid ">
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 order-xl-5 order-lg-5 order-md-5 order-5 mb-2">
