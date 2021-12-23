@@ -1,6 +1,6 @@
 @extends('layouts.frontend.master')
 
-@section('content') 
+@section('content')
 
     @section('page-wrapper', 'index-wrapper')
     
