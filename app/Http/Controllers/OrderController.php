@@ -104,6 +104,7 @@ class OrderController extends Controller
     $data = $this->classCommonFunction->commonDataForAllPages();
     $get_post_by_order_id     = Post::where(['id' => $params])->first();
     $get_postmeta_by_order_id = PostExtra::where(['post_id' => $order_id])->get();
+    // dd($get_postmeta_by_order_id);
     $get_orders_items         = OrdersItem::where(['order_id' => $params])->first();
 
     if($get_post_by_order_id->count() > 0 && $get_postmeta_by_order_id ->count() > 0 && $get_orders_items->count() >0){
@@ -112,7 +113,7 @@ class OrderController extends Controller
       $order_data_by_id = get_customer_order_billing_shipping_info( $order_id );
       $order_data_by_id['_order_id']    = $get_post_by_order_id->id;
       $order_data_by_id['_order_date']  = $order_date_format->toDayDateTimeString();
-
+     
       foreach($get_postmeta_by_order_id as $postmeta_row_data){
         if($postmeta_row_data->key_name === '_order_shipping_method'){
           $order_data_by_id[$postmeta_row_data->key_name] = $this->classCommonFunction->get_shipping_label($postmeta_row_data->key_value);
@@ -137,6 +138,7 @@ class OrderController extends Controller
     }
 
     $data['order_data_by_id']  =   $order_data_by_id;
+    // dd($order_data_by_id);
     $is_vendor = is_vendor_login(); 
     $sidebar['is_vendor_login'] = $is_vendor;
     $data['sidebar_data'] = $sidebar;
