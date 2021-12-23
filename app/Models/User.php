@@ -15,4 +15,8 @@ class User extends Model
     return $this->belongsToMany('App\Models\Role');
   }
   
+  public function orders()
+  {
+    return $this->hasMany('App\Models\CancelOrder','id','user_id');
+  }
 }

@@ -185,7 +185,7 @@
       </div>
     </div>  
   </div>
-  <div class="col-md-5">
+  {{-- <div class="col-md-5">
     @if($dashboard_data['is_vendor_login'])  
     <div class="box box-solid">
       <div class="box-header with-border">
@@ -271,7 +271,7 @@
         <div style="padding-top: 5px;"><i class="fa fa-check"></i> &nbsp; {!! trans('admin.laravel_version_label') !!} : {!! $dashboard_data['install_info']['laravel'] !!}</div>
       </div>  
     </div> 
-  </div>
+  </div> --}}
 </div>
 <script type="text/javascript">
   Morris.Line({
