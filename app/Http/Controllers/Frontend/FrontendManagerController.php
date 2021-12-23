@@ -23,6 +23,9 @@ use App\Http\Controllers\OptionController;
 use App\Models\OrdersItem;
 use App\Http\Controllers\VendorsController;
 use App\Models\SaveCustomDesign;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+use App\Contact;
 
 class FrontendManagerController extends Controller
 {
@@ -1675,5 +1678,38 @@ class FrontendManagerController extends Controller
         } 
       }
     }
+  }
+
+
+  public function getContact()
+  {
+    return view('pages.frontend.frontend-pages.contact');
+  }
+
+  public function saveContact(Request $request)
+  {
+      $validator = Validator::make($request->all(),[
+          'name' => ["required"],
+          'email' => ["required", "email"],
+          'phone' => ["required"],
+      ]);
+
+      if($validator->fails()){
+        return redirect()->back()->withErrors($validator)->withInput()->with(notify('error', 'Something went wrong.'));
+      }
+
+      if($validator->passes()){
+        try{
+          DB::beginTransaction();
+          $input = $request->except("_token");
+          $contact = Contact::create($input);
+          DB::commit();
+          Session::flash('success-message', 'Your message has been submitted successfully');
+          return redirect()->back()->with(notify('success', 'Your message has been submitted successfully'));
+        } catch(\Exception $e){
+          DB::rollBack();
+          return redirect()->back()->with(notify('errors', $e->getMessage()));
+        }
+      }
   }
 }

@@ -1,6 +1,6 @@
 <?php
 return [
-    'view_online_store'                                               =>  'Your store',
+    'view_online_store'                                               =>  'DurbarMart',
     'shopist_store'                                                   =>  'Visit Store',
     'profile'                                                         =>  'Profile',
     'sign_out'                                                        =>  'Sign out',
