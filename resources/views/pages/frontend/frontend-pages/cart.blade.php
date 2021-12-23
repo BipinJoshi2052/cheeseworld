@@ -10,7 +10,7 @@
         <!-- Breadcrumbs -->
         <section id="breadcrumb-wrapper" class="position-relative">
             <div class="image">
-                <img src="frontend/assets/images/product-images/3.jpg" alt="breadcrumb-image" class="img-fluid">
+                <img src="{{ asset('frontend/assets/images/product-images/3.jpg') }}" alt="breadcrumb-image" class="img-fluid">
             </div>
             <div class="overlay position-absolute">
                 <div class="title p-4">Product Listing</div>
@@ -24,7 +24,7 @@
                     <div class="col-xl-3 col-lg-3 col-md-12 col-12 mb-xl-0 mb-lg-0 mb-3">
                         <div class="dashboard-list py-lg-5 px-lg-3 d-lg-block d-none">
                             <div class="d-user-avater text-center mb-4">
-                                <img src="frontend/assets/images/product-images/1.jpg" class="img-fluid avater" alt="profile-image">
+                                <img src="{{ asset('frontend/assets/images/product-images/1.jpg') }}" class="img-fluid avater" alt="profile-image">
                                 <h5>Adam Harshvardhan</h5>
                                 <a href=""> <span class="mr-1"><i class="fa fa-pencil" aria-hidden="true"></i></span> Upload Image</a>
                             </div>
@@ -91,7 +91,7 @@
                                                     <tr>
                                                         <td class="cart-image">
                                                             <a class="entry-thumbnail" href="detail.html">
-                                                                <img src="frontend/assets/images/product-images/7.jpg" class="img-fluid">
+                                                                <img src="{{ asset('frontend/assets/images/product-images/7.jpg') }}" class="img-fluid">
                                                             </a>
                                                         </td>
                                                         <td class="cart-product-name-info">
@@ -117,7 +117,7 @@
                                                     <tr>
                                                         <td class="cart-image">
                                                             <a class="entry-thumbnail" href="detail.html">
-                                                                <img src="frontend/assets/images/product-images/8.jpg" class="img-fluid">
+                                                                <img src="{{ asset('frontend/assets/images/product-images/8.jpg') }}" class="img-fluid">
                                                             </a>
                                                         </td>
                                                         <td class="cart-product-name-info">
@@ -143,7 +143,7 @@
                                                     <tr>
                                                         <td class="cart-image">
                                                             <a class="entry-thumbnail" href="detail.html">
-                                                                <img src="frontend/assets/images/product-images/9.jpg" class="img-fluid">
+                                                                <img src="{{ asset('frontend/assets/images/product-images/9.jpg') }}" class="img-fluid">
                                                             </a>
                                                         </td>
                                                         <td class="cart-product-name-info">
