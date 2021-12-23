@@ -34,7 +34,7 @@
                     </div>
                     <div class="col-lg-6 col-md-6 col-12 mb-2 order-lg-2 order-md-2 order-1">
                         <div class="image">
-                            <img src="{{ asset('frontend/assets/images/banner/3.png') }}" alt="banner-image" class="img-fluid">
+                            <img src="{{ asset('public/frontend/assets/images/banner/3.png') }}" alt="banner-image" class="img-fluid">
                         </div>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                             <div class="product-grid-item">
                                 <div class="product-grid-image">
                                     <a href="#">
-                                        <img class="pic-1" src="{{ asset('frontend/assets/images/product-images/7.jpg') }}">
+                                        <img class="pic-1" src="{{ asset('public/frontend/assets/images/product-images/7.jpg') }}">
                                     </a>
                                     <ul class="social">
                                         <li>
@@ -86,7 +86,7 @@
                             <div class="product-grid-item">
                                 <div class="product-grid-image">
                                     <a href="#">
-                                        <img class="pic-1" src="{{ asset('frontend/assets/images/product-images/8.jpg') }}">
+                                        <img class="pic-1" src="{{ asset('public/frontend/assets/images/product-images/8.jpg') }}">
                                     </a>
                                     <ul class="social">
                                         <li>
@@ -114,7 +114,7 @@
                             <div class="product-grid-item">
                                 <div class="product-grid-image">
                                     <a href="#">
-                                        <img class="pic-1" src="{{ asset('frontend/assets/images/product-images/9.jpg') }}">
+                                        <img class="pic-1" src="{{ asset('public/frontend/assets/images/product-images/9.jpg') }}">
                                     </a>
                                     <ul class="social">
                                         <li>
@@ -142,7 +142,7 @@
                             <div class="product-grid-item">
                                 <div class="product-grid-image">
                                     <a href="#">
-                                        <img class="pic-1" src="{{ asset('frontend/assets/images/product-images/10.jpg') }}">
+                                        <img class="pic-1" src="{{ asset('public/frontend/assets/images/product-images/10.jpg') }}">
                                     </a>
                                     <ul class="social">
                                         <li>
@@ -175,7 +175,7 @@
         <section id="ads-banner-wrapper" class="py-5">
             <div class="slick-slider">
                 <div class="slick-item position-relative">
-                    <img src="{{ asset('frontend/assets/images/product-images/1.jpg') }}" class="img-fluid w-100">
+                    <img src="{{ asset('public/frontend/assets/images/product-images/1.jpg') }}" class="img-fluid w-100">
                     <div class="discription px-4 py-3">
                         <div class="head">
                             <h3><span>Recipes</span> made with love & good taste.</h3>
@@ -184,7 +184,7 @@
                     </div>
                 </div>
                 <div class="slick-item position-relative">
-                    <img src="{{ asset('frontend/assets/images/product-images/5.jpg') }}" class="img-fluid w-100">
+                    <img src="{{ asset('public/frontend/assets/images/product-images/5.jpg') }}" class="img-fluid w-100">
                     <div class="discription px-4 py-3">
                         <div class="head">
                             <h3><span>Recipes</span> made with love & good taste.</h3>
@@ -193,7 +193,7 @@
                     </div>
                 </div>
                 <div class="slick-item position-relative">
-                    <img src="{{ asset('frontend/assets/images/product-images/6.jpg') }}" class="img-fluid w-100">
+                    <img src="{{ asset('public/frontend/assets/images/product-images/6.jpg') }}" class="img-fluid w-100">
                     <div class="discription px-4 py-3">
                         <div class="head">
                             <h3><span>Recipes</span> made with love & good taste.</h3>
@@ -221,7 +221,7 @@
                             <div class="product-grid-item">
                                 <div class="product-grid-image">
                                     <a href="#">
-                                        <img class="pic-1" src="{{ asset('frontend/assets/images/product-images/10.jpg') }}">
+                                        <img class="pic-1" src="{{ asset('public/frontend/assets/images/product-images/10.jpg') }}">
                                     </a>
                                     <ul class="social">
                                         <li>
@@ -249,7 +249,7 @@
                             <div class="product-grid-item">
                                 <div class="product-grid-image">
                                     <a href="#">
-                                        <img class="pic-1" src="{{ asset('frontend/assets/images/product-images/11.jpg') }}">
+                                        <img class="pic-1" src="{{ asset('public/frontend/assets/images/product-images/11.jpg') }}">
                                     </a>
                                     <ul class="social">
                                         <li>
@@ -277,7 +277,7 @@
                             <div class="product-grid-item">
                                 <div class="product-grid-image">
                                     <a href="#">
-                                        <img class="pic-1" src="{{ asset('frontend/assets/images/product-images/13.jpg') }}">
+                                        <img class="pic-1" src="{{ asset('public/frontend/assets/images/product-images/13.jpg') }}">
                                     </a>
                                     <ul class="social">
                                         <li>
@@ -305,7 +305,7 @@
                             <div class="product-grid-item">
                                 <div class="product-grid-image">
                                     <a href="#">
-                                        <img class="pic-1" src="{{ asset('frontend/assets/images/product-images/14.jpg') }}">
+                                        <img class="pic-1" src="{{ asset('public/frontend/assets/images/product-images/14.jpg') }}">
                                     </a>
                                     <ul class="social">
                                         <li>
@@ -361,7 +361,7 @@
                             <div class="product-grid-item2">
                                 <div class="product-grid-image2">
                                     <a href="#">
-                                        <img class="pic-1" src="{{ asset('frontend/assets/images/product-images/15.jpg') }}" class="img-fluid">
+                                        <img class="pic-1" src="{{ asset('public/frontend/assets/images/product-images/15.jpg') }}" class="img-fluid">
                                     </a>
                                     <ul class="social d-flex flex-column">
                                         <li>
@@ -378,7 +378,7 @@
                             <div class="product-grid-item2">
                                 <div class="product-grid-image2">
                                     <a href="#">
-                                        <img class="pic-1" src="{{ asset('frontend/assets/images/product-images/16.jpg') }}" class="img-fluid">
+                                        <img class="pic-1" src="{{ asset('public/frontend/assets/images/product-images/16.jpg') }}" class="img-fluid">
                                     </a>
                                     <ul class="social d-flex flex-column">
                                         <li>
@@ -395,7 +395,7 @@
                             <div class="product-grid-item2">
                                 <div class="product-grid-image2">
                                     <a href="#">
-                                        <img class="pic-1" src="{{ asset('frontend/assets/images/product-images/11.jpg') }}" class="img-fluid">
+                                        <img class="pic-1" src="{{ asset('public/frontend/assets/images/product-images/11.jpg') }}" class="img-fluid">
                                     </a>
                                     <ul class="social d-flex flex-column">
                                         <li>

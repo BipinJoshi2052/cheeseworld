@@ -257,7 +257,7 @@
                                     <div class="product-grid-item">
                                         <div class="product-grid-image">
                                             <a href="#">
-                                                <img class="pic-1" src="{{ asset('frontend/assets/images/product-images/7.jpg') }}">
+                                                <img class="pic-1" src="{{ asset('public/frontend/assets/images/product-images/7.jpg') }}">
                                             </a>
                                             <ul class="social">
                                                 <li>
@@ -287,7 +287,7 @@
                                     <div class="product-grid-item">
                                         <div class="product-grid-image">
                                             <a href="#">
-                                                <img class="pic-1" src="{{ asset('frontend/assets/images/product-images/8.jpg') }}">
+                                                <img class="pic-1" src="{{ asset('public/frontend/assets/images/product-images/8.jpg') }}">
                                             </a>
                                             <ul class="social">
                                                 <li>
@@ -317,7 +317,7 @@
                                     <div class="product-grid-item">
                                         <div class="product-grid-image">
                                             <a href="#">
-                                                <img class="pic-1" src="{{ asset('frontend/assets/images/product-images/9.jpg') }}">
+                                                <img class="pic-1" src="{{ asset('public/frontend/assets/images/product-images/9.jpg') }}">
                                             </a>
                                             <ul class="social">
                                                 <li>
@@ -347,7 +347,7 @@
                                     <div class="product-grid-item">
                                         <div class="product-grid-image">
                                             <a href="#">
-                                                <img class="pic-1" src="{{ asset('frontend/assets/images/product-images/10.jpg') }}">
+                                                <img class="pic-1" src="{{ asset('public/frontend/assets/images/product-images/10.jpg') }}">
                                             </a>
                                             <ul class="social">
                                                 <li>
@@ -377,7 +377,7 @@
                                     <div class="product-grid-item">
                                         <div class="product-grid-image">
                                             <a href="#">
-                                                <img class="pic-1" src="{{ asset('frontend/assets/images/product-images/11.jpg') }}">
+                                                <img class="pic-1" src="{{ asset('public/frontend/assets/images/product-images/11.jpg') }}">
                                             </a>
                                             <ul class="social">
                                                 <li>
@@ -407,7 +407,7 @@
                                     <div class="product-grid-item">
                                         <div class="product-grid-image">
                                             <a href="#">
-                                                <img class="pic-1" src="{{ asset('frontend/assets/images/product-images/12.jpg') }}">
+                                                <img class="pic-1" src="{{ asset('public/frontend/assets/images/product-images/12.jpg') }}">
                                             </a>
                                             <ul class="social">
                                                 <li>
@@ -437,7 +437,7 @@
                                     <div class="product-grid-item">
                                         <div class="product-grid-image">
                                             <a href="#">
-                                                <img class="pic-1" src="{{ asset('frontend/assets/images/product-images/13.jpg') }}">
+                                                <img class="pic-1" src="{{ asset('public/frontend/assets/images/product-images/13.jpg') }}">
                                             </a>
                                             <ul class="social">
                                                 <li>
@@ -467,7 +467,7 @@
                                     <div class="product-grid-item">
                                         <div class="product-grid-image">
                                             <a href="#">
-                                                <img class="pic-1" src="{{ asset('frontend/assets/images/product-images/14.jpg') }}">
+                                                <img class="pic-1" src="{{ asset('public/frontend/assets/images/product-images/14.jpg') }}">
                                             </a>
                                             <ul class="social">
                                                 <li>
@@ -497,7 +497,7 @@
                                     <div class="product-grid-item">
                                         <div class="product-grid-image">
                                             <a href="#">
-                                                <img class="pic-1" src="{{ asset('frontend/assets/images/product-images/15.jpg') }}">
+                                                <img class="pic-1" src="{{ asset('public/frontend/assets/images/product-images/15.jpg') }}">
                                             </a>
                                             <ul class="social">
                                                 <li>
@@ -527,7 +527,7 @@
                                     <div class="product-grid-item">
                                         <div class="product-grid-image">
                                             <a href="#">
-                                                <img class="pic-1" src="{{ asset('frontend/assets/images/product-images/16.jpg') }}">
+                                                <img class="pic-1" src="{{ asset('public/frontend/assets/images/product-images/16.jpg') }}">
                                             </a>
                                             <ul class="social">
                                                 <li>
@@ -557,7 +557,7 @@
                                     <div class="product-grid-item">
                                         <div class="product-grid-image">
                                             <a href="#">
-                                                <img class="pic-1" src="{{ asset('frontend/assets/images/product-images/7.jpg') }}">
+                                                <img class="pic-1" src="{{ asset('public/frontend/assets/images/product-images/7.jpg') }}">
                                             </a>
                                             <ul class="social">
                                                 <li>
@@ -587,7 +587,7 @@
                                     <div class="product-grid-item">
                                         <div class="product-grid-image">
                                             <a href="#">
-                                                <img class="pic-1" src="{{ asset('frontend/assets/images/product-images/8.jpg') }}">
+                                                <img class="pic-1" src="{{ asset('public/frontend/assets/images/product-images/8.jpg') }}">
                                             </a>
                                             <ul class="social">
                                                 <li>
