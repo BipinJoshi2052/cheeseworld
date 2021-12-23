@@ -209,6 +209,16 @@ Route::group(['prefix' => 'admin'], function () {
     'uses' => 'CMSController@blogUpdateContent',
     'as'   => 'admin.update_blog'
   ])->middleware('verifyLoginPage', 'admin', 'sufficientPermission');
+
+  Route::get('contacts', [
+    'uses' => 'Admin\ContactController@index',
+    'as'   => 'admin.get-contacts'
+  ])->middleware('verifyLoginPage', 'admin', 'sufficientPermission');
+
+  Route::get('delete/{id}', [
+    'uses' => 'Admin\ContactController@delete',
+    'as'   => 'admin.delete-contact'
+  ])->middleware('verifyLoginPage', 'admin', 'sufficientPermission');
   
   
   //admin dashboard menu
