@@ -1346,3 +1346,11 @@ function is_all_tables_created(){
 }
 
 
+if(!function_exists('notify')){
+  function notify($type, $msg){
+    return array(
+        "type" => $type,
+        "message" => $msg,
+    );
+  }
+}
