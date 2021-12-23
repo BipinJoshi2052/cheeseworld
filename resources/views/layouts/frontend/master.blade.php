@@ -55,7 +55,7 @@
     
     
     @include('modal.quick-view')
-    @include('modal.subscribe-content')
+    {{-- @include('modal.subscribe-content') --}}
     
     <div class="add-to-cart-loader">
       <img src="{{ asset('public/images/ajax-loader.gif') }}" id="img-load" />
