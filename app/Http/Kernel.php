@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CheckVendorType;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -65,7 +66,8 @@ class Kernel extends HttpKernel
         'userAdmin' => \App\Http\Middleware\IsUserAdminMiddleware::class,
         'sufficientPermission' => \App\Http\Middleware\IsSufficientPermissionMiddleware::class,
         'api_token' => \App\Http\Middleware\ApiToken::class,
-        'isAdminLogin' => \App\Http\Middleware\IsAdminLoginMiddleware::class
+        'isAdminLogin' => \App\Http\Middleware\IsAdminLoginMiddleware::class,
+        'checkVendortype' => CheckVendorType::class,
     ];
 
     /**

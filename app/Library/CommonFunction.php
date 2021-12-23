@@ -334,7 +334,7 @@ class CommonFunction
             $name = Lang::get('frontend.blog');
             $route = route('blogs-page-content');
           }
-          elseif ($label1[0] == 'store_list') {
+          elseif ($label1[0] == 'store_list' && checkVendorType()) {
             $name = Lang::get('frontend.vendor_account_store_list_title_label');
             $route = route('store-list-page-content');
           }
@@ -342,7 +342,7 @@ class CommonFunction
             $name = Lang::get('frontend.pages_label');
           }
           
-          if($menu->status == 'enable' && ($label1[0] == 'home' || $label1[0] == 'products' || $label1[0] == 'checkout' || $label1[0] == 'cart' || $label1[0] == 'blog' || $label1[0] == 'store_list')){
+          if($menu->status == 'enable' && ($label1[0] == 'home' || $label1[0] == 'products' || $label1[0] == 'checkout' || $label1[0] == 'cart' || $label1[0] == 'blog' || ($label1[0] == 'store_list' && checkVendorType()))){
             $html .= '<li class="nav-item"><a href="'. $route .'" class="nav-link">'. $name .'</a></li>';
           }
           elseif ($menu->status == 'enable' && $label1[0] == 'collection') {

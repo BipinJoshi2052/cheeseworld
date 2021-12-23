@@ -17,6 +17,17 @@ Route::get('login/{provider}/callback','Auth\LoginController@Callback')->name('p
 Route::post('get-product-by-title', 'ProductsController@getProductByTitle')->name("getProductByTitle");
 //banner
 
+//banner
+
+Route::resource('/admin/banners',BannerController::class)->middleware('verifyLoginPage', 'admin', 'sufficientPermission');
+
+//cancel order
+Route::resource('user/account/cancel-orders',\Frontend\CancelOrderController::class)->middleware('userAdmin', 'verifyLoginPage');
+
+//cancelled order
+Route::get('/admin/cancelled-orders',[CancelOrdersController::class,'index'])->middleware('verifyLoginPage', 'admin', 'sufficientPermission')->name('cancel_orders');
+
+
 
 Route::resource('/admin/banners',BannerController::class)->middleware('verifyLoginPage', 'admin', 'sufficientPermission');
 

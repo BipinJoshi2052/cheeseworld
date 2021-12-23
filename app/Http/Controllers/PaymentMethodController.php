@@ -219,6 +219,40 @@ class PaymentMethodController extends Controller
       return view('pages.admin.payment.payment-two-checkout', $data);
     }
   }
+
+
+  /**
+   * Payment Method Esewa Content
+   * added by Muniraj
+   * 
+   * @param null
+   * @return response view
+   */
+
+   public function paymentMethodEsewaContent()
+   {
+      $data = array();
+
+      $data = $this->classCommonFunction->commonDataForAllPages();
+
+      if(is_vendor_login()){
+        $get_user_store_data = \get_user_account_details_by_user_id(Session::get('shopist_admin_user_id'));
+        $details = json_decode(array_shift($get_user_store_data)['details']);
+        $data['payment_method_data'] = $details->payment_method;
+      } else {
+        $data['payment_method_data'] = $this->option->getPaymentMethodData();
+      }
+
+      $is_vendor = is_vendor_login();
+      $sidebar['is_vendor_login'] = $is_vendor;
+      $data['sidebar_data'] = $sidebar;
+
+      if(is_vendor_login()){
+        return view('pages.admin.payment.vendor-payment-esewa', $data);
+      } else {
+        return view('pages.admin.payment.payment-esewa', $data);
+      }
+   }
   
   /**
    * 
@@ -369,6 +403,40 @@ class PaymentMethodController extends Controller
           $get_return_payment_data = $this->create_payment_array_data('paypal', array('status' => $isPaypalEnable, 'title' => Request::Input('inputPaypalTitle'), 'client_id' => Request::Input('inputPaypalClientId'), 'secret' => Request::Input('inputPaypalSecret'), 'sandbox_status' => $isPaypalSandboxEnable,  'description' => Request::Input('inputPaypalDescription')));
         }
       }
+      // Esewa Begin added by Muniraj
+
+      elseif (Request::Input('_payment_method_type') == 'esewa') {
+        $isEsewaEnable        = 'no';
+        $enable_paypal         = (Request::has('inputEnablePaymentEsewaMethod')) ? true : false;
+        
+        if($enable_paypal){
+          $isEsewaEnable = 'yes';
+        }
+        else{
+          $isEsewaEnable = 'no';
+        }
+        
+        if(is_vendor_login() && !empty($vendor_data)){
+          $vendor_data->payment_method->esewa->status         =  $isEsewaEnable;
+          $vendor_data->payment_method->esewa->title          =  Request::Input('inputEsewaTitle');
+          $vendor_data->payment_method->esewa->email_id       =  Request::Input('inputPaypalEmail');
+          $vendor_data->payment_method->esewa->description    =  Request::Input('inputEsewaDescription');
+          
+          $update_data = array(
+                        'details' => json_encode($vendor_data)
+          );
+
+          if(UsersDetail::where('user_id', Session::get('shopist_admin_user_id'))->update( $update_data )){
+            Session::flash('success-message', Lang::get('admin.successfully_updated_msg'));
+            return redirect()->back();
+          }
+        }
+        else{
+          $get_return_payment_data = $this->create_payment_array_data('esewa', array('status' => $isEsewaEnable, 'title' => Request::Input('inputEsewaTitle'), 'merchant_id' => Request::Input('inputEsewaMerchantId'), 'description' => Request::Input('inputEsewaDescription')));
+        }
+      }
+
+      // Esewa End added by Muniraj
       elseif (Request::Input('_payment_method_type') == 'stripe') {
         $isStripeEnable          =  'no';
         $isStripeTestModeEnable  =  'no';
@@ -500,6 +568,10 @@ class PaymentMethodController extends Controller
     $paypal_secret                 =   '';
     $enable_paypal_sandbox         =   '';
     $paypal_method_desc            =   '';
+    $enable_esewa                  =   '';
+    $esewa_method_title            =   '';
+    $esewa_merchant_id             =   '';
+    $esewa_method_desc             =   '';
     $enable_stripe                 =   '';
     $stripe_method_title           =   '';
     $test_secret_key               =   '';
@@ -581,6 +653,20 @@ class PaymentMethodController extends Controller
       $enable_paypal_sandbox        =   $unserialize_data['paypal']['paypal_sandbox_enable_option'];
       $paypal_method_desc           =   $unserialize_data['paypal']['method_description'];
     }
+
+
+    if($source == 'esewa'){
+      $enable_esewa                =   $array['status'];
+      $esewa_method_title          =   $array['title'];
+      $esewa_merchant_id           =   $array['merchant_id'];
+      $esewa_method_desc           =   $array['description'];
+    }
+    else{
+      $enable_esewa                =   $unserialize_data['esewa']['enable_option'];
+      $esewa_method_title          =   $unserialize_data['esewa']['method_title'];
+      $esewa_merchant_id           =   $unserialize_data['esewa']['esewa_merchant_id'];
+      $esewa_method_desc           =   $unserialize_data['esewa']['method_description'];
+    }
     
     if($source == 'stripe'){
       $enable_stripe                =   $array['status'];
@@ -629,6 +715,7 @@ class PaymentMethodController extends Controller
       'bacs'             => array('enable_option' => $enable_bacs, 'method_title' => $bacs_method_title, 'method_description' => $bacs_method_desc, 'method_instructions' => $bacs_method_ins, 'account_details' => array('account_name' => $bacs_account_name, 'account_number' => $bacs_account_number, 'bank_name' => $bacs_bank_name, 'short_code' => $bacs_short_code, 'iban' => $bacs_iban, 'swift' => $bacs_swift) ),
       'cod'              => array('enable_option' => $enable_cod, 'method_title' => $cod_method_title, 'method_description' => $cod_method_desc, 'method_instructions' => $cod_method_ins),
       'paypal'           => array('enable_option' => $enable_paypal, 'method_title' => $paypal_method_title, 'paypal_client_id' => $paypal_client_id, 'paypal_secret' => $paypal_secret, 'paypal_sandbox_enable_option' => $enable_paypal_sandbox, 'method_description' => $paypal_method_desc),
+      'esewa'            => array('enable_option' => $enable_esewa, 'method_title' => $esewa_method_title, 'esewa_merchant_id' => $esewa_merchant_id, 'method_description' => $esewa_method_desc),
       'stripe'           => array('enable_option' => $enable_stripe, 'method_title' => $stripe_method_title, 'test_secret_key' => $test_secret_key, 'test_publishable_key' => $test_publishable_key, 'live_secret_key' => $live_secret_key, 'live_publishable_key' => $live_publishable_key, 'stripe_test_enable_option' => $enable_stripe_test_mode, 'method_description' => $stripe_method_desc),
       '2checkout'        => array('enable_option' => $twocheckout_enable, 'method_title' => $twocheckout_title, 'sellerId' => $twocheckout_sellerId, 'publishableKey' => $twocheckout_publishable_key, 'privateKey' => $twocheckout_private_key, 'sandbox_enable_option' => $twocheckout_sandbox_status, 'method_description' => $twocheckout_description)
     );
