@@ -51,7 +51,7 @@ integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7
         "showDuration": "300",
         "hideDuration": "1000",
         "timeOut": "5000",
-        "extendedTimeOut": "50000",
+        "extendedTimeOut": "1000",
         "showEasing": "swing",
         "hideEasing": "linear",
         "showMethod": "fadeIn",

@@ -30,7 +30,7 @@
                        <a href="" data-id="{{ $products->id }}" class="fa fa-shopping-cart add-to-cart-bg"></a>
                    </li>
                </ul>
-               <span class="product-discount-label">-20%</span>
+               {{-- <span class="product-discount-label">-20%</span> --}}
            </div>
            <div class="product-content">
                <h3 class="title text-center">

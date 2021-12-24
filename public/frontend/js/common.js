@@ -1,5 +1,4 @@
 var frontendLocalizationString;
-console.log(frontendLocalizationString);
 /*scroll to top*/
 $(document).ready(function(){
   $(function () {
