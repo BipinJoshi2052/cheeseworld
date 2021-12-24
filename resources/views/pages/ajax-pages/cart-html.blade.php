@@ -1,93 +1,143 @@
-<div id="cart_page" class="container">
-  @if( Cart::count() >0 )
-  <form class="form-horizontal" method="post" action="" enctype="multipart/form-data">
-    @include('includes.csrf-token')
-    
-    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-centered clearfix">
-      <h2 class="cart-shopping-label">{{ trans('frontend.shopping_cart') }}</h2>
-      
-      @include('pages-message.notify-msg-error')
-      <ul class="cart-data">
-        <li class="row list-inline columnCaptions">
-          <div class="header-items">{!! trans('frontend.cart_item') !!}</div>
-          <div class="header-price">{!! trans('frontend.price') !!}</div>
-          <div class="header-qty">{!! trans('frontend.quantity') !!}</div>
-          <div class="header-line-total last-total">{!! trans('frontend.total') !!}</div>
-        </li>
-        @foreach(Cart::items() as $index => $items)
-          <li class="row items-inline">
-            <div class="itemName">
-              @if($items->img_src)
-                <div class="product-img">
-                  <a href="{{ route('details-page', get_product_slug($items->id)) }}">
-                    <img src="{{ get_image_url($items->img_src) }}" alt="product">
-                  </a>
-                </div>
-              @else
-                <div class="product-img">
-                  <a href="{{ route('details-page', get_product_slug($items->id)) }}">
-                    <img src="{{ default_placeholder_img_src() }}" alt="no_image">
-                  </a>
-                </div>
-              @endif
-              <div class="item-name">
-                <a href="{{ route('details-page', get_product_slug($items->id)) }}">{!! $items->name !!}</a>
-                <?php $count = 1; ?>
-                @if(count($items->options) > 0)
-                <p>
-                  @foreach($items->options as $key => $val)
-                    @if($count == count($items->options))
-                      {!! $key .' &#8658; '. $val !!}
-                    @else
-                      {!! $key .' &#8658; '. $val. ' , ' !!}
-                    @endif
-                    <?php $count ++ ; ?>
-                  @endforeach
-                </p>
-                @endif
-                
-                @if(get_product_type($items->id) === 'customizable_product')
-                  @if($items->acces_token)
-                    @if(count(get_customize_images_by_access_token($items->acces_token))>0)
-                      <button class="btn btn-block btn-sm view-customize-images" data-images="{{ json_encode( get_customize_images_by_access_token($items->acces_token) ) }}">{{ trans('frontend.design_images') }}</button>
-                    @endif
-                  @endif
-                @endif
-                
-                @if( count(get_vendor_details_by_product_id($items->product_id)) >0 )
-                <p class="vendor-title"><strong>{!! trans('frontend.vendor_label') !!}</strong> : {!! get_vendor_name_by_product_id( $items->product_id) !!}</p>
-                @endif
+<div class="col-xl-9 col-lg-9 col-md-12 col-12">
+  <div class="profile-side-detail-edit">
+      <div class="dashboard-content d-flex align-items-center h-100">
+        @if(Cart::count() > 0)
+          <div class="shopping-cart">
+            <form action="" method="post" enctype="multipart/form-data">
+              @include('includes.csrf-token')
+              @include('pages-message.notify-msg-error')
+              <div class="shopping-cart-table">
+                  <div class="table-responsive-lg">
+                      <table class="table">
+                          <thead>
+                              <tr>
+                                  <th class="cart-description item">Image</th>
+                                  <th class="cart-product-name item">Product Name</th>
+                                  <th class="cart-qty item">Quantity</th>
+                                  <th class="cart-total last-item">Total</th>
+                                  <th class="cart-romove item">Remove</th>
+                              </tr>
+                          </thead>
+                          <!-- /thead -->
+                          <tbody>
+                            @foreach(Cart::items() as $index => $items)
+                              <?php 
+                                if($items->img_src){
+                                  $_cart_img_url = get_image_url($items->img_src);
+                                  $_cart_img_alt = 'product';
+                                } else {
+                                  $_cart_img_url = default_placeholder_img_src();
+                                  $_cart_img_alt = 'product';
+                                }
+                              ?>
+                              <tr>
+                                  <td class="cart-image">
+                                      <a class="entry-thumbnail" href="{{ route('details-page', get_product_slug($items->id)) }}">
+                                          <img src="{{ $_cart_img_url }}"
+                                              class="img-fluid" alt="{{ $_cart_img_alt }}">
+                                      </a>
+                                  </td>
+                                  <td class="cart-product-name-info">
+                                      <h4 class="cart-product-description"><a href="{{ route('details-page', get_product_slug($items->id)) }}">{!! $items->name !!}</a></h4>
+                                      <div class="row">
+                                          <div class="col-4">
+                                              <div class="rating rateit-small"></div>
+                                          </div>
+                                      </div>
+                                      <!-- /.row -->
+                                  </td>
+                                  <td class="cart-product-quantity">
+                                      <div class="quant-input">
+                                          <input type="number" class="cart_quantity_input" name="cart_quantity[{{ $index }}]" value="{{ $items->quantity }}" min="1">
+                                      </div>
+                                  </td>
+                                  <td class="cart-product-grand-total"><span
+                                          class="cart-grand-total-price">{!! price_html(  get_product_price_html_by_filter(Cart::getRowPrice($items->quantity, $items->price)), get_frontend_selected_currency()) !!}</span>
+                                  </td>
+                                  <td class="romove-item"><a href="{{ route('removed-item-from-cart', $index)}}" title="cancel"
+                                          class="icon cart_quantity_delete delete-extra-padding"><i class="fa fa-trash-o"></i></a>
+                                  </td>
+                              </tr>
+                            @endforeach
+                              {{-- <tr>
+                                  <td class="cart-image">
+                                      <a class="entry-thumbnail" href="detail.html">
+                                          <img src="{{ asset('public/frontend/assets/images/product-images/8.jpg') }}"
+                                              class="img-fluid">
+                                      </a>
+                                  </td>
+                                  <td class="cart-product-name-info">
+                                      <h4 class="cart-product-description"><a href="detail.html">Yoga
+                                              Mat</a></h4>
+                                      <div class="row">
+                                          <div class="col-4">
+                                              <div class="rating rateit-small"></div>
+                                          </div>
+                                      </div>
+                                      <!-- /.row -->
+                                  </td>
+                                  <td class="cart-product-quantity">
+                                      <div class="quant-input">
+                                          <input type="number" value="1">
+                                      </div>
+                                  </td>
+                                  <td class="cart-product-grand-total"><span
+                                          class="cart-grand-total-price">$300.00</span>
+                                  </td>
+                                  <td class="romove-item"><a href="#" title="cancel"
+                                          class="icon"><i class="fa fa-trash-o"></i></a>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td class="cart-image">
+                                      <a class="entry-thumbnail" href="detail.html">
+                                          <img src="{{ asset('public/frontend/assets/images/product-images/9.jpg') }}"
+                                              class="img-fluid">
+                                      </a>
+                                  </td>
+                                  <td class="cart-product-name-info">
+                                      <h4 class="cart-product-description"><a href="detail.html">Yoga
+                                              Mat</a></h4>
+                                      <div class="row">
+                                          <div class="col-4">
+                                              <div class="rating rateit-small"></div>
+                                          </div>
+                                      </div>
+                                      <!-- /.row -->
+                                  </td>
+                                  <td class="cart-product-quantity">
+                                      <div class="quant-input">
+                                          <input type="number" value="1">
+                                      </div>
+                                  </td>
+                                  <td class="cart-product-grand-total"><span
+                                          class="cart-grand-total-price">$300.00</span>
+                                  </td>
+                                  <td class="romove-item"><a href="#" title="cancel"
+                                          class="icon"><i class="fa fa-trash-o"></i></a>
+                                  </td>
+                                  </td>
+                              </tr> --}}
+                          </tbody>
+                          <!-- /tbody -->
+                      </table>
+                      <div class="d-flex justify-content-around align-items-center w-100 my-3 flex-wrap">
+                          <form
+                              class="coupon-field d-flex flex-wrap align-items-center justify-content-center">
+                              <input type="text" placeholder="Apply Coupon Code" class="mr-2" id="apply_coupon_code" name="apply_coupon">
+                              <button type="button" class="effect mt-xl-0 mt-md-0 mt-2" name="apply_coupon_post" id="apply_coupon_post">Apply
+                                  Coupon</button>
+                          </form>
+                          <div class="total-amount font-weight-bold mt-xl-0 mt-md-0 mt-2">
+                              Total Amount : <span>$2000</span>
+                          </div>
+                      </div>
+                  </div>
               </div>
-            </div>  
-              
-            <div class="price">{!! price_html( get_product_price_html_by_filter( $items->price ), get_frontend_selected_currency() ) !!}</div>
-            <div class="quantity"><input type="number" class="form-control cart_quantity_input" name="cart_quantity[{{ $index }}]" value="{{ $items->quantity }}" min="1"></div>
-            <div class="price line-total extra-padding">{!! price_html(  get_product_price_html_by_filter(Cart::getRowPrice($items->quantity, $items->price)), get_frontend_selected_currency() ) !!}</div>
-            <div class="popbtn"><a class="cart_quantity_delete delete-extra-padding" href="{{ route('removed-item-from-cart', $index)}}"><i class="fa fa-close"></i></a></div>
-          </li>
-        @endforeach
-        
-        <li class="row cart-button-main">
-          <div class="apply-coupon">
-            <input type="text" class="form-control" id="apply_coupon_code" name="apply_coupon" placeholder="{{ trans('frontend.coupon_code_placeholder_text') }}">
-            <button class="btn btn-secondary" name="apply_coupon_post" id="apply_coupon_post">{!! trans('frontend.apply_coupon_label') !!}</button>
-            <div class="clearfix visible-xs"></div>
+              @include('pages.ajax-pages.cart-total-html')
+            </form>
           </div>
-          <div class="btn-cart-action">
-            <input type="submit" name="empty_cart" class="btn btn-secondary empty" value="{{ trans('frontend.empty_cart') }}">  
-            <input type="submit" name="update_cart" class="btn btn-secondary update" value="{{ trans('frontend.update_cart') }}">
-          </div>
-        </li>
-        
-        @include('pages.ajax-pages.cart-total-html')
-      </ul>
-    </div>
-  </form>    
-  @else
-  <br>
-    @include('pages-message.notify-msg-error')
-    <h2 class="cart-shopping-label2">{{ trans('frontend.shopping_cart') }}</h2>
-    <div class="empty-cart-msg">{{ trans('frontend.empty_cart_msg') }}</div>
-    <div class="cart-return-shop"><a class="btn btn-secondary check_out" href="{{ route('shop-page') }}">{{ trans('frontend.return_to_shop') }}</a></div>
-  @endif
+        @endif
+      </div>
+  </div>
 </div>
