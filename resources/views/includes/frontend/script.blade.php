@@ -14,10 +14,6 @@
 <!-- Slick Js -->
 <script src="{{ asset('public/frontend/assets/slick/slick.min.js') }}"></script>
 <!-- Slick Js Ends-->
-
-<!-- 1st Jquery Link Starts-->
-<script src="{{ asset('public/frontend/assets/jquery-3.5.1/jquery-3.5.1.js') }}"></script>
-<!-- Jquery Link Ends-->
 <!-- 2nd Popper Js Starts -->
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
 integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
@@ -36,7 +32,7 @@ integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7
 <!-- Toastr  starts-->
 <script src="{{ URL::asset('public/frontend/js/toastr.min.js') }}"></script>
 <!-- Toastr Ends -->
-
+<script type="text/javascript" src="{{ URL::asset('public/frontend/js/products-add-to-cart.js') }}"></script>
 <script>
     toastr.options = {
         "closeButton": true,
@@ -49,7 +45,7 @@ integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7
         "showDuration": "300",
         "hideDuration": "1000",
         "timeOut": "5000",
-        "extendedTimeOut": "1000",
+        "extendedTimeOut": "50000",
         "showEasing": "swing",
         "hideEasing": "linear",
         "showMethod": "fadeIn",

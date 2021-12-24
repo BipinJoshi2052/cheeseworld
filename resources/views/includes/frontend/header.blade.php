@@ -427,10 +427,10 @@
         <div class="cart-wishlist desk-nav d-xl-block d-lg-block d-none">
             <ul class="d-flex align-items-center justify-content-between m-0">
                 <li>
-                    <a class="nav-link add-on px-xl-2 px-lg-1 px-md-2 px-2" data-toggle="modal"
-                        data-target="#nav-cart">
+                    <a class="nav-link show-mini-cart add-on px-xl-2 px-lg-1 px-md-2 px-2" data-toggle="modal"
+                        data-target="#nav-cart" data-id="2">
                         <span class="mr-1"><i class="fa fa-shopping-bag" aria-hidden="true"></i></span> <sup
-                            class="cart-items text-white">2</sup>
+                            class="cart-items text-white" id="total_ajax_count">{!! Cart::count() !!}</sup>
                     </a>
                 </li>
                 <li>

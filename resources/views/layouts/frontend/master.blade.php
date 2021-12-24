@@ -17,11 +17,13 @@
         @yield('content')
 
         @include('includes.frontend.footer')
-
+        <input type="hidden" name="hf_base_url" id="hf_base_url" value="{{ url('/') }}">
+        <input type="hidden" name="cart_url" id="cart_url" value="{{ route('cart-page') }}">
+        <input type="hidden" name="currency_symbol" id="currency_symbol" value="{{ $_currency_symbol }}">
     </section>
     <!-- Whole Body Wrapper Ends -->
 
-    @include('includes.frontend.foot')
+    @include('includes.frontend.script')
     </section>
 
     @include('modal.modals')
