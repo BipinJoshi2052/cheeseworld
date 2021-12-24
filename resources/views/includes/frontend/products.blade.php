@@ -24,7 +24,7 @@
                </a>
                <ul class="social single-product-add-to-cart">
                    <li>
-                       <a href="" class="fa fa-shopping-bag"></a>
+                       <a href="" data-id="{{ $products->id }}" class="fa fa-shopping-bag product-wishlist"></a>
                    </li>
                    <li>
                        <a href="" data-id="{{ $products->id }}" class="fa fa-shopping-cart add-to-cart-bg"></a>

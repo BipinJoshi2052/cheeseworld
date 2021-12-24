@@ -1,5 +1,5 @@
 var frontendLocalizationString;
-
+console.log(frontendLocalizationString);
 /*scroll to top*/
 $(document).ready(function(){
   $(function () {
@@ -26,7 +26,9 @@ $(document).ready(function(){
 		increaseArea: '20%'
 	});
 
-  shopist_frontend.init.pageLoad();
+  // $(document).ready(function(){
+    shopist_frontend.init.pageLoad();
+  // });
   
   $('#productRequest').on('hidden.bs.modal', function () 
   {
@@ -738,10 +740,13 @@ $(document).ready(function(){
 
 var shopist_frontend = shopist_frontend || {};
 
+// alert(shopist_frontend);
+
 shopist_frontend.init =
 {
   pageLoad:function()
   {
+    // alert('Hello');
     $('.category-products .collapse').on('shown.bs.collapse', function(){
       $(this).parent().find(".fa-plus").removeClass("fa-plus").addClass("fa-minus");
       }).on('hidden.bs.collapse', function(){
@@ -875,9 +880,13 @@ shopist_frontend.init =
       });
     }
 		
-    if($('.product-wishlist').length>0){
-      shopist_frontend.event.user_wishlist_process();
-    }
+    // $(document).ready(function(){
+      // alert($('.product-wishlist').length);
+      if($('.product-wishlist').length>0){
+        shopist_frontend.event.user_wishlist_process();
+      }
+    // });
+    
     
     if($('.product-compare').length>0){
       shopist_frontend.event.product_comparison();
@@ -1241,41 +1250,44 @@ shopist_frontend.ajaxCall =
           headers: { 'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content') },
           success: function(data){
             if(data.status == 'success' && data.notice_type == 'user_wishlist_saved'){
-              swal({
-                title: '',
-                text: frontendLocalizationString.wishlist_data_saved_msg,
-                showCancelButton: true,
-                cancelButtonText: frontendLocalizationString.continue_label,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: frontendLocalizationString.wishlist_items_label,
-                closeOnConfirm: false,
-                imageUrl: $('#hf_base_url').val() + '/public/images/thumbs-up.jpg'
-              },
-              function(){
-                location.href = $('#hf_base_url').val() + '/user/account/my-saved-items';
-              });
+              toastr.success('Items added to your wishlist');
+              // swal({
+              //   title: '',
+              //   text: frontendLocalizationString.wishlist_data_saved_msg,
+              //   showCancelButton: true,
+              //   cancelButtonText: frontendLocalizationString.continue_label,
+              //   confirmButtonColor: "#DD6B55",
+              //   confirmButtonText: frontendLocalizationString.wishlist_items_label,
+              //   closeOnConfirm: false,
+              //   imageUrl: $('#hf_base_url').val() + '/public/images/thumbs-up.jpg'
+              // },
+              // function(){
+              //   location.href = $('#hf_base_url').val() + '/user/account/my-saved-items';
+              // });
             }
             else if(data.status == 'error' && data.notice_type == 'user_login_required'){
-              swal({
-                title: '',
-                text: frontendLocalizationString.login_for_wishlist_msg,
-                type:'warning'
-              });
+              toastr.error('Please login first.');
+              // swal({
+              //   title: '',
+              //   text: frontendLocalizationString.login_for_wishlist_msg,
+              //   type:'warning'
+              // });
             }
 						else if(data.status == 'error' && data.notice_type == 'item_already_exists'){
-              swal({
-                title: '',
-                text: frontendLocalizationString.already_item_in_wishlist_msg,
-                showCancelButton: true,
-                cancelButtonText: frontendLocalizationString.continue_label,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: frontendLocalizationString.wishlist_items_label,
-                closeOnConfirm: false,
-                type:'warning'
-              },
-              function(){
-                location.href = $('#hf_base_url').val() + '/user/account/my-saved-items';
-              });
+              toastr.warning("Item already exist in your wishlist");
+              // swal({
+              //   title: '',
+              //   text: frontendLocalizationString.already_item_in_wishlist_msg,
+              //   showCancelButton: true,
+              //   cancelButtonText: frontendLocalizationString.continue_label,
+              //   confirmButtonColor: "#DD6B55",
+              //   confirmButtonText: frontendLocalizationString.wishlist_items_label,
+              //   closeOnConfirm: false,
+              //   type:'warning'
+              // },
+              // function(){
+              //   location.href = $('#hf_base_url').val() + '/user/account/my-saved-items';
+              // });
             }
           },
           error:function(){}
