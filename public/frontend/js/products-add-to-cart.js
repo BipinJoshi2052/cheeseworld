@@ -89,7 +89,7 @@ var dynamicAddToCart= function(){
 
                 success: function(data){
                   if(data.status && data.status == 'success' && data.type == 'mini_cart_data' && data.html){
-
+                    $("#total_ajax_count").html(data.cart_count);
                     $('.mini-cart-content').html( data.html );
                     $('#shadow-layer, .add-to-cart-loader').hide();
 
@@ -130,9 +130,11 @@ var dynamicAddToCart= function(){
                       $('header .mini-cart-content').find(".mini-cart-dropdown").addClass('open');
                     }
                     
-                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                    // $("html, body").animate({ scrollTop: 0 }, "slow");
+                    toastr.success('Product added to cart');
                     return false;
                   }
+                  
                 },
                 error:function(){}
             });
