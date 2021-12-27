@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -10,6 +11,11 @@ class Product extends Model
 
   static function filter($title)
   {
-    return self::where('title', 'like', '%' .$title. '%')->get();
+    $extra = self::where('title', 'like', '%' . $title . '%')->get();
+  }
+
+  public function extra()
+  {
+    return $this->hasMany(ProductExtra::class);
   }
 }

@@ -502,6 +502,7 @@ class UserAccountManageController extends Controller
   public function userLogout(){
     if(is_frontend_user_logged_in() && Request::isMethod('post') && Session::token() == Request::Input('_token')){
       Session::forget('shopist_frontend_user_id');
+      Session::forget('shopist_frontend_user_name');
       return redirect()->route('user-login-page');
     }
   }

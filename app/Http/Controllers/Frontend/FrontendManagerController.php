@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Request;
+use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\Input;
 use App\Library\GetFunction;
 use App\Models\Post;
@@ -24,6 +25,8 @@ use App\Models\OrdersItem;
 use App\Http\Controllers\VendorsController;
 use App\Models\Banner;
 use App\Models\SaveCustomDesign;
+use App\Contact;
+use Illuminate\Support\Facades\Validator;
 
 class FrontendManagerController extends Controller
 {
@@ -380,6 +383,11 @@ class FrontendManagerController extends Controller
     else{
       return view('errors.no_data');
     }
+  }
+
+  public function searchProduct( $key = 'a' ){
+    $result = Product::where('title', 'like', '%a%')->get();
+    return response()->json($result);
   }
   
   /**
@@ -1679,5 +1687,45 @@ class FrontendManagerController extends Controller
         } 
       }
     }
+  }
+
+  public function getContact()
+  {
+    $data = array();
+    
+    $data = $this->classCommonFunction->get_dynamic_frontend_content_data(); 
+    $data['advancedData']        =   $this->product->getAdvancedProducts();
+    $data['brands_data']         =   $this->product->getTermData( 'product_brands', false, null, 1 );
+    $data['testimonials_data']   =   get_all_testimonial_data();
+    $data['selected_currency']   =   get_frontend_selected_currency();
+    return view('pages.frontend.frontend-pages.contact-us', $data);;
+  }
+
+  public function saveContact(HttpRequest $request)
+  {
+      $validator = Validator::make($request->all(),[
+          'name' => ["required"],
+          'email' => ["required", "email"],
+          'phone' => ["required"],
+          'message' => ["required"],
+      ]);
+
+      if($validator->fails()){
+        return redirect()->back()->withErrors($validator)->withInput()->with(notify('error', 'Something went wrong.'));
+      }
+
+      if($validator->passes()){
+        try{
+          DB::beginTransaction();
+          $input = $request->except("_token");
+          $contact = Contact::create($input);
+          DB::commit();
+          Session::flash('success-message', 'Your message has been submitted successfully');
+          return redirect()->back()->with(notify('success', 'Your message has been submitted successfully'));
+        } catch(\Exception $e){
+          DB::rollBack();
+          return redirect()->back()->with(notify('error', $e->getMessage()));
+        }
+      }
   }
 }
