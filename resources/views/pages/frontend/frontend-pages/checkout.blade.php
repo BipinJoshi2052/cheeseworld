@@ -23,6 +23,7 @@
                 @if (Cart::count() > 0)
                     <div class="row">
                         <form method="post" action="" id="checkoutForm" enctype="multipart/form-data">
+                            @include('includes.csrf-token')
                             <div class="col-xl-12">
                                 <div class="my-car-title d-flex mb-3">
                                     <div class="my-cart-number">1</div>
