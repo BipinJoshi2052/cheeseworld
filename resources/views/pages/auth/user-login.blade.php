@@ -53,7 +53,7 @@
                             <h6 class="mb-xl-0 mb-md-2 mb-2 mr-2">Sign in with</h6>
                             <div class="social-media d-flex justify-content-center h-100">
                                 <div class="google text-center mr-3">
-                                    <a class="fa fa-google" aria-hidden="true"></a>
+                                    <a href="{{ url('/login/google') }}" class="fa fa-google" aria-hidden="true"></a>
                                 </div>
                                 <div class="facebook text-center mr-3">
                                     <a class="fa fa-facebook" aria-hidden="true"></a>
@@ -125,7 +125,7 @@
                             <h6 class="mb-xl-0 mb-md-2 mb-2 mr-2">Sign in with</h6>
                             <div class="social-media d-flex justify-content-center h-100">
                                 <div class="google text-center mr-3">
-                                    <a class="fa fa-google" aria-hidden="true"></a>
+                                    <a href="{{ url('/login/google') }}" class="fa fa-google" aria-hidden="true"></a>
                                 </div>
                                 <div class="facebook text-center mr-3">
                                     <a class="fa fa-facebook" aria-hidden="true"></a>
