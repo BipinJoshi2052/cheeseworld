@@ -1362,3 +1362,12 @@ if(!function_exists('checkVendorType')){
     return VendorType::first()->vendor_status;
   }
 }
+
+if(!function_exists('notify')){
+  function notify($type, $msg){
+    return array(
+      'type' => $type,
+      'message' => $msg,
+    );
+  }
+}
