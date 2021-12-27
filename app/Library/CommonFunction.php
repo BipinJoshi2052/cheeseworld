@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\URL;
 use Nexmo\Laravel\Facade\Nexmo;
 use Illuminate\Support\Facades\Request;
 use App\Models\CustomCurrencyValue;
+use App\Models\Option;
 
 class CommonFunction
 {
@@ -280,6 +281,8 @@ class CommonFunction
     $data_ary['current_parent_cat'] = get_product_parent_categories();
     $data_ary['pages_list'] = $CMS->get_pages(false, null, 1);
     $data_ary['seo_data'] = get_seo_data();
+    $option = new OptionController();
+    $data_ary['siteSettings'] = $option->getSettingsData();
     
     return $data_ary;
   }

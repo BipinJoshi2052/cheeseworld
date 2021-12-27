@@ -17,6 +17,7 @@ use App\Models\UsersDetail;
 use App\Library\CommonFunction;
 use App\Http\Controllers\OptionController;
 use App\Http\Controllers\ProductsController;
+use App\Cart\Cart as MyCart;
 
 class FrontendAjaxController extends Controller
 {
@@ -560,7 +561,9 @@ class FrontendAjaxController extends Controller
     if(Request::isMethod('post') && Request::ajax() && Session::token() == Request::header('X-CSRF-TOKEN')){
       $input =  Request::all();
       $returnHTML = '';
-      
+      $_cart_count = new MyCart();
+      $_cart_count = $_cart_count->count();
+      // dd(Cart::count());
       if($input['mini_cart_id'] == 1){
         $returnHTML = view('pages.ajax-pages.mini-cart-html')->render();
       }
@@ -568,7 +571,7 @@ class FrontendAjaxController extends Controller
         $returnHTML = view('pages.ajax-pages.mini-cart-html2')->render();
       }
       
-      return response()->json(array('status' => 'success', 'type' => 'mini_cart_data', 'html'=> $returnHTML));
+      return response()->json(array('status' => 'success', 'type' => 'mini_cart_data', 'html'=> $returnHTML, 'cart_count' => $_cart_count));
     }
   }
   

@@ -1,46 +1,57 @@
 @section('categories-content')
-<div class="product-categories-accordian">
-  <h2>{{ trans('frontend.category_label') }} <span class="responsive-accordian"></span></h2>
-  
-  @if (count($productCategoriesTree) > 0)
-  <div class="category">
-    <ul class="products-categories list-unstyled">
-      @foreach ($productCategoriesTree as $data)
-        <li class="product-parent-categories">
-          @if(count($data['children'])>0)
-          <?php $img = $data['img_url'];?>
-          <div class="dropdown">
-            <a class="btn btn-default d-none d-md-inline" id="dropdownMenu2" href="{{ route('categories-page', $data['slug']) }}"> {!! $data['name'] !!} <span class="caret pull-right"></span></a>
-            <button class="btn btn-default d-md-none d-xs-inline" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{!! $data['name'] !!}<span class="caret pull-right"></span></button>
-            
-            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-              <div class="row">
-                <div class="cat-list-area col-sm-9">
-                  @foreach($data['children'] as $data)
-                    @include('pages.common.product-children-category', $data)
-                  @endforeach
-                </div> 
-                <div class="product-cat-img-area col-sm-3">
-                  @if(!empty($img))
-                  <img class="img-responsive" src="{{ get_image_url($img) }}" alt="cat-img">
-                  @else
-                  <img class="img-responsive" src="{{ default_placeholder_img_src() }}" alt="cat-img">
-                  @endif
-                </div>
-              </div>      
-              <div class="clearfix"></div>  
-            </div>
+<!--Categories Content -->
+<div class="card-wrapper mb-2">
+  <div class="card-group-item">
+      <div class="card-head">
+          <div class="heading d-flex align-items-center text-center flex-wrap mb-2">
+              <div class="head">
+                  <h5 class="text-uppercase pl-5 m-0">
+                      {{ trans('frontend.category_label') }}</h5>
+              </div>
           </div>
-          @else
-          <a href="{{ route('categories-page', $data['slug']) }}"> {!! $data['name'] !!} </a>
-          @endif
-        </li>
-      @endforeach
-    </ul>  
-  </div>    
-  @else
-  <h5>{{ trans('frontend.no_categories_yet') }}</h5>
-  @endif
+      </div>
+      <div class="filter-content1">
+          <div class="card-body p-3">
+              <ul class="mb-0">
+                <?php 
+                    $productCategoriesTrees = array_slice($productCategoriesTree, 0, 6);
+                    $remainProductCategoriesTree = array_slice($productCategoriesTree, 6);
+                ?>
+                  @if (count($productCategoriesTree) > 0)
+                      @foreach ($productCategoriesTrees as $data)
+                          <li>
+                              <div class="item">
+                                  <a href="{{ route('categories-page', $data['slug']) }}" class="category-item py-1 {{ $loop->first ? 'active': '' }}">{!! $data['name'] !!}
+                                   </a>
+                              </div>
+                          </li>
+                      @endforeach
+                  @endif
+              </ul>
+              <div class="collapse" id="expand1">
+                  <ul>
+                   @if (count($productCategoriesTree) > 0)
+                   @foreach ($remainProductCategoriesTree as $data)
+                       <li>
+                           <div class="item">
+                               <a href="{{ route('categories-page', $data['slug']) }}" class="category-item py-1">{!! $data['name'] !!}
+                                </a>
+                           </div>
+                       </li>
+                   @endforeach
+               @endif
+                  </ul>
+              </div>
+          </div>
+          <!-- card-body.// -->
+      </div>
+      <div class="expand text-center">
+          <a data-toggle="collapse" href="#expand1" role="button" aria-expanded="false"
+              aria-controls="expand1">View more</a>
+      </div>
+  </div>
+  <!-- card-group-item.// -->
 </div>
+<!--Categories Content Ends -->
 
 @endsection 

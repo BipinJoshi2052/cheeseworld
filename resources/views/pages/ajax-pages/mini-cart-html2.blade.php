@@ -1,74 +1,65 @@
-<a href="" class="main show-mini-cart" data-id="2"> <span class="d-none d-md-inline">{!! trans('frontend.menu_my_cart') !!}</span> <span class="fa fa-shopping-cart"></span> <span class="cart-count"><span id="total_count_by_ajax">{!! Cart::count() !!}</span></span></a>
-
-<div class="mini-cart-dropdown">
-  <div class="dropdown-menu slide-from-top">
-    <div class="container">
-      <a href="#" class="close-cart"><i class="fa fa-close"></i></a>
-      @if( Cart::count() >0 )
-      <div class="top-title">{!! trans('frontend.mini_cart_top_label') !!}</div>
-      <ul>
-        @foreach(Cart::items() as $index => $items)
-        <li class="item">
-          <div class="img">
-            @if($items->img_src)  
-            <a href="{{ route('details-page', get_product_slug($items->id)) }}"><img src="{{ get_image_url($items->img_src) }}" alt="product"></a>
-            @else
-            <a href="{{ route('details-page', get_product_slug($items->id)) }}"><img src="{{ default_placeholder_img_src() }}" alt="no_image"></a>
-            @endif
-          </div>
-          <div class="info">
-            <div class="title-col">
-              <h2 class="title">
-                <a href="{{ route('details-page', get_product_slug($items->id)) }}">{!! $items->name !!}</a>
-              </h2>
-              <div class="details">
-                <?php $count = 1; ?>
-                @if(count($items->options) > 0)
-                <p>
-                  @foreach($items->options as $key => $val)
-                    @if($count == count($items->options))
-                      {!! $key .' &#8658; '. $val !!}
-                    @else
-                      {!! $key .' &#8658; '. $val. ' , ' !!}
-                    @endif
-                    <?php $count ++ ; ?>
-                  @endforeach
-                </p>
-                @endif
-              </div>
-            </div>
-            <div class="price">
-            {!! price_html( get_product_price_html_by_filter( $items->price ), get_frontend_selected_currency() ) !!}
-            </div>
-            <div class="qty">
-              <div class="qty-label">{!! trans('frontend.qty_label') !!}:</div>
-              <div class="style-2 input-counter">
-                <span class="minus-btn"></span>
-                <input value="{{ $items->quantity }}" size="100" type="text">
-                <span class="plus-btn"></span>
-              </div>
-            </div>
-          </div>
-          <div class="item-control">
-          <div class="delete"><a href="{{ route('removed-item-from-cart', $index)}}" class="icon icon-delete" title="Delete"><i class="fa fa-trash-o"></i></a></div>
-          </div>
-        </li>
-        @endforeach
-      </ul>
-      <div class="cart-bottom">
-        <div class="float-right checkout">
-          <div class="float-left">
-            <div class="cart-total">{!! trans('frontend.total') !!}:  <span> {!! price_html( get_product_price_html_by_filter(Cart::getTotal()) ) !!}</span></div>
-          </div>
-          <a href="{{ route('checkout-page') }}" class="btn btn-light icon-btn-left"><span class="fa fa-check-circle-o"></span> {!! trans('frontend.check_out') !!}</a>
+@if (Cart::count() > 0)
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title m-auto" id="navcartlabel"> <span class="mr-2"><i class="fa fa-opencart"
+                        aria-hidden="true"></i></span> Items List</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
         </div>
-        <div class="pull-left cart">
-          <a href="{{ route('cart-page') }}" class="btn btn-light icon-btn-left"><span class="fa fa-shopping-bag"></span> {!! trans('frontend.view_cart_label') !!}</a>
+        <div class="modal-body">
+            <table class="w-100">
+                <tbody>
+                    @foreach (Cart::items() as $index => $items)
+                        <tr>
+                            <td class="pr-4 py-3">
+                                <?php
+                                if ($items->img_src) {
+                                    $_cart_product_image = get_image_url($items->img_src);
+                                    $_cart_alt = 'product';
+                                } else {
+                                    $_cart_product_image = default_placeholder_img_src();
+                                    $_cart_alt = 'no_image';
+                                }
+                                ?>
+                                <img src="{{ $_cart_product_image }}" class="img-fluid" alt="{{ $_cart_alt }}">
+                            </td>
+                            <td class="px-4 py-3">
+                                <a href="{{ route('details-page', get_product_slug($items->id)) }}">
+                                    <div class="head font-weight-bold">
+                                        {!! $items->name !!} x <span
+                                            class="cart-quantity">{{ $items->quantity }}</span>
+                                    </div>
+                                    <div class="price">
+                                        {!! price_html(get_product_price_html_by_filter($items->price), get_frontend_selected_currency()) !!}
+                                    </div>
+                                </a>
+                            </td>
+                            <td class="px-4 py-3">
+                                <a href="{{ route('removed-item-from-cart', $index) }}" class="btn">
+                                    <span><i class="fa fa-trash" aria-hidden="true"></i></span></a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
-      </div>
-      @else
-      <h4 class="empty-cart-js">{!! trans('frontend.empty_cart_msg') !!}</h4>
-      @endif
+        <div class="modal-footer flex-column">
+            <div class="total-amount pb-3 text-center d-block">
+                Total : <span class="font-weight-bold">{!! price_html(get_product_price_html_by_filter(Cart::getTotal())) !!}</span>
+            </div>
+            <div class="d-flex justify-content-around align-items-center w-100">
+                <button type="button" onclick="location.href='{{ route('cart-page') }}'" class="effect m-auto">View
+                    Cart</button>
+                <button type="button" onclick="location.href = '{{ route('checkout-page') }}'"
+                    class="effect m-auto">Proceed Checkout</button>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
+@else
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="empty-cart-js">{!! trans('frontend.empty_cart_msg') !!}</h5>
+        </div>
+    </div>
+@endif
