@@ -425,9 +425,9 @@ class SettingsController extends Controller
         $is_access_downloadable_product_email      = (Request::has('inputGrantAccessEmail')) ? true : false;
         $is_enable_nexmo      = (Request::has('inputEnableNexmo')) ? true : false;
         
-        
+        // dd(Request::all());
         $general_array = array(
-            'general_options'     => array('site_title' => Request::get('inputSiteTitle'), 'email_address' => Request::get('inputEmailAddress'), 'site_logo' => Request::get('hf_site_picture'), 'allow_registration_for_frontend' => $is_reg_enable_at_frontend, 'default_role_slug_for_site' => Request::get('inputDefaultRoleForSite')),
+            'general_options'     => array('site_title' => Request::get('inputSiteTitle'), 'email_address' => Request::get('inputEmailAddress'), 'phone' => Request::get('inputNumber'), 'address' => Request::get('inputAddress'), 'site_logo' => Request::get('hf_site_picture'), 'allow_registration_for_frontend' => $is_reg_enable_at_frontend, 'default_role_slug_for_site' => Request::get('inputDefaultRoleForSite')),
             'taxes_options' => array('enable_status' => Request::get('inputTaxesOptions'), 'apply_tax_for' => Request::get('inputApplyTaxes'), 'tax_amount' => Request::get('inputTaxAmount')),
             'checkout_options'    => array('enable_guest_user' => $is_guest_enable_at_frontend, 'enable_login_user' => $is_login_enable_at_frontend),
             'downloadable_products_options'    => array('login_restriction' => $is_download_require_login_at_frontend, 'grant_access_from_thankyou_page' => $is_access_downloadable_product_order_ty, 'grant_access_from_email' => $is_access_downloadable_product_email), 

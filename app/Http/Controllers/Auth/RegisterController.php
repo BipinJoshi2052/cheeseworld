@@ -442,7 +442,7 @@ class RegisterController extends Controller
         'reg_email_id'                   => 'required|email|unique:users,email',
         'reg_password'                   => 'required|min:5|confirmed',
         'reg_password_confirmation'      => 'required|min:5',
-        'reg_secret_key'                 => 'required'
+        'reg_secret_key'                 => 'nullable'
       ];
       
       $messages = [
@@ -498,6 +498,7 @@ class RegisterController extends Controller
                 if($email_options['new_customer_account']['enable_disable'] == true && $this->env === 'production'){
                   $this->classGetFunction->sendCustomMail( array('source' => 'new_customer_account', 'email' => Request::Input('reg_email_id')) );
                 }
+                Session::flash('success-message', 'User Registered. Please Login');
                 return redirect()->route('user-login-page');
               }
             }
