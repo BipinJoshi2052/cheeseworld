@@ -10,34 +10,10 @@
         </button>
             </div>
             <div class="modal-body">
-                <input type="text">
+                <input type="text" id="search-product">
             </div>
-            <div class="modal-footer my-auto border-0 w-100">
-                <ul class="search-list-wrapper w-100">
-                    <li class="mb-2 p-1">
-                        <a href="">
-                            <div class="row">
-                                <div class="col-2">
-                                    <div class="image"> <img src="{{ asset('public/frontend/assets/images/product-images/1.jpg') }}" alt="search-list-image" class="img-fluid"></div>
-                                </div>
-                                <div class="col-10 m-auto">
-                                    <p class="m-0">Ham Cheese Burger</p>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="mb-2 p-1">
-                        <a href="">
-                            <div class="row">
-                                <div class="col-2">
-                                    <div class="image"> <img src="{{ asset('public/frontend/assets/images/product-images/1.jpg') }}" alt="search-list-image" class="img-fluid"></div>
-                                </div>
-                                <div class="col-10 m-auto">
-                                    <p class="m-0">Ham Cheese Burger</p>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
+            <div class="modal-footer my-auto border-0 w-100" hidden>
+                <ul class="search-list-wrapper w-100" id="search-result-list">
                     <li class="mb-2 p-1">
                         <a href="">
                             <div class="row">
