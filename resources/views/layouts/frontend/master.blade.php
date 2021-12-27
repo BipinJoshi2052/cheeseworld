@@ -26,7 +26,6 @@
 
     @include('includes.frontend.script')
     </section>
-
     @include('modal.modals')
 </body>
 
