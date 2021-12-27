@@ -12,6 +12,7 @@
   @section('title',  trans('frontend.frontend_user_address_edit_title') .' < '. get_site_title() )
 @elseif (Request::is('user/account/my-profile'))
   @section('title',  trans('frontend.frontend_user_profile_edit_title') .' < '. get_site_title() )
+  @section('page-wrapper', 'dashboard-wrapper')
 @elseif (Request::is('user/account/my-orders'))
   @section('title',  trans('frontend.frontend_my_order_title') .' < '. get_site_title() )
 @elseif (Request::is('user/account/my-saved-items'))
