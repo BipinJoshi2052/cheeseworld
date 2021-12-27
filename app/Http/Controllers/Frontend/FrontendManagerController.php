@@ -69,7 +69,7 @@ class FrontendManagerController extends Controller
 
 
     
-    // dd($data['advancedData']);
+    // dd($data);
 
     return view('pages.frontend.frontend-pages.home', $data);
   }
