@@ -39,6 +39,22 @@
             </div>
           </div>  
         </div>
+        <div class="form-group">
+          <div class="row">  
+            <label class="col-sm-4 control-label" for="inputNumber">Number</label>
+            <div class="col-sm-8">
+              <input type="text" placeholder="Number" id="inputNumber" name="inputNumber" class="form-control" value="{{ $settings_data['general_settings']['general_options']['phone'] }}">
+            </div>
+          </div>  
+        </div>
+        <div class="form-group">
+          <div class="row">  
+            <label class="col-sm-4 control-label" for="inputAddress">Address</label>
+            <div class="col-sm-8">
+              <input type="text" placeholder="Address" id="inputAddress" name="inputAddress" class="form-control" value="{{ $settings_data['general_settings']['general_options']['address'] }}">
+            </div>
+          </div>  
+        </div>
         
         <div class="form-group">
           <div class="row">  

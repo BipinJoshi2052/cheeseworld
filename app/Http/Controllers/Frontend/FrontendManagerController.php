@@ -384,6 +384,11 @@ class FrontendManagerController extends Controller
       return view('errors.no_data');
     }
   }
+
+  public function searchProduct( $key = 'a' ){
+    $result = Product::where('title', 'like', '%a%')->get();
+    return response()->json($result);
+  }
   
   /**
    * 

@@ -1321,9 +1321,14 @@ Route::post( '/contact-us', [
   'as'   => 'contact-us'
 ]);
 
-Route::get( '/product/details/{details_slug}', [
-  'uses' => 'Frontend\FrontendManagerController@productSinglePageContent',
-  'as'   => 'details-page'
+Route::get( '/product/{key}', [
+  'uses' => 'Frontend\FrontendManagerController@searchProduct',
+  'as'   => 'search-product'
+]);
+
+  Route::get( '/product/details/{details_slug}', [
+    'uses' => 'Frontend\FrontendManagerController@productSinglePageContent',
+    'as'   => 'details-page'
 ]);
 
 Route::get( '/product/customize/{details_id}', [
