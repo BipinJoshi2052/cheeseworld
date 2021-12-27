@@ -38,7 +38,7 @@
                 $('.modal-footer').attr('hidden', 'hidden');
             }else{
                 $('.modal-footer').removeAttr('hidden');
-                var url = "{{ url('/product', ":key") }}";
+                var url = "{{ route('search-product', ":key") }}";
                 url = url.replace(':key', key);
                 $.ajax({
                     url: url,
