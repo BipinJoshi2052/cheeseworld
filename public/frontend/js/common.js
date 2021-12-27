@@ -363,6 +363,11 @@ $(document).ready(function(){
       
       hideButtons(current);
     }
+    if ($("#selected_payment_method").val() == "esewa") {
+      $(".place-order").attr("type", "button");
+    } else {
+      $(".place-order").attr("type", "submit");
+    }
   })
  
   if($('#checkout_page #user_mode .checkout-process-user-mode').length>0){
@@ -824,38 +829,77 @@ shopist_frontend.init =
     {
       $('#customizeImages .modal-body').html('');
     });
-    
+
     if($('.payment-options').length>0){
-      $('.payment-options input[type="radio"]').on('ifClicked', function(event){
+      $('.payment-options input[type="radio"]').on('click', function(event){
         if(this.value === 'paypal'){
-          $('.place-order').text( frontendLocalizationString.proceed_to_payPal );
+          // $('.place-order').text( frontendLocalizationString.proceed_to_payPal );
           $('#bacsPopover, #codPopover, #stripePopover, #twocheckoutPopover').hide();
           $('#paypalPopover').show();
         }
         else if(this.value === 'bacs'){
-          $('.place-order').text( frontendLocalizationString.place_order );
+          // $('.place-order').text( frontendLocalizationString.place_order );
           $('#paypalPopover, #codPopover, #stripePopover, #twocheckoutPopover').hide();
           $('#bacsPopover').show();
         }
         else if(this.value === 'cod'){
-          $('.place-order').text( frontendLocalizationString.place_order );
+          // $('.place-order').text( frontendLocalizationString.place_order );
           $('#paypalPopover, #bacsPopover, #stripePopover, #twocheckoutPopover').hide();
           $('#codPopover').show();
         }
         else if(this.value === 'stripe'){
-          $('.place-order').text( frontendLocalizationString.proceed_to_stripe );
+          // $('.place-order').text( frontendLocalizationString.proceed_to_stripe );
           $('#paypalPopover, #bacsPopover, #codPopover, #twocheckoutPopover').hide();
           $('#stripePopover').show();
         }
         else if(this.value === '2checkout'){
-          $('.place-order').text( frontendLocalizationString.proceed_to_2checkout );
+          // $('.place-order').text( frontendLocalizationString.proceed_to_2checkout );
           $('#paypalPopover, #bacsPopover, #codPopover, #stripePopover').hide();
           $('#twocheckoutPopover').show();
         }
         
         $('#selected_payment_method').val(this.value);
+        if ($("#selected_payment_method").val() == "esewa") {
+          $(".place-order").attr("type", "button");
+        } else {
+          $(".place-order").attr("type", "submit");
+        }
       });
     }
+    
+    // if($('.payment-options').length>0){
+    //   $('.payment-options input[type="radio"]').on('ifClicked', function(event){
+    //     alert('Helo');
+    //     if(this.value === 'paypal'){
+    //       $('.place-order').text( frontendLocalizationString.proceed_to_payPal );
+    //       $('#bacsPopover, #codPopover, #stripePopover, #twocheckoutPopover').hide();
+    //       $('#paypalPopover').show();
+    //     }
+    //     else if(this.value === 'bacs'){
+    //       $('.place-order').text( frontendLocalizationString.place_order );
+    //       $('#paypalPopover, #codPopover, #stripePopover, #twocheckoutPopover').hide();
+    //       $('#bacsPopover').show();
+    //     }
+    //     else if(this.value === 'cod'){
+    //       $('.place-order').text( frontendLocalizationString.place_order );
+    //       $('#paypalPopover, #bacsPopover, #stripePopover, #twocheckoutPopover').hide();
+    //       $('#codPopover').show();
+    //     }
+    //     else if(this.value === 'stripe'){
+    //       $('.place-order').text( frontendLocalizationString.proceed_to_stripe );
+    //       $('#paypalPopover, #bacsPopover, #codPopover, #twocheckoutPopover').hide();
+    //       $('#stripePopover').show();
+    //     }
+    //     else if(this.value === '2checkout'){
+    //       $('.place-order').text( frontendLocalizationString.proceed_to_2checkout );
+    //       $('#paypalPopover, #bacsPopover, #codPopover, #stripePopover').hide();
+    //       $('#twocheckoutPopover').show();
+    //     }
+        
+    //     $('#selected_payment_method').val(this.value);
+    //     alert('#selected_payment_method').val();
+    //   });
+    // }
    
     if($('.frontend-user-logout').length>0)
     {

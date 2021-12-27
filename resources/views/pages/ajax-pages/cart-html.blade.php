@@ -13,6 +13,7 @@
                               <tr>
                                   <th class="cart-description item">Image</th>
                                   <th class="cart-product-name item">Product Name</th>
+                                  <th class="cart-product-price item">Price</th>
                                   <th class="cart-qty item">Quantity</th>
                                   <th class="cart-total last-item">Total</th>
                                   <th class="cart-romove item">Remove</th>
@@ -45,6 +46,9 @@
                                           </div>
                                       </div>
                                       <!-- /.row -->
+                                  </td>
+                                  <td>
+                                    {!! price_html(get_product_price_html_by_filter( $items->price ), get_frontend_selected_currency()) !!}
                                   </td>
                                   <td class="cart-product-quantity">
                                       <div class="quant-input">
@@ -122,14 +126,14 @@
                           <!-- /tbody -->
                       </table>
                       <div class="d-flex justify-content-around align-items-center w-100 my-3 flex-wrap">
-                          <form
-                              class="coupon-field d-flex flex-wrap align-items-center justify-content-center">
+                          {{-- <form
+                              class="coupon-field d-flex flex-wrap align-items-center justify-content-center"> --}}
                               <input type="text" placeholder="Apply Coupon Code" class="mr-2" id="apply_coupon_code" name="apply_coupon">
                               <button type="button" class="effect mt-xl-0 mt-md-0 mt-2" name="apply_coupon_post" id="apply_coupon_post">Apply
                                   Coupon</button>
-                          </form>
+                          {{-- </form> --}}
                           <div class="total-amount font-weight-bold mt-xl-0 mt-md-0 mt-2">
-                              Total Amount : <span>$2000</span>
+                              Total Amount : <span>{!! price_html(get_product_price_html_by_filter(Cart::getTotal()), get_frontend_selected_currency()) !!}</span>
                           </div>
                       </div>
                   </div>
