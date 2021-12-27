@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-xl-3 col-lg-3 col-md-6 col-12 mb-2">
                 <div class="image">
-                    <a href="index.html"> <img src="frontend/assets/images/logo/2.png" alt="footer-logo-image" class="img-fluid"></a>
+                    <a href="index.html"> <img src="{{ URL::asset('public/frontend/assets/images/logo/2.png') }}" alt="footer-logo-image" class="img-fluid"></a>
                 </div>
             </div>
             <div class="col-xl-3 col-lg-3 col-md-6 col-12 mb-2">

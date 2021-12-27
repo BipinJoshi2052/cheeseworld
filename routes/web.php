@@ -1535,3 +1535,9 @@ Route::get( '/download/file/{product_id}/{order_id}/{file_id}/{target}', [
   'uses' => 'Frontend\FrontendManagerController@forceDownload',
   'as'   => 'downloadable-product-download'
 ])->middleware('verifyLoginPage');
+
+
+Route::get('payment-verify', [
+  'uses' => 'PaymentVerifyController@verify',
+  'as'   => 'esewa-verify'
+ ]);
