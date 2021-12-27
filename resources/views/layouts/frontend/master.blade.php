@@ -21,10 +21,50 @@
     </section>
     <!-- Whole Body Wrapper Ends -->
 
-    @include('includes.frontend.foot')
+    @include('includes.frontend.script')
     </section>
 
     @include('modal.modals')
 </body>
+
+<script>
+    $(document).ready(function(){
+        $(document).on('keyup', '#search-product', function(){
+            var key = $(this).val();
+            if(key == ''){
+                $('.modal-footer').attr('hidden', 'hidden');
+            }else{
+                $('.modal-footer').removeAttr('hidden');
+                var url = "{{ route('search-product', ":key") }}";
+                url = url.replace(':key', key);
+                $.ajax({
+                    url: url,
+                    success: function(response){
+                        console.log(response);
+                        if(response){
+                            var list = ''
+                            $.each(response, function(i, e){
+                                imageUrl = e.image_url
+                                list += '<li class="mb-2 p-1">' +
+                                    '<a href="">' +
+                                        '<div class="row">' +
+                                            '<div class="col-2">' +
+                                                '<div class="image"> <img src="{{ asset('') }}' + e.image_url.substring(1) + '" class="img-fluid"></div>' +
+                                            '</div>' +
+                                            '<div class="col-10 m-auto">' +
+                                                '<p class="m-0">' + e.title + '</p>' +
+                                            '</div>' +
+                                        '</div>' +
+                                    '</a>' +
+                                '</li>';
+                            });
+                            $('#search-result-list').html(list);
+                        }
+                    }
+                })
+            }
+        });
+    })
+</script>
 
 </html>

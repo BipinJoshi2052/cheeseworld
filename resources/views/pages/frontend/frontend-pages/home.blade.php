@@ -58,7 +58,7 @@
                         <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 mt-4">
                             <div class="product-grid-item">
                                 <div class="product-grid-image">
-                                    <a href="#">
+                                    <a href="{{ route('details-page', $latest_product->slug) }}">
                                         @if(!empty($latest_product->image_url))
                                             <img class="pic-1" src="{{ get_image_url( $latest_product->image_url ) }}" alt="{{ basename( get_image_url( $latest_product->image_url ) ) }}" />
                                         @else
@@ -67,10 +67,10 @@
                                     </a>
                                     <ul class="social single-product-add-to-cart">                                        
                                         <li>
-                                            <a href="javascript:void(0);" data-id="{{ $latest_product->id }}" class="fa fa-shopping-bag product-wishlist"></a>
+                                            <a href="" data-id="{{ $latest_product->id }}" class="fa fa-shopping-bag product-wishlist"></a>
                                         </li>
                                         <li>
-                                            <a href="javascript:void(0);" data-id="{{ $latest_product->id }}" class="fa fa-shopping-cart add-to-cart-bg"></a>
+                                            <a href="" data-id="{{ $latest_product->id }}" class="fa fa-shopping-cart add-to-cart-bg"></a>
                                         </li>
                                     </ul>
                                     {{-- <span class="product-discount-label">-20%</span> --}}
@@ -138,131 +138,50 @@
                 <div class="col-12">
                     <div class="heading d-flex justify-content-center align-items-center text-center mb-3 flex-wrap">
                         <div class="head">
-                            <h2>Customer's Favourite</h2>
+                            <h2>Featured Products</h2>
                             <p>Lorem ipsum dolor sit amet consectetur</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 mt-4">
-                    <div class="product-grid-item">
-                        <div class="product-grid-image">
-                            <a href="#">
-                                <img class="pic-1"
-                                    src="{{ asset('public/frontend/assets/images/product-images/10.jpg') }}">
-                            </a>
-                            <ul class="social">
-                                <li>
-                                    <a href="" class="fa fa-shopping-bag"></a>
-                                </li>
-                                <li>
-                                    <a href="" class="fa fa-shopping-cart"></a>
-                                </li>
-                            </ul>
-                            <span class="product-discount-label">-20%</span>
-                        </div>
-                        <div class="product-content">
-                            <h3 class="title text-center">
-                                <a href="#" class="font-weight-bold">Authentic Grana Padano </a>
-                            </h3>
-                            <div class="price text-center mb-3">
-                                £ 8.00
-                                <span>£ 10.00</span>
+                @if(count($advancedData['features_items']) > 0)
+                    @foreach($advancedData['features_items'] as $key => $latest_product)                    
+                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 mt-4">
+                            <div class="product-grid-item">
+                                <div class="product-grid-image">
+                                    <a href="{{ route('details-page', $latest_product->slug) }}">
+                                        @if(!empty($latest_product->image_url))
+                                            <img class="pic-1" src="{{ get_image_url( $latest_product->image_url ) }}" alt="{{ basename( get_image_url( $latest_product->image_url ) ) }}" />
+                                        @else
+                                            <img class="pic-1" src="{{ default_placeholder_img_src() }}" alt="" />
+                                        @endif
+                                    </a>
+                                    <ul class="social single-product-add-to-cart">                                        
+                                        <li>
+                                            <a href="" data-id="{{ $latest_product->id }}" class="fa fa-shopping-bag product-wishlist"></a>
+                                        </li>
+                                        <li>
+                                            <a href="" data-id="{{ $latest_product->id }}" class="fa fa-shopping-cart add-to-cart-bg"></a>
+                                        </li>
+                                    </ul>
+                                    {{-- <span class="product-discount-label">-20%</span> --}}
+                                </div>
+                                <div class="product-content">
+                                    <h3 class="title text-center">
+                                        <a href="#" class="font-weight-bold">{!! $latest_product->title !!}</a>
+                                    </h3>
+                                    <div class="price text-center mb-3">
+                                        {!! price_html( get_product_price_html_by_filter(get_role_based_price_by_product_id($latest_product->id, $latest_product->price)), get_frontend_selected_currency()) !!}
+                                    </div>
+                                    <a class="all-deals effect" href="{{ route('details-page', $latest_product->slug) }}">View Product <i class="fa fa-angle-right icon"></i>
+                                    </a>
+                                </div>
                             </div>
-                            <a class="all-deals effect" href="">View Product <i class="fa fa-angle-right icon"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 mt-4">
-                    <div class="product-grid-item">
-                        <div class="product-grid-image">
-                            <a href="#">
-                                <img class="pic-1"
-                                    src="{{ asset('public/frontend/assets/images/product-images/11.jpg') }}">
-                            </a>
-                            <ul class="social">
-                                <li>
-                                    <a href="" class="fa fa-shopping-bag"></a>
-                                </li>
-                                <li>
-                                    <a href="" class="fa fa-shopping-cart"></a>
-                                </li>
-                            </ul>
-                            <span class="product-discount-label">-20%</span>
-                        </div>
-                        <div class="product-content">
-                            <h3 class="title text-center">
-                                <a href="#" class="font-weight-bold">Authentic Grana Padano </a>
-                            </h3>
-                            <div class="price text-center mb-3">
-                                £ 8.00
-                                <span>£ 10.00</span>
-                            </div>
-                            <a class="all-deals effect" href="">View Product <i class="fa fa-angle-right icon"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 mt-4">
-                    <div class="product-grid-item">
-                        <div class="product-grid-image">
-                            <a href="#">
-                                <img class="pic-1"
-                                    src="{{ asset('public/frontend/assets/images/product-images/13.jpg') }}">
-                            </a>
-                            <ul class="social">
-                                <li>
-                                    <a href="" class="fa fa-shopping-bag"></a>
-                                </li>
-                                <li>
-                                    <a href="" class="fa fa-shopping-cart"></a>
-                                </li>
-                            </ul>
-                            <span class="product-discount-label">-20%</span>
-                        </div>
-                        <div class="product-content">
-                            <h3 class="title text-center">
-                                <a href="#" class="font-weight-bold">Authentic Grana Padano </a>
-                            </h3>
-                            <div class="price text-center mb-3">
-                                £ 8.00
-                                <span>£ 10.00</span>
-                            </div>
-                            <a class="all-deals effect" href="">View Product <i class="fa fa-angle-right icon"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 mt-4">
-                    <div class="product-grid-item">
-                        <div class="product-grid-image">
-                            <a href="#">
-                                <img class="pic-1"
-                                    src="{{ asset('public/frontend/assets/images/product-images/14.jpg') }}">
-                            </a>
-                            <ul class="social">
-                                <li>
-                                    <a href="" class="fa fa-shopping-bag"></a>
-                                </li>
-                                <li>
-                                    <a href="" class="fa fa-shopping-cart"></a>
-                                </li>
-                            </ul>
-                            <span class="product-discount-label">-20%</span>
-                        </div>
-                        <div class="product-content">
-                            <h3 class="title text-center">
-                                <a href="#" class="font-weight-bold">Authentic Grana Padano </a>
-                            </h3>
-                            <div class="price text-center mb-3">
-                                £ 8.00
-                                <span>£ 10.00</span>
-                            </div>
-                            <a class="all-deals effect" href="">View Product <i class="fa fa-angle-right icon"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                        </div>   
+
+                    @endforeach
+                @else
+                    <p>No new products Available.</p>
+                @endif
             </div>
         </div>
     </div>
