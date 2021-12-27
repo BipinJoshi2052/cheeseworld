@@ -68,18 +68,38 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link m-auto add-on" href="#" id="profilenav">
+                    @if (Session::has('shopist_frontend_user_id'))
+                    <a class="nav-link m-auto add-on" href="javascript:void(0)" id="profilenav">
+                        <span class="mr-1"><i class="fa fa-user-o" aria-hidden="true"></i></span> <label
+                            class="mb-0">{{ Session::get('shopist_frontend_user_name') }}</label> <span class="ml-1">
+                            <i class="fa fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                    <div class="profilenav-dropdown custom-position p-0" aria-labelledby="profilenav">
+                        <a class="dropdown-item" href="{{ route('user-account-page') }}"> <span class="mr-2"><i
+                                    class="fa fa-sign-in" aria-hidden="true"></i></span>Profile</a>
+                        <form method="post" action="{{ route('user-logout') }}">
+                            @csrf
+                            <button type="submit" class="dropdown-item">
+                                <span class="mr-2"><i class="fa fa-paper-plane" aria-hidden="true"></i></span>Logout</a>
+                            </button>
+                        </form>
+                    </div>
+
+                    @else
+                    <a class="nav-link m-auto add-on" href="javascript:void(0)" id="profilenav">
                         <span class="mr-1"><i class="fa fa-user-o" aria-hidden="true"></i></span> <label
                             class="mb-0">Profile</label> <span class="ml-1">
                             <i class="fa fa-angle-down" aria-hidden="true"></i>
                         </span>
                     </a>
                     <div class="profilenav-dropdown custom-position p-0" aria-labelledby="profilenav">
-                        <a class="dropdown-item" href="{{ url('/user/login') }}"> <span class="mr-2"><i
+                        <a class="dropdown-item" href="{{ route('user-login-page') }}"> <span class="mr-2"><i
                                     class="fa fa-sign-in" aria-hidden="true"></i></span>Login</a>
-                        <a class="dropdown-item" href="{{ url('/user/login') }}"> <span class="mr-2"><i
+                        <a class="dropdown-item" href="{{ route('user-login-page') }}"> <span class="mr-2"><i
                                     class="fa fa-paper-plane" aria-hidden="true"></i></span>Register</a>
                     </div>
+                    @endif
                 </li>
             </ul>
         </div>

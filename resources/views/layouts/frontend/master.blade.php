@@ -29,7 +29,6 @@
 
 <script>
     $(document).ready(function(){
-        $('.btn').click();
         $(document).on('keyup', '#search-product', function(){
             var key = $(this).val();
             if(key == ''){

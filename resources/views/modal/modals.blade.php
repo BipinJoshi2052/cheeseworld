@@ -14,7 +14,7 @@
             </div>
             <div class="modal-footer my-auto border-0 w-100" hidden>
                 <ul class="search-list-wrapper w-100" id="search-result-list">
-                    <li class="mb-2 p-1">
+                    {{-- <li class="mb-2 p-1">
                         <a href="">
                             <div class="row">
                                 <div class="col-2">
@@ -25,7 +25,7 @@
                                 </div>
                             </div>
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </div>

@@ -96,6 +96,9 @@ class LoginController extends Controller
      */
     public function goToFrontendLoginPage()
     {
+        if (Session::has('shopist_frontend_user_id')) {
+            return redirect()->route('user-account-page');
+        }
         $user_view = '';
         $pass_view = '';
         $data = array();
@@ -224,53 +227,55 @@ class LoginController extends Controller
     {
         if (Request::isMethod('post') && Session::token() == Request::Input('_token')) {
             $inputData = Request::all();
-
+            
             $rules = [
                 'login_username' => 'required',
                 'login_password' => 'required',
             ];
-
+            
             $messages = [
                 'login_username.required' => Lang::get('validation.user_name_required'),
                 'login_password.required' => Lang::get('validation.password_required'),
             ];
-
+            
             $recaptchaData = get_recaptcha_data();
             if ($recaptchaData['enable_recaptcha_for_user_login'] == true) {
                 $rules['g-recaptcha-response'] = 'required|captcha';
                 $messages['g-recaptcha-response.required'] = Lang::get('validation.g_recaptcha_response_required');
             }
-
+            
             $validator = Validator::make($inputData, $rules, $messages);
-
+            
             if ($validator->fails()) {
                 return redirect()->back()
-                    ->withInput()
-                    ->withErrors($validator);
+                ->withInput()
+                ->withErrors($validator);
             } else {
                 $username = Request::Input('login_username');
                 $password = bcrypt(Request::Input('login_password'));
                 $userdata = ['name' => $username, 'user_status' => 1];
                 $data = User::where($userdata)->first();
-
                 if (!empty($data) && isset($data->password) && isset($data->id)) {
                     $get_user_role = get_user_details($data->id);
-
+                    
                     if (Hash::check(Request::Input('login_password'), $password) && Hash::check(Request::Input('login_password'), $data->password)) {
-
+                        
                         if (Session::has('shopist_frontend_user_id')) {
                             Session::forget('shopist_frontend_user_id');
                             Session::put('shopist_frontend_user_id', $data->id);
+                            Session::forget('shopist_frontend_user_name');
+                            Session::put('shopist_frontend_user_name', $data->display_name);
                         } elseif (!Session::has('shopist_frontend_user_id')) {
                             Session::put('shopist_frontend_user_id', $data->id);
+                            Session::put('shopist_frontend_user_name', $data->display_name);
                         }
-
+                        
                         $remember = (Request::has('login_remember_me')) ? true : false;
-
+                        
                         if ($remember == true) {
                             $cookieData = array();
                             $cookieData = $data->id . '#' . base64_encode(Request::Input('login_password'));
-
+                            
                             return redirect()->route('user-account-page')->withCookie(cookie()->forever('frontend_remember_me_data', $cookieData));
                         } elseif ($remember == false) {
                             if (Cookie::has('frontend_remember_me_data')) {
@@ -323,8 +328,11 @@ class LoginController extends Controller
             if (Session::has('shopist_frontend_user_id')) {
                 Session::forget('shopist_frontend_user_id');
                 Session::put('shopist_frontend_user_id', $users->id);
+                Session::forget('shopist_frontend_user_name');
+                Session::put('shopist_frontend_user_name', $users->display_name);
             } else {
               Session::put('shopist_frontend_user_id', $users->id);
+              Session::put('shopist_frontend_user_name', $users->display_name);
             }
             return redirect('/');
         } else {
@@ -359,8 +367,11 @@ class LoginController extends Controller
             if (Session::has('shopist_frontend_user_id')) {
                 Session::forget('shopist_frontend_user_id');
                 Session::put('shopist_frontend_user_id', $user->id);
+                Session::forget('shopist_frontend_user_name');
+                Session::put('shopist_frontend_user_name', $user->display_name);
             } else {
                 Session::put('shopist_frontend_user_id', $user->id);
+                Session::put('shopist_frontend_user_name', $user->display_name);
             }
             return redirect('/');
         }
