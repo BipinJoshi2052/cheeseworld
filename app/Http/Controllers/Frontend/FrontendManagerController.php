@@ -64,11 +64,14 @@ class FrontendManagerController extends Controller
     $data['brands_data']         =   $this->product->getTermData( 'product_brands', false, null, 1 );
     $data['testimonials_data']   =   get_all_testimonial_data();
     $data['selected_currency']   =   get_frontend_selected_currency();
+    $data['banner']   =   Banner::latest()->first();
 
-    $banners=Banner::latest()->get();
-    // dd($data);
 
-    return view('pages.frontend.frontend-pages.home',compact('banners'), $data);
+
+    
+    // dd($data['advancedData']);
+
+    return view('pages.frontend.frontend-pages.home', $data);
   }
   
   /**
