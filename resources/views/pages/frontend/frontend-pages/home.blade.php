@@ -210,63 +210,34 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mt-4 mb-4">
-                    <div class="product-grid-item2">
-                        <div class="product-grid-image2">
-                            <a href="#">
-                                <img class="pic-1"
-                                    src="{{ asset('public/frontend/assets/images/product-images/15.jpg') }}"
-                                    class="img-fluid">
-                            </a>
-                            <ul class="social d-flex flex-column">
-                                <li>
-                                    <a href="" class="effect anchor-btn">View all our Products</a>
-                                </li>
-                            </ul>
-                            <div class="discription3">
-                                <h5 class="m-0"> Cheese Pizza</h5>
+                @if(isset($productCategoriesTree) && $productCategoriesTree)
+                    @foreach ($productCategoriesTree as $index => $category)
+                        @if ($index < 5)
+                            
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mt-4 mb-4">
+                            <div class="product-grid-item2">
+                                <div class="product-grid-image2">
+                                    <a href="{{ url('/product/categories') }}/{{ $category['slug'] }}">
+                                        @if(!empty($category->image_url))
+                                            <img class="pic-1" src="{{ get_image_url( $category->image_url ) }}" alt="{{ basename( get_image_url( $category->image_url ) ) }}" />
+                                        @else
+                                            <img class="pic-1" src="{{ default_placeholder_img_src() }}" alt="" />
+                                        @endif
+                                    </a>
+                                    <ul class="social d-flex flex-column">
+                                        <li>
+                                            <a href="{{ url('/product/categories') }}/{{ $category['slug'] }}" class="effect anchor-btn">View all our Products</a>
+                                        </li>
+                                    </ul>
+                                    <div class="discription3">
+                                        <h5 class="m-0"> {{ $category['name'] }}</h5>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mt-4 mb-4">
-                    <div class="product-grid-item2">
-                        <div class="product-grid-image2">
-                            <a href="#">
-                                <img class="pic-1"
-                                    src="{{ asset('public/frontend/assets/images/product-images/16.jpg') }}"
-                                    class="img-fluid">
-                            </a>
-                            <ul class="social d-flex flex-column">
-                                <li>
-                                    <a href="" class="effect anchor-btn">View all our Products</a>
-                                </li>
-                            </ul>
-                            <div class="discription3">
-                                <h5 class="m-0"> Cheese Burger</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mt-4 mb-4">
-                    <div class="product-grid-item2">
-                        <div class="product-grid-image2">
-                            <a href="#">
-                                <img class="pic-1"
-                                    src="{{ asset('public/frontend/assets/images/product-images/11.jpg') }}"
-                                    class="img-fluid">
-                            </a>
-                            <ul class="social d-flex flex-column">
-                                <li>
-                                    <a href="" class="effect anchor-btn">View all our Products</a>
-                                </li>
-                            </ul>
-                            <div class="discription3">
-                                <h5 class="m-0"> Cheese Platter</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                        @endif
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>
