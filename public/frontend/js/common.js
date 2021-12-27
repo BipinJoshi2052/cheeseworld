@@ -742,6 +742,18 @@ $(document).ready(function(){
   }
 });
 
+
+$(document).ready(function () {
+  $(".place-order").on("click", function () {
+    $this_typeAttr = $(this).attr("type");
+    if ($this_typeAttr == "submit") {
+      $("#checkoutForm").submit();
+    } else if ($this_typeAttr == "button") {
+      createOrder();
+    }
+  });
+});
+
 var shopist_frontend = shopist_frontend || {};
 
 // alert(shopist_frontend);
