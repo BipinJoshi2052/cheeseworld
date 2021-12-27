@@ -21,6 +21,7 @@
                     </a>
                     <div class="mega-menu-wrapper">
                         <div class="row p-4">
+                            @if(isset($productCategoriesTree) && $productCategoriesTree)
                             @foreach ($productCategoriesTree as $category)
                                 <!-- /.col-md-3  -->
                                 <div class="col-md-3">
@@ -28,15 +29,18 @@
                                         <li class="nav-item">
                                             <a class="nav-link head font-weight-bold" href="{{ url('/product/categories') }}/{{ $category['slug'] }}">{{ $category['name'] }}</a>
                                         </li>
+                                        @if(isset($category['children']) && $category['children'])
                                         @foreach ($category['children'] as $child)
                                             <li class="nav-item p-0">
                                                 <a class="nav-link" href="{{ url('/product/categories') }}/{{ $category['slug'] }}">{{ $category['name'] }}</a>
                                             </li>
                                         @endforeach
+                                        @endif
                                     </ul>
                                 </div>
                             @endforeach
-
+                            @endif
+                        </div>
                     </div>
                 </li>
                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">

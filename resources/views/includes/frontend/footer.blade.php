@@ -17,14 +17,14 @@
                         </div>
                     </div>
                     <li>
-                        <a href=" mailto:webmaster@example.com"><span class="mr-2"><i class="fa fa-envelope-square" aria-hidden="true"></i></span>{{ $siteSettings['general_settings']['general_options']['email_address'] }}</a>
+                        <a href=" mailto:webmaster@example.com"><span class="mr-2"><i class="fa fa-envelope-square" aria-hidden="true"></i></span>{{ isset($siteSettings['general_settings']['general_options']['email_address']) && $siteSettings['general_settings']['general_options']['email_address'] ? $siteSettings['general_settings']['general_options']['email_address'] : '' }}</a>
                         </h5>
                     </li>
                     <li>
-                        <a href="tel:+4733378901"><span class="mr-2"><i class="fa fa-phone" aria-hidden="true"></i></span>{{ $siteSettings['general_settings']['general_options']['phone'] }}</a></h5>
+                        <a href="tel:+4733378901"><span class="mr-2"><i class="fa fa-phone" aria-hidden="true"></i></span>{{ isset($siteSettings['general_settings']['general_options']['phone']) && $siteSettings['general_settings']['general_options']['phone'] ? $siteSettings['general_settings']['general_options']['phone']: '' }}</a></h5>
                     </li>
                     <li>
-                        <a href=""><span class="mr-2"><i class="fa fa-map" aria-hidden="true"></i></span>{{ $siteSettings['general_settings']['general_options']['address'] }}</a></h5>
+                        <a href=""><span class="mr-2"><i class="fa fa-map" aria-hidden="true"></i></span>{{ isset($siteSettings['general_settings']['general_options']['address']) && $siteSettings['general_settings']['general_options']['address'] ? $siteSettings['general_settings']['general_options']['address']: '' }}</a></h5>
                     </li>
                 </ul>
             </div>
