@@ -63,7 +63,7 @@ class FrontendManagerController extends Controller
     $data['selected_currency']   =   get_frontend_selected_currency();
 
     $banners=Banner::latest()->get();
-    // dd($banner);
+    // dd($data);
 
     return view('pages.frontend.frontend-pages.home',compact('banners'), $data);
   }

@@ -1,5 +1,5 @@
 @extends('layouts.admin.master')
-@section('title', trans('admin.edit_banner') .' < '. get_site_title())
+@section('title', 'Banner Edit' .' < '. get_site_title())
 
 @section('content')
 @include('pages-message.form-submit')

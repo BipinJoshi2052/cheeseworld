@@ -1,5 +1,5 @@
 @extends('layouts.admin.master')
-@section('title', trans('admin.banners_list_title') .' < '. get_site_title())
+@section('title', 'Banners' .' < '. get_site_title())
 
 @section('content')
 <div class="row">
