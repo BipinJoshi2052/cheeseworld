@@ -13,11 +13,15 @@
       <div class="filter-content1">
           <div class="card-body p-3">
               <ul class="mb-0">
+                <?php 
+                    $productCategoriesTrees = array_slice($productCategoriesTree, 0, 6);
+                    $remainProductCategoriesTree = array_slice($productCategoriesTree, 6);
+                ?>
                   @if (count($productCategoriesTree) > 0)
-                      @foreach ($productCategoriesTree as $data)
+                      @foreach ($productCategoriesTrees as $data)
                           <li>
                               <div class="item">
-                                  <a href="{{ route('categories-page', $data['slug']) }}" class="category-item py-1 active">{!! $data['name'] !!}
+                                  <a href="{{ route('categories-page', $data['slug']) }}" class="category-item py-1 {{ $loop->first ? 'active': '' }}">{!! $data['name'] !!}
                                    </a>
                               </div>
                           </li>
@@ -27,7 +31,7 @@
               <div class="collapse" id="expand1">
                   <ul>
                    @if (count($productCategoriesTree) > 0)
-                   @foreach ($productCategoriesTree as $data)
+                   @foreach ($remainProductCategoriesTree as $data)
                        <li>
                            <div class="item">
                                <a href="{{ route('categories-page', $data['slug']) }}" class="category-item py-1">{!! $data['name'] !!}
