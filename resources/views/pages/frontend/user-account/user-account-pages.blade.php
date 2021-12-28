@@ -1,5 +1,6 @@
 @extends('layouts.frontend.master')
 
+
 @if(Request::is('user/account'))
   @section('title',  trans('frontend.frontend_user_dashboard_title') .' < '. get_site_title() )
 @elseif (Request::is('user/account/dashboard'))
@@ -54,4 +55,7 @@
           @elseif(Request::is('user/account/cancel-orders/*'))
             @include('pages.frontend.user-account.cancel-order')
           @endif
+@endsection
+@section('scripts')
+
 @endsection

@@ -8,11 +8,22 @@ $cartNav = Request::is('cart');
 <div class="col-xl-3 col-lg-3 col-md-12 col-12 mb-xl-0 mb-lg-0 mb-3">
     <div class="dashboard-list py-lg-5 px-lg-3 d-lg-block d-none">
         <div class="d-user-avater text-center mb-4">
-            <img src="{{ asset('public/frontend/assets/images/product-images/1.jpg') }}"
-                class="img-fluid avater" alt="profile-image">
+            <?php 
+                if($login_user_details['user_photo_url']){
+                    $user_photo = get_image_url($login_user_details['user_photo_url']);
+                } else {
+                    $user_photo = default_avatar_img_src();
+                }
+                    
+            ?>
+            <img src="{{ $user_photo }}"
+                class="img-fluid avater" alt="profile-image" id="profile_img">
             <h5>{{ $login_user_details['user_display_name'] }}</h5>
-            <a href=""> <span class="mr-1"><i class="fa fa-pencil"
+            <form>
+                <a href="javascript:void(0)" onclick="changeProfile()"> <span class="mr-1"><i class="fa fa-pencil"
                         aria-hidden="true"></i></span> Upload Image</a>
+                <input type="file" id="prf-pic" style="display: none"/>
+            </form>
         </div>
         <ul class="sidebar">
             <li class="{{ $profileNav ? 'active' : '' }} mb-3 p-2">
