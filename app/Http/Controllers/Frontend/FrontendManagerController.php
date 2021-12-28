@@ -400,8 +400,8 @@ class FrontendManagerController extends Controller
     }
   }
 
-  public function searchProduct( $key = 'a' ){
-    $result = Product::where('title', 'like', '%a%')->get();
+  public function searchProduct($key){
+    $result = Product::where('title', 'like', '%' . $key . '%')->get();
     return response()->json($result);
   }
   
@@ -550,7 +550,6 @@ class FrontendManagerController extends Controller
       else{
         $data['variations_data'] = $get_variation_data;
       }
-      
       return view('pages.frontend.frontend-pages.product-details', $data);
     }
     else{

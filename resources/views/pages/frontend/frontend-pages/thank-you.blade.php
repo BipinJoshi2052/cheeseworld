@@ -1,181 +1,131 @@
 @extends('layouts.frontend.master')
 @section('title',  trans('frontend.shopist_order_received_title') .' < '. get_site_title() )
-
+@section('page-wrapper', 'login-register-page-wrapper')
 @section('content')
-  @if( count($order_details_for_thank_you_page) > 0)
-  <section id="order-received-content">
-    <div class="container new-container">
-      <h4>{{ trans('frontend.order_received') }}</h4><br>
-      <p>{{ trans('frontend.thank_you_msg') }}</p>
-      <br>
-      <div class="row">
-        <div class="col-md-3 col-lg-3">
-          <div class="order-received-label-1 text-uppercase"><strong>{{ trans('frontend.order_number') }}</strong></div>
-          <div class="order-received-label-2"><em>#{!! $order_details_for_thank_you_page['order_id'] !!}</em></div>
-        </div>
-        <div class="col-md-3 col-lg-3">
-          <div class="order-received-label-1"><strong>{{ trans('frontend.date') }}</strong></div>
-          <div class="order-received-label-2"><em>{!! $order_details_for_thank_you_page['order_date'] !!}</em></div>
-        </div>
-        <div class="col-md-3 col-lg-3">
-          <div class="order-received-label-1"><strong>{{ trans('frontend.total') }}</strong></div>
-          <div class="order-received-label-2"><em>{!! price_html( $order_details_for_thank_you_page['_final_order_total'], $order_details_for_thank_you_page['_order_currency'] ) !!}</em></div>
-        </div>
-        <div class="col-md-3 col-lg-3">
-          <div class="order-received-label-1"><strong>{{ trans('frontend.payment_method') }}</strong></div>
-          <div class="order-received-label-2"><em>{!! get_payment_method_title($order_details_for_thank_you_page['_payment_method']) !!}</em></div>
-        </div>
-      </div>  
-
-      @if(isset($order_details_for_thank_you_page['_payment_details']['method_instructions']))  
-      <div class="row">
-          <div class="col-12"><p class="payment_ins">{!! $order_details_for_thank_you_page['_payment_details']['method_instructions'] !!}</p></div>
-      </div>
-      @endif
-
-      @if(isset($order_details_for_thank_you_page['_payment_details']['account_details']))  
-        <h3>{{ trans('frontend.our_bank_details') }}</h3><br>
-        <p>{{ trans('frontend.account_name') }}: {{ $order_details_for_thank_you_page['_payment_details']['account_details']['account_name'] }}</p>
-        <p>{{ trans('frontend.account_number') }}: {{ $order_details_for_thank_you_page['_payment_details']['account_details']['account_number'] }}</p>
-        <p>{{ trans('frontend.bank_name') }}: {{ $order_details_for_thank_you_page['_payment_details']['account_details']['bank_name'] }}</p>
-        <p>{{ trans('frontend.bank_short_code') }}: {{ $order_details_for_thank_you_page['_payment_details']['account_details']['short_code'] }}</p>
-        <p>{{ trans('frontend.iban') }}: {{ $order_details_for_thank_you_page['_payment_details']['account_details']['iban'] }}</p>
-        <p>{{ trans('frontend.bic_swift') }}: {{ $order_details_for_thank_you_page['_payment_details']['account_details']['swift'] }}</p>
-      @endif
-
-      <br>
-      <h4>{{ trans('frontend.order_details') }}</h4><br>
-      <div class="table-responsive cart_info">
-        @if(count($order_details_for_thank_you_page['ordered_items'])>0)   
-          <table class="table table-condensed">
-            <thead>
-              <tr class="cart_menu">
-                <td class="Item">{{ trans('frontend.item') }}</td>
-                <td class="price">{{ trans('frontend.price') }}</td>
-                <td class="quantity">{{ trans('frontend.quantity') }}</td>
-                <td class="total">{{ trans('frontend.total') }}</td>
-              </tr>
-            </thead>
-            <tbody> 
-              @foreach($order_details_for_thank_you_page['ordered_items'] as $items)
-              <tr>
-                <td class="cart_description">
-                  <h6>{!! $items['name'] !!}</h6>
-                  <?php $count = 1; ?>
-                  @if(count($items['options']) > 0)
-                  <p>
-                    @foreach($items['options'] as $key => $val)
-                      @if($count == count($items['options']))
-                        {!! $key .' &#8658; '. $val !!}
-                      @else
-                        {!! $key .' &#8658; '. $val. ' , ' !!}
-                      @endif
-                      <?php $count ++ ; ?>
-                    @endforeach
-                  </p>
-                  @endif
-
-                  @if($items['product_type'] == 'downloadable_product' && $order_details_for_thank_you_page['_customer_ip_address'] == get_ip_address() && (($order_details_for_thank_you_page['settings']['general_settings']['downloadable_products_options']['login_restriction'] == true && is_frontend_user_logged_in() && $order_details_for_thank_you_page['settings']['general_settings']['downloadable_products_options']['grant_access_from_thankyou_page'] == true) || ($order_details_for_thank_you_page['settings']['general_settings']['downloadable_products_options']['login_restriction'] == false && $order_details_for_thank_you_page['settings']['general_settings']['downloadable_products_options']['grant_access_from_thankyou_page'] == true)))
-                  {!! download_file_html( $items['id'], $items['download_data'], $order_details_for_thank_you_page['order_id']) !!}
-                  @endif
-
-                  @if( count(get_vendor_details_by_product_id($items['product_id'])) >0 )
-                  <p class="vendor-title"><strong>{!! trans('frontend.vendor_label') !!}</strong> : {!! get_vendor_name_by_product_id( $items['product_id'] ) !!}</p>
-                  @endif
-                </td>
-                <td class="cart_price">
-                  <p> {!! price_html( $items['order_price'], $order_details_for_thank_you_page['_order_currency'] ) !!} </p>
-                </td>
-                <td class="cart_quantity">
-                    <p> {!! $items['quantity'] !!} </p>
-                </td>
-                <td class="cart_total">
-                  <p>{!! price_html( ($items['quantity']*$items['order_price']), $order_details_for_thank_you_page['_order_currency'] ) !!}</p>
-                </td>
-              </tr>
-              @endforeach
-
-              <tr class="order-items-data">
-                <td colspan="4" class="order-total">
-                  <div class="items-div-main"><div class="items-label"><strong>{{ trans('frontend.tax') }}</strong></div> <div class="items-value">{!! price_html( $order_details_for_thank_you_page['_final_order_tax'], $order_details_for_thank_you_page['_order_currency'] ) !!}</div></div>
-
-                  <div class="items-div-main"><div class="items-label"><strong>{{ trans('frontend.shipping_cost') }}</strong></div> <div class="items-value">{!! price_html( $order_details_for_thank_you_page['_final_order_shipping_cost'], $order_details_for_thank_you_page['_order_currency'] ) !!}</div></div>
-
-                  @if($order_details_for_thank_you_page['_is_order_coupon_applyed'] == true)
-                  <div class="items-div-main order-discount-label"><div class="items-label"><strong>{{ trans('frontend.coupon_discount_label') }}</strong></div> <div class="items-value"> - {!! price_html( $order_details_for_thank_you_page['_final_order_discount'], $order_details_for_thank_you_page['_order_currency'] ) !!}</div></div>
-                  @endif
-
-                  <div class="items-div-main"><div class="items-label"><strong>{{ trans('frontend.order_total') }}</strong></div> <div class="items-value">{!! price_html( $order_details_for_thank_you_page['_final_order_total'], $order_details_for_thank_you_page['_order_currency'] ) !!}</div></div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          @endif
-        </div>
-      <br>
-      <div class="row">
-        <div class="col-sm-6">
-          <h4>{{ trans('frontend.billing_address') }}</h4><hr>
-          @if(!empty($order_details_for_thank_you_page['customer_address']))
-            <p>{!! $order_details_for_thank_you_page['customer_address']['_billing_first_name'].' '. $order_details_for_thank_you_page['customer_address']['_billing_last_name']!!}</p>
-            @if($order_details_for_thank_you_page['customer_address']['_billing_company'])
-              <p><strong>{{ trans('frontend.company') }}:</strong> {!! $order_details_for_thank_you_page['customer_address']['_billing_company'] !!}</p>
-            @endif
-            <p><strong>{{ trans('frontend.address_1') }}:</strong> {!! $order_details_for_thank_you_page['customer_address']['_billing_address_1'] !!}</p>
-            @if($order_details_for_thank_you_page['customer_address']['_billing_address_2'])
-              <p><strong>{{ trans('frontend.address_2') }}:</strong> {!! $order_details_for_thank_you_page['customer_address']['_billing_address_2'] !!}</p>
-            @endif
-            <p><strong>{{ trans('frontend.city') }}:</strong> {!! $order_details_for_thank_you_page['customer_address']['_billing_city'] !!}</p>
-            <p><strong>{{ trans('frontend.postCode') }}:</strong> {!! $order_details_for_thank_you_page['customer_address']['_billing_postcode'] !!}</p>
-            <p><strong>{{ trans('frontend.country') }}:</strong> {!! get_country_by_code( $order_details_for_thank_you_page['customer_address']['_billing_country'] ) !!}</p>
-
-
-            <br>
-
-            <p><strong>{{ trans('frontend.phone') }}:</strong> {!! $order_details_for_thank_you_page['customer_address']['_billing_phone'] !!}</p>
-
-            @if($order_details_for_thank_you_page['customer_address']['_billing_fax'])
-              <p><strong>{{ trans('frontend.fax') }}:</strong> {!! $order_details_for_thank_you_page['customer_address']['_billing_fax'] !!}</p>
-            @endif
-            <p><strong>{{ trans('frontend.email') }}:</strong> {!! $order_details_for_thank_you_page['customer_address']['_billing_email'] !!}</p>
-          @endif
-        </div>
-
-        <div class="col-sm-6">
-          <h4>{{ trans('frontend.shipping_address') }}</h4><hr>
-          @if(!empty($order_details_for_thank_you_page['customer_address']))
-            <p>{!! $order_details_for_thank_you_page['customer_address']['_shipping_first_name'].' '. $order_details_for_thank_you_page['customer_address']['_shipping_last_name']!!}</p>
-            @if($order_details_for_thank_you_page['customer_address']['_shipping_company'])
-              <p><strong>{{ trans('frontend.company') }}:</strong> {!! $order_details_for_thank_you_page['customer_address']['_shipping_company'] !!}</p>
-            @endif
-            <p><strong>{{ trans('frontend.address_1') }}:</strong> {!! $order_details_for_thank_you_page['customer_address']['_shipping_address_1'] !!}</p>
-            @if($order_details_for_thank_you_page['customer_address']['_shipping_address_2'])
-              <p><strong>{{ trans('frontend.address_2') }}:</strong> {!! $order_details_for_thank_you_page['customer_address']['_shipping_address_2'] !!}</p>
-            @endif
-            <p><strong>{{ trans('frontend.city') }}:</strong> {!! $order_details_for_thank_you_page['customer_address']['_shipping_city'] !!}</p>
-            <p><strong>{{ trans('frontend.postCode') }}:</strong> {!! $order_details_for_thank_you_page['customer_address']['_shipping_postcode'] !!}</p>
-            <p><strong>{{ trans('frontend.country') }}:</strong> {!! get_country_by_code( $order_details_for_thank_you_page['customer_address']['_shipping_country'] ) !!}</p>
-
-            <br>
-
-            <p><strong>{{ trans('frontend.phone') }}:</strong> {!! $order_details_for_thank_you_page['customer_address']['_shipping_phone'] !!}</p>
-
-            @if($order_details_for_thank_you_page['customer_address']['_shipping_fax'])
-              <p><strong>{{ trans('frontend.fax') }}:</strong> {!! $order_details_for_thank_you_page['customer_address']['_shipping_fax'] !!}</p>
-            @endif
-
-            <p><strong>{{ trans('frontend.email') }}:</strong> {!! $order_details_for_thank_you_page['customer_address']['_shipping_email'] !!}</p>
-          @endif
-        </div>
-      </div>    
+  <!-- ORDER RECEIVED START -->
+  <section id="order_received" class="py-5">
+    <div class="container">
+       <div class="row">
+           <div class="col-md-10 m-auto">
+           <div class="row_wrapper">
+            <div class="row">
+              
+              @if(count($order_details_for_thank_you_page) > 0)
+                <div class="col-lg-12">
+                  <div class="order-received-title-msg">
+                    <h4>{{ trans('frontend.order_received') }}</h4>
+                    <p>{{ trans('frontend.thank_you_msg') }}</p>
+                  </div>
+                    <div class="invoice-title">
+                        <table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th scope="col">ORDER NUMBER</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Total</th>
+                                <th scope="col">Payment Method</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                
+                                <td>#{!! $order_details_for_thank_you_page['order_id'] !!} 
+                                  @if(isset($order_details_for_thank_you_page['_payment_details']['method_instructions']))
+                                  {!! $order_details_for_thank_you_page['_payment_details']['method_instructions'] !!}
+                                  @endif
+                                </td>
+                                <td>{!! $order_details_for_thank_you_page['order_date'] !!}</td>
+                                <td>{!! price_html( $order_details_for_thank_you_page['_final_order_total'], $order_details_for_thank_you_page['_order_currency'] ) !!}</td>
+                                <td>{!! get_payment_method_title($order_details_for_thank_you_page['_payment_method']) !!}</td>
+                              </tr>
+                             
+                            </tbody>
+                          </table>
+                    </div>
+                   
+                    <div class="row mt-2">
+                        <div class="col-lg-6">
+                            <address>
+                                <address class="side_block">
+                                    <h5 class="mb-3">Billing Address:</h5>
+                                      @if(!empty($order_details_for_thank_you_page['customer_address']))
+                                        <strong class="mb-2 d-inline-block">Name:</strong> <small>{!! $order_details_for_thank_you_page['customer_address']['_billing_first_name'].' '. $order_details_for_thank_you_page['customer_address']['_billing_last_name']!!}</small> <br>
+                                        @if($order_details_for_thank_you_page['customer_address']['_billing_company'])
+                                        <strong class="mb-2 d-inline-block">Company:</strong> <small>{!! $order_details_for_thank_you_page['customer_address']['_billing_company'] !!}</small><br>
+                                        @endif
+                                        <strong class="mb-2 d-inline-block">Address:</strong> <small>{!! $order_details_for_thank_you_page['customer_address']['_billing_address_1'] !!}</small><br>
+                                        <strong class="mb-2 d-inline-block">City:</strong>  <small>{!! $order_details_for_thank_you_page['customer_address']['_billing_city'] !!}</small><br>
+                                        <strong class="mb-2 d-inline-block">PostCode:</strong> <small>{!! $order_details_for_thank_you_page['customer_address']['_billing_postcode'] !!}</small><br>
+                                        <strong class="mb-2 d-inline-block">Country:</strong> <small>{!! get_country_by_code( $order_details_for_thank_you_page['customer_address']['_billing_country'] ) !!}</small><br>
+                                        <strong class="mb-2 d-inline-block">Phone Number:</strong> <small>{!! $order_details_for_thank_you_page['customer_address']['_billing_phone'] !!}</small><br>
+                                        <strong class="mb-2 d-inline-block">Email Address:</strong> <small>{!! $order_details_for_thank_you_page['customer_address']['_billing_email'] !!}</small><br>
+                                      @endif 
+                                    </address>
+                            </address>
+                        </div>
+                        <div class="col-lg-6 text-right">
+                          <address class="side_block">
+                            <h5 class="mb-3">Shipping Address:</h5>
+                              @if(!empty($order_details_for_thank_you_page['customer_address']))
+                                <strong class="mb-2 d-inline-block">Name:</strong> <small>{!! $order_details_for_thank_you_page['customer_address']['_shipping_first_name'].' '. $order_details_for_thank_you_page['customer_address']['_shipping_last_name']!!}</small> <br>
+                                @if($order_details_for_thank_you_page['customer_address']['_shipping_company'])
+                                <strong class="mb-2 d-inline-block">Company:</strong> <small>{!! $order_details_for_thank_you_page['customer_address']['_shipping_company'] !!}</small><br>
+                                @endif
+                                <strong class="mb-2 d-inline-block">Address:</strong> <small>{!! $order_details_for_thank_you_page['customer_address']['_shipping_address_1'] !!}</small><br>
+                                <strong class="mb-2 d-inline-block">City:</strong>  <small>{!! $order_details_for_thank_you_page['customer_address']['_shipping_city'] !!}</small><br>
+                                <strong class="mb-2 d-inline-block">PostCode:</strong> <small>{!! $order_details_for_thank_you_page['customer_address']['_shipping_postcode'] !!}</small><br>
+                                <strong class="mb-2 d-inline-block">Country:</strong><small>{!! get_country_by_code( $order_details_for_thank_you_page['customer_address']['_shipping_country'] ) !!}</small><br>
+                                <strong class="mb-2 d-inline-block">Phone Number:</strong><small>{!! $order_details_for_thank_you_page['customer_address']['_shipping_phone'] !!}</small><br>
+                                <strong class="mb-2 d-inline-block">Email Address:</strong><small>{!! $order_details_for_thank_you_page['customer_address']['_shipping_email'] !!}</small><br>
+                              @endif
+                          </address>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-md-12">
+                    <div class="panel panel-default mt-2">
+                        <div class="panel-heading">
+                            <h6 class="panel-title mb-0"><strong>Order Details</strong></h6>
+                        </div>
+                        <div class="panel-body">
+                          @if(count($order_details_for_thank_you_page['ordered_items']) > 0)
+                            <div class="table-responsive">
+                                <table class="table table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <td><strong>Item</strong></td>
+                                            <td class="text-center"><strong>Price</strong></td>
+                                            <td class="text-center"><strong>Quantity</strong></td>
+                                            <td class="text-right"><strong>Totals</strong></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($order_details_for_thank_you_page['ordered_items'] as $items)
+                                        <tr>
+                                            <td>{!! $items['name'] !!}</td>
+                                            <td class="text-center">{!! price_html( $items['order_price'], $order_details_for_thank_you_page['_order_currency'] ) !!}</td>
+                                            <td class="text-center">{!! $items['quantity'] !!}</td>
+                                            <td class="text-right">{!! price_html( ($items['quantity']*$items['order_price']), $order_details_for_thank_you_page['_order_currency'] ) !!}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                          @endif
+                        </div>
+                    </div>
+                </div>
+              @else
+                <h5>{{ trans('frontend.no_content_yet') }}</h5>
+              @endif
+            </div>
+           </div>
+          
+           
+           </div>
+       </div>
     </div>
-  </section>
-  <br>
-  @else
-  <section id="order-received-content">
-    <div class="container new-container">
-      <h5>{{ trans('frontend.no_content_yet') }}</h5>
-    </div>
-  </section>  
-  @endif  
+ </section>
+  <!-- ORDER RECEIVED END -->
 @endsection  
