@@ -1530,6 +1530,11 @@ Route::group(['prefix' => 'user', 'namespace' => 'Frontend'], function () {
     'uses' => 'UserAccountManageController@updateFrontendUserProfile',
     'as'   => 'update-profile-post'
   ]);
+
+  Route::post( 'account/my-profile/update-profile-image', [
+    'uses' => 'UserAccountManageController@updateUserProfileImage',
+    'as'   => 'update-user-profile-image'
+  ]);
   
   Route::post( 'account/logout', [
     'uses' => 'UserAccountManageController@userLogout',
