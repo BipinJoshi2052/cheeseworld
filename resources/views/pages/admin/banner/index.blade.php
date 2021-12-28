@@ -1,5 +1,5 @@
 @extends('layouts.admin.master')
-@section('title', trans('admin.banners_list_title') .' < '. get_site_title())
+@section('title', 'Banner' .' < '. get_site_title())
 
 @section('content')
 <div class="row">
@@ -24,6 +24,7 @@
               <th>S.N</th>
               <th>Image</th>
               <th>Name</th>
+              <th>Type</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -34,7 +35,7 @@
                   <td>{{$count++}}</td>
                   <td><img src="{{asset('banner/'.$row->image)}}" alt="{{$row->image}}" class="img-fluid" style="width:150px"/></td>
                   <td>{!! $row['name'] !!}</td>
-                  
+                  <td>{!! ucwords(str_replace('-',' ',$row['type'])) !!}</td>
                     <form action="{{route('banners.destroy',$row->id)}}" method="post">
                         @csrf
                         @method('delete')
