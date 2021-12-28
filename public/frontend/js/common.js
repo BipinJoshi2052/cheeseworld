@@ -1305,6 +1305,8 @@ shopist_frontend.ajaxCall =
           headers: { 'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content') },
           success: function(data){
             if(data.status == 'success' && data.notice_type == 'user_wishlist_saved'){
+              console.log(data.count_wishlist);
+              $(".wishlistCount").html(data.count_wishlist);
               toastr.success('Items added to your wishlist');
               // swal({
               //   title: '',

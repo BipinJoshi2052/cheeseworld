@@ -1,3 +1,16 @@
+<?php 
+    $getCurrentUserId = get_current_frontend_user_info();
+    $getDataByUserId = get_user_account_details_by_user_id($getCurrentUserId['user_id']);
+    if(Session::get('shopist_frontend_user_id') != null){
+        $shiftData = array_shift($getDataByUserId);
+        // dd($shiftData);
+        $myData = json_decode($shiftData['details'])->wishlists_details;
+        $countWishlist = count((array)$myData);
+    } else {
+        $countWishlist = 0;
+    }
+    
+?>
 <!-- Navigation Starts -->
 <section id="navigation-wrapper" class="navigation-wrap">
     <nav class="navbar header-sticky">
@@ -68,7 +81,7 @@
                 <li>
                     <a class="nav-link add-on px-xl-2 px-lg-1 px-md-2 px-2" href="{{ url('user/account/my-saved-items') }}">
                         <span class="mr-1"><i class="fa fa-heart-o" aria-hidden="true"></i></span> <sup
-                            class="cart-items text-white">2</sup>
+                            class="cart-items wishlistCount text-white">{{ $countWishlist }}</sup>
                     </a>
                 </li>
                 <li class="nav-item">
