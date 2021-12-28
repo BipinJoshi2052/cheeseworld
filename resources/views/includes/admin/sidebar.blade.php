@@ -14,9 +14,7 @@
                     </a>
                 </li>
             @endif
-            @if (Request::is('admin/banners'))
-
-            
+            @if (Request::is('admin/banners'))            
                 <li class="active">
                     <a href="{{ route('banners.index') }}" class="active">
                         <i class="fa fa-picture-o"></i> <span>Banner</span>
@@ -24,10 +22,24 @@
 
                 </li>
             @else
-
                 <li>
                     <a href="{{ route('banners.index') }}">
                         <i class="fa fa-picture-o"></i> <span>Banner</span>
+                    </a>
+
+                </li>
+            @endif
+            @if (Request::is('admin/sliders'))            
+                <li class="active">
+                    <a href="{{ route('sliders.index') }}" class="active">
+                        <i class="fa fa-picture-o"></i> <span>Sliders</span>
+                    </a>
+
+                </li>
+            @else
+                <li>
+                    <a href="{{ route('sliders.index') }}">
+                        <i class="fa fa-picture-o"></i> <span>Sliders</span>
                     </a>
 
                 </li>

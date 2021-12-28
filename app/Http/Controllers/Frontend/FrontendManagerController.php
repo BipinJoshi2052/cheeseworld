@@ -24,6 +24,7 @@ use App\Http\Controllers\OptionController;
 use App\Models\OrdersItem;
 use App\Http\Controllers\VendorsController;
 use App\Models\Banner;
+use App\Slider;
 use App\Models\SaveCustomDesign;
 use App\Contact;
 use Illuminate\Support\Facades\Validator;
@@ -66,9 +67,9 @@ class FrontendManagerController extends Controller
     $data['brands_data']         =   $this->product->getTermData( 'product_brands', false, null, 1 );
     $data['testimonials_data']   =   get_all_testimonial_data();
     $data['selected_currency']   =   get_frontend_selected_currency();
-    // $data['banner']   =   $banner;
+    $data['slider']   =   Slider::take(5)->orderBy('id','DESC')->get()->toArray();
 
-
+// dd($data['slider']);
     if(!empty($a)){
       foreach($a as $b => $c){
         if($c['type'] == 'home-banner'){
