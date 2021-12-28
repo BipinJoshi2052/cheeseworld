@@ -167,6 +167,8 @@ return [
          * Package Service Providers...
          */
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Brian2694\Toastr\ToastrServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -238,6 +240,7 @@ return [
         'Cart'   =>  App\Cart\Facades\Cart::class,
         'Debugbar' => 'Barryvdh\Debugbar\Facade',
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,
     ],
 
 ];
