@@ -14,6 +14,7 @@
   @section('title',  trans('frontend.frontend_user_profile_edit_title') .' < '. get_site_title() )
   @section('page-wrapper', 'dashboard-wrapper')
 @elseif (Request::is('user/account/my-orders'))
+  @section('page-wrapper', 'dashboard-wrapper')
   @section('title',  trans('frontend.frontend_my_order_title') .' < '. get_site_title() )
 @elseif (Request::is('user/account/my-saved-items'))
   @section('title',  trans('frontend.frontend_wishlist_items_title') .' < '. get_site_title() ) 
@@ -28,7 +29,8 @@
 
 @section('content')
 @if(Request::is('user/account/dashboard') || Request::is('user/account'))
-            @include('pages.frontend.user-account.my-dashboard')
+            {{-- @include('pages.frontend.user-account.my-dashboard') --}}
+            @include('pages.frontend.user-account.user-profile')
           @elseif(Request::is('user/account/my-address'))  
             @include('pages.frontend.user-account.my-address')
           @elseif(Request::is('user/account/my-address/add'))  
