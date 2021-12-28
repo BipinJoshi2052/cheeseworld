@@ -387,7 +387,6 @@ class FrontendManagerController extends Controller
 
   public function searchProduct($key){
     $result = Product::where('title', 'like', '%' . $key . '%')->get();
-    // dd($result);
     return response()->json($result);
   }
   
@@ -536,7 +535,7 @@ class FrontendManagerController extends Controller
       else{
         $data['variations_data'] = $get_variation_data;
       }
-      dd(get_defined_vars());
+      // dd(get_defined_vars());
       return view('pages.frontend.frontend-pages.product-details', $data);
     }
     else{

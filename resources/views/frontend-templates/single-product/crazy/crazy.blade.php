@@ -94,12 +94,21 @@
                     <div class="about mb-3">
                         @if ($single_product_details['_product_enable_reviews'] == 'yes')
                             <div class="rating-wrapper mb-2">
-                                <div class="p-ratings">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+                                <div class="rating">
+                                    <div class="rating-upper" style="width: {{ $comments_rating_details['percentage'] }}%">
+                                        <span>★</span>
+                                        <span>★</span>
+                                        <span>★</span>
+                                        <span>★</span>
+                                        <span>★</span>
+                                    </div>
+                                    <div class="rating-lower">
+                                        <span>★</span>
+                                        <span>★</span>
+                                        <span>★</span>
+                                        <span>★</span>
+                                        <span>★</span>
+                                    </div>
                                 </div>
                             </div>
                         @endif
