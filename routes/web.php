@@ -1456,6 +1456,17 @@ Route::post( '/blog/{blog_slug}', [
 
 // frontend user account route
 Route::group(['prefix' => 'user', 'namespace' => 'Frontend'], function () {
+  
+  Route::get( '/change-password', [
+    'uses' => 'UserAccountManageController@FrontendUserChangePasword',
+    'as'   => 'user-change-password-post'
+  ])->middleware('userAdmin', 'verifyLoginPage');
+
+  Route::post( '/change-password', [
+    'uses' => 'UserAccountManageController@manageFrontendUserChangePasword',
+    'as'   => 'user-change-password-post'
+  ])->middleware('userAdmin', 'verifyLoginPage');
+
   Route::get( 'account', [
     'uses' => 'UserAccountManageController@userAccountPageContent',
     'as'   => 'user-account-page'
