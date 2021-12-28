@@ -57,16 +57,28 @@ class FrontendManagerController extends Controller
    * @return void 
    */
   public function homePageContent(){
+    $a = Banner::latest()->get()->toArray();
     $data = array();
+
     
     $data = $this->classCommonFunction->get_dynamic_frontend_content_data(); 
     $data['advancedData']        =   $this->product->getAdvancedProducts();
     $data['brands_data']         =   $this->product->getTermData( 'product_brands', false, null, 1 );
     $data['testimonials_data']   =   get_all_testimonial_data();
     $data['selected_currency']   =   get_frontend_selected_currency();
-    $data['banner']   =   Banner::latest()->first();
+    // $data['banner']   =   $banner;
 
 
+    if(!empty($a)){
+      foreach($a as $b => $c){
+        if($c['type'] == 'home-banner'){
+          $data['home_banner'] = $c;
+        }
+        if($c['type'] == 'parralex-home-banner'){
+          $data['parralex_home_banner'] = $c;
+        }
+      }
+    }
 
     
     // dd($data);

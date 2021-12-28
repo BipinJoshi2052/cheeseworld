@@ -26,6 +26,21 @@
           <input type="text" class="form-control" name="name" value="{{ old('name',$banner->name) }}">
         </div>
       </div>
+      
+      
+      <div class="box box-solid">
+        <div class="box-header with-border">
+          <i class="fa fa-text-width"></i>
+          <h3 class="box-title">Type</h3>
+        </div>
+        <div class="box-body">
+          <select name="type" class="form-control">
+              <option {{($banner->type == 'home-banner')?'selected':''}} value="home-banner">Home Banner</option>
+              <option {{($banner->type == 'parralex-home-banner')?'selected':''}} value="parralex-home-banner">Parallex Home Banner</option>
+          </select>
+          {{-- <input type="text" class="form-control" name="name" value="{{ old('name') }}"> --}}
+        </div>
+      </div>
         
       <div class="box box-solid">
         <div class="box-header with-border">
