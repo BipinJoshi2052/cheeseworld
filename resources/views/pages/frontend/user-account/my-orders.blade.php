@@ -94,7 +94,7 @@
                                             {!! $row['_order_status'] !!}
                                           </span>
                                       </td>
-                                      <td class="view-item"><a href="#" title="cancel" class="icon">
+                                      <td class="view-item"><a href="{{ route('account-order-details-page', [$row['_post_id'], $row['_order_process_key']]) }}" title="cancel" class="icon">
                                               View</a>
                                       </td>
                                     </tr>
