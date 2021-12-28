@@ -95,7 +95,7 @@
                         @if ($single_product_details['_product_enable_reviews'] == 'yes')
                             <div class="rating-wrapper mb-2">
                                 <div class="rating">
-                                    <div class="rating-upper" style="width: {{ $comments_rating_details['percentage'] }}%">
+                                    <div class="rating-upper" style="width: {{ isset($comments_rating_details['percentage']) && $comments_rating_details['percentage'] ? $comments_rating_details['percentage'] : '0' }}%">
                                         <span>★</span>
                                         <span>★</span>
                                         <span>★</span>
@@ -239,42 +239,35 @@
                             <!-- User Comments -->
                             <div class="col-xl-4 col-lg-4 col-12  p-4 my-3 mx-auto bg-light">
                                 <div class="comments-content">
+                                    @if(isset($comments_details) && $comments_details)
+                                    @foreach($comments_details as $review)
                                     <div class="content">
-                                        <h5 class="mb-2">By Joe John</h5>
-                                        <div class="p-ratings"> <i class="fa fa-star"></i> <i
-                                                class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua.</p>
-                                        <small class="review-date">March 26, 2017</small>
+                                        <h5 class="mb-2">{{ $review->display_name }}</h5>
+                                        <div class="rating">
+                                            <div class="rating-upper" style="width: {{ $review->percentage }}%">
+                                                <span>★</span>
+                                                <span>★</span>
+                                                <span>★</span>
+                                                <span>★</span>
+                                                <span>★</span>
+                                            </div>
+                                            <div class="rating-lower">
+                                                <span>★</span>
+                                                <span>★</span>
+                                                <span>★</span>
+                                                <span>★</span>
+                                                <span>★</span>
+                                            </div>
+                                        </div>
+                                        <p>{{ $review->content }}</p>
+                                        <small class="review-date"></small>
                                     </div>
+                                    @endforeach
+                                    @else
                                     <div class="content">
-                                        <h5 class="mb-2">By Joe John</h5>
-                                        <div class="p-ratings"> <i class="fa fa-star"></i> <i
-                                                class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua.</p>
-                                        <small class="review-date">March 26, 2017</small>
+                                        <h5 class="mb-2 text-muted">No review</h5>
                                     </div>
-                                    <div class="content">
-                                        <h5 class="mb-2">By Joe John</h5>
-                                        <div class="p-ratings"> <i class="fa fa-star"></i> <i
-                                                class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua.</p>
-                                        <small class="review-date">March 26, 2017</small>
-                                    </div>
-                                    <div class="content">
-                                        <h5 class="mb-2">By Joe John</h5>
-                                        <div class="p-ratings"> <i class="fa fa-star"></i> <i
-                                                class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua.</p>
-                                        <small class="review-date">March 26, 2017</small>
-                                    </div>
+                                    @endif
                                 </div>
                             </div>
                             <!-- User Comments Ends -->
