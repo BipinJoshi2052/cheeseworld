@@ -20,6 +20,7 @@ Route::post('get-product-by-title', 'ProductsController@getProductByTitle')->nam
 //banner
 
 Route::resource('/admin/banners',BannerController::class)->middleware('verifyLoginPage', 'admin', 'sufficientPermission');
+Route::resource('/admin/sliders',SliderController::class)->middleware('verifyLoginPage', 'admin', 'sufficientPermission');
 
 //cancel order
 Route::resource('user/account/cancel-orders',\Frontend\CancelOrderController::class)->middleware('userAdmin', 'verifyLoginPage');

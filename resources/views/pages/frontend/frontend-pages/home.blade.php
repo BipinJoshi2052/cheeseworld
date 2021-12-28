@@ -102,33 +102,23 @@
 <!-- Ads Slider -->
 <section id="ads-banner-wrapper" class="py-5">
     <div class="slick-slider">
-        <div class="slick-item position-relative">
-            <img src="{{ asset('public/frontend/assets/images/product-images/1.jpg') }}" class="img-fluid w-100">
-            <div class="discription px-4 py-3">
-                <div class="head">
-                    <h3><span>Recipe</span> made with love & good taste.</h3>
-                </div>
-                <a href="" class="effect anchor-btn">View Products</a>
-            </div>
-        </div>
-        <div class="slick-item position-relative">
-            <img src="{{ asset('public/frontend/assets/images/product-images/5.jpg') }}" class="img-fluid w-100">
-            <div class="discription px-4 py-3">
-                <div class="head">
-                    <h3><span>Recipes</span> made with love & good taste.</h3>
-                </div>
-                <a href="" class="effect anchor-btn">View Products</a>
-            </div>
-        </div>
-        <div class="slick-item position-relative">
-            <img src="{{ asset('public/frontend/assets/images/product-images/6.jpg') }}" class="img-fluid w-100">
-            <div class="discription px-4 py-3">
-                <div class="head">
-                    <h3><span>Recipes</span> made with love & good taste.</h3>
-                </div>
-                <a href="" class="effect anchor-btn">View Products</a>
-            </div>
-        </div>
+        @if (isset($slider) && !empty($slider))
+            @foreach ($slider as $z => $item)
+                <div class="slick-item position-relative">
+                    <img src="{{ asset('banner/'.$item['image']) }}" class="img-fluid w-100">
+                    <div class="discription px-4 py-3">
+                        <div class="head">
+                            <h3><span>{{$item['name']}}</span> 
+                                @php
+                                 echo  $item['description'];
+                                @endphp
+                            </h3>
+                        </div>
+                        <a href="{{$item['link']}}" class="effect anchor-btn">View Products</a>
+                    </div>
+                </div>                
+            @endforeach
+        @endif
     </div>
 </section>
 <!-- Ads Slider Ends-->
