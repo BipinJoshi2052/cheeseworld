@@ -218,8 +218,8 @@
                             <div class="product-grid-item2">
                                 <div class="product-grid-image2">
                                     <a href="{{ url('/product/categories') }}/{{ $category['slug'] }}">
-                                        @if(!empty($category->image_url))
-                                            <img class="pic-1" src="{{ get_image_url( $category->image_url ) }}" alt="{{ basename( get_image_url( $category->image_url ) ) }}" />
+                                        @if(!empty($category->img_url))
+                                            <img class="pic-1" src="{{ get_image_url( $category->img_url ) }}" alt="{{ basename( get_image_url( $category->img_url ) ) }}" />
                                         @else
                                             <img class="pic-1" src="{{ default_placeholder_img_src() }}" alt="" />
                                         @endif
