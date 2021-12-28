@@ -388,8 +388,9 @@ class FrontendManagerController extends Controller
     }
   }
 
-  public function searchProduct( $key = 'a' ){
-    $result = Product::where('title', 'like', '%a%')->get();
+  public function searchProduct($key){
+    $result = Product::where('title', 'like', '%' . $key . '%')->get();
+    // dd($result);
     return response()->json($result);
   }
   
@@ -538,7 +539,7 @@ class FrontendManagerController extends Controller
       else{
         $data['variations_data'] = $get_variation_data;
       }
-      
+      dd(get_defined_vars());
       return view('pages.frontend.frontend-pages.product-details', $data);
     }
     else{
@@ -679,7 +680,7 @@ class FrontendManagerController extends Controller
       $final_unique_cross_sell_products = array_diff($unique_2, $unique_1);
       $data['cross_sell_products'] = $final_unique_cross_sell_products;
     }
-    
+    $data['login_user_details'] =  get_current_frontend_user_info();
     return view('pages.frontend.frontend-pages.cart', $data);
   }
   

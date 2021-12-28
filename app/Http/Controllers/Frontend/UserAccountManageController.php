@@ -53,7 +53,8 @@ class UserAccountManageController extends Controller
     $data = $this->classCommonFunction->get_dynamic_frontend_content_data();
     $data['dashboard_data'] =  $dashboard_total;
     $data['login_user_details'] =  get_current_frontend_user_info();
-    
+    $get_current_user_id = get_current_frontend_user_info();
+    $data['user_details'] = get_user_details($get_current_user_id['user_id']);
     return view('pages.frontend.user-account.user-account-pages', $data);
   }
   
