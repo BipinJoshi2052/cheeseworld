@@ -75,7 +75,7 @@ class BannerController extends Controller
             $banner['image'] = "$catImage";
         }
         $banner->save();
-        return redirect()->route('admin.banners.index')->with('status','Banner added successfully');
+        return redirect()->route('banners.index')->with('status','Banner added successfully');
     }
 
     /**
