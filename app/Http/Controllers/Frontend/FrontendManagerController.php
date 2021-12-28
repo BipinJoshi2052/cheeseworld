@@ -680,7 +680,7 @@ class FrontendManagerController extends Controller
       $final_unique_cross_sell_products = array_diff($unique_2, $unique_1);
       $data['cross_sell_products'] = $final_unique_cross_sell_products;
     }
-    
+    $data['login_user_details'] =  get_current_frontend_user_info();
     return view('pages.frontend.frontend-pages.cart', $data);
   }
   

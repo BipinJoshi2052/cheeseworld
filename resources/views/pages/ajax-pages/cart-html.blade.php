@@ -141,6 +141,8 @@
               @include('pages.ajax-pages.cart-total-html')
             </form>
           </div>
+        @else
+        <h6>No items in your cart..</h6>
         @endif
       </div>
   </div>

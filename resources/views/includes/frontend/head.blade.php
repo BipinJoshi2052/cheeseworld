@@ -70,6 +70,26 @@
         height: auto;
     }
 
+    .bg-hippie-green{
+        background-color: #468847 !important;
+    }
+
+    .bg-purple{
+        background-color: purple !important;
+    }
+
+    .bg-navy{
+        background-color: navy !important;
+    }
+
+    .bg-chestnut{
+        background-color: #b94a48 !important;
+    }
+
+    .bg-teal {
+        background-color: teal !important;
+    }
+
 </style>
 
 @yield('style')
