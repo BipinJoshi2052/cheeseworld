@@ -17,14 +17,14 @@
                         </div>
                     </div>
                     <li>
-                        <a href=" mailto:webmaster@example.com"><span class="mr-2"><i class="fa fa-envelope-square" aria-hidden="true"></i></span>{{ $siteSettings['general_settings']['general_options']['email_address'] }}</a>
+                        <a href=" mailto:{{ isset($siteSettings['general_settings']['general_options']['email_address']) && $siteSettings['general_settings']['general_options']['email_address'] ? $siteSettings['general_settings']['general_options']['email_address'] : '' }}"><span class="mr-2"><i class="fa fa-envelope-square" aria-hidden="true"></i></span>{{ isset($siteSettings['general_settings']['general_options']['email_address']) && $siteSettings['general_settings']['general_options']['email_address'] ? $siteSettings['general_settings']['general_options']['email_address'] : '' }}</a>
                         </h5>
                     </li>
                     <li>
-                        <a href="tel:+4733378901"><span class="mr-2"><i class="fa fa-phone" aria-hidden="true"></i></span>{{ $siteSettings['general_settings']['general_options']['phone'] }}</a></h5>
+                        <a href="tel:{{ isset($siteSettings['general_settings']['general_options']['phone']) && $siteSettings['general_settings']['general_options']['phone'] ? $siteSettings['general_settings']['general_options']['phone']: '' }}"><span class="mr-2"><i class="fa fa-phone" aria-hidden="true"></i></span>{{ isset($siteSettings['general_settings']['general_options']['phone']) && $siteSettings['general_settings']['general_options']['phone'] ? $siteSettings['general_settings']['general_options']['phone']: '' }}</a></h5>
                     </li>
                     <li>
-                        <a href=""><span class="mr-2"><i class="fa fa-map" aria-hidden="true"></i></span>{{ $siteSettings['general_settings']['general_options']['address'] }}</a></h5>
+                        <a href="javascript:void(0)"><span class="mr-2"><i class="fa fa-map" aria-hidden="true"></i></span>{{ isset($siteSettings['general_settings']['general_options']['address']) && $siteSettings['general_settings']['general_options']['address'] ? $siteSettings['general_settings']['general_options']['address']: '' }}</a></h5>
                     </li>
                 </ul>
             </div>
@@ -38,13 +38,13 @@
                         </div>
                     </div>
                     <li>
-                        <a href="">Email Support</a></h5>
+                        <a href="javascript:void(0)">About Us</a></h5>
                     </li>
                     <li>
-                        <a href="">Contact Us</a></h5>
+                        <a href="{{ url('shop') }}">Shop</a></h5>
                     </li>
                     <li>
-                        <a href="">About Us</a></h5>
+                        <a href="{{ url('contact-us') }}">Contact Us</a></h5>
                     </li>
                 </ul>
             </div>
@@ -58,14 +58,14 @@
                         </div>
                     </div>
                     <li>
-                        <a href="{{ $appearance_all_data['footer_details']['follow_us_url']['fb'] }}"><span class="mr-2"><i class="fa fa-facebook-official" aria-hidden="true"></i></span>Facebook</a>
+                        <a href="{{ isset($appearance_all_data['footer_details']['follow_us_url']['fb']) ? $appearance_all_data['footer_details']['follow_us_url']['fb'] : 'javascript:void(0)' }}"><span class="mr-2"><i class="fa fa-facebook-official" aria-hidden="true"></i></span>Facebook</a>
                         </h5>
                     </li>
                     <li>
-                        <a href="{{ $appearance_all_data['footer_details']['follow_us_url']['youtube'] }}"><span class="mr-2"><i class="fa fa-youtube" aria-hidden="true"></i></span>Youtube</a></h5>
+                        <a href="{{ isset($appearance_all_data['footer_details']['follow_us_url']['youtube']) ? $appearance_all_data['footer_details']['follow_us_url']['youtube'] : 'javascript:void(0)' }}"><span class="mr-2"><i class="fa fa-youtube" aria-hidden="true"></i></span>Youtube</a></h5>
                     </li>
                     <li>
-                        <a href="{{ $appearance_all_data['footer_details']['follow_us_url']['twitter'] }}"><span class="mr-2"><i class="fa fa-twitter-square" aria-hidden="true"></i></span>Twitter</a></h5>
+                        <a href="{{ isset($appearance_all_data['footer_details']['follow_us_url']['twitter']) ? $appearance_all_data['footer_details']['follow_us_url']['twitter'] : 'javascript:void(0)' }}"><span class="mr-2"><i class="fa fa-twitter-square" aria-hidden="true"></i></span>Twitter</a></h5>
                     </li>
                 </ul>
             </div>

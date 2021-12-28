@@ -64,11 +64,14 @@ class FrontendManagerController extends Controller
     $data['brands_data']         =   $this->product->getTermData( 'product_brands', false, null, 1 );
     $data['testimonials_data']   =   get_all_testimonial_data();
     $data['selected_currency']   =   get_frontend_selected_currency();
+    $data['banner']   =   Banner::latest()->first();
 
-    $banners=Banner::latest()->get();
-    // dd($banner);
 
-    return view('pages.frontend.frontend-pages.home',compact('banners'), $data);
+
+    
+    // dd($data);
+
+    return view('pages.frontend.frontend-pages.home', $data);
   }
   
   /**
@@ -676,7 +679,7 @@ class FrontendManagerController extends Controller
       $final_unique_cross_sell_products = array_diff($unique_2, $unique_1);
       $data['cross_sell_products'] = $final_unique_cross_sell_products;
     }
-    $data['login_user_details'] =  get_current_frontend_user_info();
+    
     return view('pages.frontend.frontend-pages.cart', $data);
   }
   
