@@ -1,16 +1,16 @@
 @extends('layouts.admin.master')
-@section('title', 'Add Banner < '. get_site_title())
+@section('title', 'Add Slider < '. get_site_title())
 
 @section('content')
 @include('pages-message.form-submit')
 @include('pages-message.notify-msg-error')
 @include('pages-message.notify-msg-success')
 
-<form class="form-horizontal" method="post" action="{{route('banners.store')}}" enctype="multipart/form-data">
+<form class="form-horizontal" method="post" action="{{route('sliders.store')}}" enctype="multipart/form-data">
     @include('includes.csrf-token')
   <div class="box">
     <div class="box-header">
-      <h3 class="box-title">Add New Banner &nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-default btn-sm" href="{{ route('banners.index') }}">All Banners</a></h3>
+      <h3 class="box-title">Add New Slider &nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-default btn-sm" href="{{ route('sliders.index') }}">All Sliders</a></h3>
     </div>
   </div>
   
@@ -30,15 +30,10 @@
       <div class="box box-solid">
         <div class="box-header with-border">
           <i class="fa fa-text-width"></i>
-          <h3 class="box-title">Type</h3>
+          <h3 class="box-title">Link</h3>
         </div>
         <div class="box-body">
-          <select required name="type" class="form-control">
-              <option selected disabled>Choose Type</option>
-              <option value="home-banner">Home Banner</option>
-              <option value="parralex-home-banner">Parallex Home Banner</option>
-          </select>
-          {{-- <input type="text" class="form-control" name="name" value="{{ old('name') }}"> --}}
+          <input type="text" class="form-control" name="link" value="{{ old('link') }}">
         </div>
       </div>
         

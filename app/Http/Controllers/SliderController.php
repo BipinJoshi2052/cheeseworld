@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Library\CommonFunction;
 use Illuminate\Http\Request;
-use App\Models\Banner;
+use App\Library\CommonFunction;
+use App\Slider;
 use Illuminate\Support\Facades\DB;
 
-class BannerController extends Controller
+class SliderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class BannerController extends Controller
      */
     public function index()
     {
-        $banners=Banner::paginate(5);
+        $banners=Slider::paginate(5);
         $data = array();
    
         $common_obj  = new CommonFunction();
@@ -26,7 +26,7 @@ class BannerController extends Controller
         $sidebar['is_vendor_login'] = $is_vendor;
         $data['sidebar_data'] = $sidebar;
         
-        return view('pages.admin.banner.index',compact('banners'),$data)->with('count',1);
+        return view('pages.admin.slider.index',compact('banners'),$data)->with('count',1);
     }
 
     /**
@@ -60,22 +60,21 @@ class BannerController extends Controller
             'name' => 'required',
             'description' => 'required',
             'image'=>'required',
-            'type'=>'required',
         ]);
 
-        $banner=new Banner();
+        $banner=new Slider();
         $banner->name=$request['name'];
         $banner->description=$request['description'];
-        $banner->type=$request['type'];
+        $banner->link=$request['link'];
 
         if($image = $request->file('image')){
             $destinationPath = 'banner/';
-            $catImage = $image->getClientOriginalName();
+            $catImage = time().$image->getClientOriginalName();
             $image->move($destinationPath, $catImage);
             $banner['image'] = "$catImage";
         }
         $banner->save();
-        return redirect()->route('banners.index')->with('status','Banner added successfully');
+        return redirect()->route('sliders.index')->with('status','Slider added successfully');
     }
 
     /**
@@ -86,7 +85,7 @@ class BannerController extends Controller
      */
     public function show($id)
     {
-        $banner=Banner::findOrFail($id);
+        $banner=Slider::findOrFail($id);
         $data = array();
    
         $common_obj  = new CommonFunction();
@@ -96,7 +95,7 @@ class BannerController extends Controller
         $sidebar['is_vendor_login'] = $is_vendor;
         $data['sidebar_data'] = $sidebar;
         
-        return view('pages.admin.banner.show',compact('banner'),$data);
+        return view('pages.admin.slider.show',compact('banner'),$data);
     }
 
     /**
@@ -107,7 +106,7 @@ class BannerController extends Controller
      */
     public function edit($id)
     {
-        $banner=Banner::findOrFail($id);
+        $banner=Slider::findOrFail($id);
         $data = array();
    
         $common_obj  = new CommonFunction();
@@ -117,7 +116,7 @@ class BannerController extends Controller
         $sidebar['is_vendor_login'] = $is_vendor;
         $data['sidebar_data'] = $sidebar;
         
-        return view('pages.admin.banner.edit',compact('banner'),$data);
+        return view('pages.admin.slider.edit',compact('banner'),$data);
         
     }
 
@@ -137,7 +136,7 @@ class BannerController extends Controller
             // 'image'=>'required',
         ]);
 
-        $banner= Banner::findOrFail($id);
+        $banner= Slider::findOrFail($id);
         $banner->name=$request['name'];
         $banner->description=$request['description'];
 
@@ -155,7 +154,7 @@ class BannerController extends Controller
             unset($banner['image']);
         }
         $banner->update();
-        return redirect('/admin/banners')->with('status', 'Banner has been updated successfully');
+        return redirect('/admin/sliders')->with('status', 'Slider has been updated successfully');
     }
 
     /**

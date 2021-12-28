@@ -24,6 +24,7 @@ use App\Http\Controllers\OptionController;
 use App\Models\OrdersItem;
 use App\Http\Controllers\VendorsController;
 use App\Models\Banner;
+use App\Slider;
 use App\Models\SaveCustomDesign;
 use App\Contact;
 use Illuminate\Support\Facades\Validator;
@@ -57,16 +58,28 @@ class FrontendManagerController extends Controller
    * @return void 
    */
   public function homePageContent(){
+    $a = Banner::latest()->get()->toArray();
     $data = array();
+
     
     $data = $this->classCommonFunction->get_dynamic_frontend_content_data(); 
     $data['advancedData']        =   $this->product->getAdvancedProducts();
     $data['brands_data']         =   $this->product->getTermData( 'product_brands', false, null, 1 );
     $data['testimonials_data']   =   get_all_testimonial_data();
     $data['selected_currency']   =   get_frontend_selected_currency();
-    $data['banner']   =   Banner::latest()->first();
+    $data['slider']   =   Slider::take(5)->orderBy('id','DESC')->get()->toArray();
 
-
+// dd($data['slider']);
+    if(!empty($a)){
+      foreach($a as $b => $c){
+        if($c['type'] == 'home-banner'){
+          $data['home_banner'] = $c;
+        }
+        if($c['type'] == 'parralex-home-banner'){
+          $data['parralex_home_banner'] = $c;
+        }
+      }
+    }
 
     
     // dd($data);
@@ -680,8 +693,9 @@ class FrontendManagerController extends Controller
 
       $final_unique_cross_sell_products = array_diff($unique_2, $unique_1);
       $data['cross_sell_products'] = $final_unique_cross_sell_products;
+      
     }
-    
+    $data['login_user_details'] =  get_current_frontend_user_info();
     return view('pages.frontend.frontend-pages.cart', $data);
   }
   

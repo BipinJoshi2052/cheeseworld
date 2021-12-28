@@ -1,14 +1,14 @@
 @extends('layouts.admin.master')
-@section('title', 'Banner' .' < '. get_site_title())
+@section('title', 'Sliders' .' < '. get_site_title())
 
 @section('content')
 <div class="row">
   <div class="col-6">
-    <h5>Banners</h5>
+    <h5>Sliders</h5>
   </div>
   <div class="col-6">
     <div class="pull-right">
-      <a href="{{ route('banners.create') }}" class="btn btn-primary pull-right btn-sm">Add Banner</a>
+      <a href="{{ route('sliders.create') }}" class="btn btn-primary pull-right btn-sm">Add Slider</a>
     </div>  
   </div>
 </div>
@@ -24,7 +24,6 @@
               <th>S.N</th>
               <th>Image</th>
               <th>Name</th>
-              <th>Type</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -35,17 +34,16 @@
                   <td>{{$count++}}</td>
                   <td><img src="{{asset('banner/'.$row->image)}}" alt="{{$row->image}}" class="img-fluid" style="width:150px"/></td>
                   <td>{!! $row['name'] !!}</td>
-                  <td>{!! ucwords(str_replace('-',' ',$row['type'])) !!}</td>
-                    <form action="{{route('banners.destroy',$row->id)}}" method="post">
+                    <form action="{{route('sliders.destroy',$row->id)}}" method="post">
                         @csrf
                         @method('delete')
                         <td class="project-actions">
-                            <a class="btn btn-primary btn-sm" href="{{route('banners.show',$row->id)}}">
+                            <a class="btn btn-primary btn-sm" href="{{route('sliders.show',$row->id)}}">
                                 <i class="fa fa-eye">
                                 </i>
                                 View
                             </a>
-                            <a class="btn btn-info btn-sm" href="{{route('banners.edit',$row->id)}}">
+                            <a class="btn btn-info btn-sm" href="{{route('sliders.edit',$row->id)}}">
                                 <i class="fa fa-pencil">
                                 </i>
                                 Edit

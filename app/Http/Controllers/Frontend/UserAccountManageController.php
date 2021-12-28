@@ -15,7 +15,10 @@ use App\Models\OrdersItem;
 use App\Rules\MatchOldPassword;
 use Carbon\Carbon;
 use Illuminate\Http\Request as HttpRequest;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Hash;
+=======
+>>>>>>> main
 
 class UserAccountManageController extends Controller
 {
@@ -557,6 +560,29 @@ class UserAccountManageController extends Controller
       Session::forget('shopist_frontend_user_id');
       Session::forget('shopist_frontend_user_name');
       return redirect()->route('user-login-page');
+    }
+  }
+
+  public function updateUserProfileImage(HttpRequest $request)
+  {
+    $validator = Validator::make($request->all(),[
+      "file" => ['required', 'mimes:jpeg,png,jpg', 'max:2048'],
+    ]);
+
+    if($validator->fails()){
+      return response()->json(['errors'=>$validator->errors()]);
+    }
+
+    if($validator->passes()){
+      $destination = "uploads/";
+      $url = url('/');
+      $user = User::where('id', Session::get('shopist_frontend_user_id'));
+      $image = $request->file('file');
+      $imageName = time() . '.' . $image->getClientOriginalExtension();
+      $user_photo_url = '/public/uploads/'. $imageName;
+      $user->update(['user_photo_url' => $user_photo_url]);
+      $image->move($destination, $imageName);
+      return response()->json(['msg' => 'Profile picture updated successfully.', 'profile_image' => $imageName]);
     }
   }
 }

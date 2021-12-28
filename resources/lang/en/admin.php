@@ -1,6 +1,6 @@
 <?php
 return [
-    'view_online_store'                                               =>  'DurbarMart',
+    'view_online_store'                                               =>  'Cheese World',
     'shopist_store'                                                   =>  'Visit Store',
     'profile'                                                         =>  'Profile',
     'sign_out'                                                        =>  'Sign out',
