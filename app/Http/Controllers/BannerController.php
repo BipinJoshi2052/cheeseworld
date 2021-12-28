@@ -60,11 +60,13 @@ class BannerController extends Controller
             'name' => 'required',
             'description' => 'required',
             'image'=>'required',
+            'type'=>'required',
         ]);
 
         $banner=new Banner();
         $banner->name=$request['name'];
         $banner->description=$request['description'];
+        $banner->type=$request['type'];
 
         if($image = $request->file('image')){
             $destinationPath = 'banner/';
@@ -128,10 +130,11 @@ class BannerController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request->file('image'));
         $validated = $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'image'=>'required',
+            // 'image'=>'required',
         ]);
 
         $banner= Banner::findOrFail($id);
@@ -143,16 +146,16 @@ class BannerController extends Controller
             
             if(file_exists($image_path)){
                 unlink($image_path);
-                $destinationPath = 'banner/';
-                $profileImage = $image->getClientOriginalName();
-                $image->move($destinationPath, $profileImage);
-                $banner['image'] = "$profileImage";
-            }
+            } 
+            $destinationPath = 'banner/';
+            $profileImage = $image->getClientOriginalName();
+            $image->move($destinationPath, $profileImage);
+            $banner['image'] = "$profileImage";
         }else{
             unset($banner['image']);
         }
         $banner->update();
-        return redirect('/banners')->with('status', 'Banner has been updated successfully');
+        return redirect('/admin/banners')->with('status', 'Banner has been updated successfully');
     }
 
     /**

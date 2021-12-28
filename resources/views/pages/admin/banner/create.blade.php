@@ -1,5 +1,5 @@
 @extends('layouts.admin.master')
-@section('title', trans('admin.add_banner') .' < '. get_site_title())
+@section('title', 'Add Banner < '. get_site_title())
 
 @section('content')
 @include('pages-message.form-submit')
@@ -23,6 +23,22 @@
         </div>
         <div class="box-body">
           <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+        </div>
+      </div>
+
+      
+      <div class="box box-solid">
+        <div class="box-header with-border">
+          <i class="fa fa-text-width"></i>
+          <h3 class="box-title">Type</h3>
+        </div>
+        <div class="box-body">
+          <select required name="type" class="form-control">
+              <option selected disabled>Choose Type</option>
+              <option value="home-banner">Home Banner</option>
+              <option value="parralex-home-banner">Parallex Home Banner</option>
+          </select>
+          {{-- <input type="text" class="form-control" name="name" value="{{ old('name') }}"> --}}
         </div>
       </div>
         
