@@ -1002,7 +1002,6 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 
-
 //admin upload product related image route
 Route::post('/upload/product-related-image', [
   'uses' => 'Admin\AdminAjaxController@saveRelatedImage',

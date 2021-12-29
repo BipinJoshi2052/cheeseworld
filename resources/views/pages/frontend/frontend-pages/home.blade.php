@@ -185,7 +185,7 @@
         $image_path = asset('/public/banner/'.$parralex_home_banner['image']);
     @endphp
 @endif
-<section id="parallax" class="position-relative" style="background-image:url('{{$image_path}}')">
+<section id="parallax" class="position-relative" style="background-image:url('{{$image_path ?? ''}}')">
     <div class="discription2 px-4 py-3">
         <div class="head">
             <h3>
