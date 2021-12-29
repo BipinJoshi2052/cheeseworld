@@ -43,7 +43,7 @@ $cartNav = Request::is('cart');
                             aria-hidden="true"></i></span>Wishlist</a>
             </li>
             <li class="mb-3 p-2">
-                <a href="dashboard-change-password.html"><span class="mr-2"><i
+                <a href="{{ route('user-change-password-post') }}"><span class="mr-2"><i
                             class="fa fa-lock" aria-hidden="true"></i></span>Change Password</a>
             </li>
             <form action="{{ route('user-logout') }}" method="post">

@@ -1,213 +1,225 @@
 @extends('layouts.frontend.master')
-@section('title', trans('frontend.shopist_category_products') .' < '. get_site_title() )
-
-@section('content')
-<?php if(isset($product_by_cat_id['breadcrumb_html'])){?>
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <div id="product-category-breadcrumb">
-        {!! $product_by_cat_id['breadcrumb_html'] !!}
-      </div>
-    </div>    
-  </div>    
-</div>    
-<?php }?>
-
-<div id="product-category" class="container new-container">
-  <div class="row">
-    <div class="col-xs-12 col-md-4">
-      <div class="left-sidebar">
-      @include('includes.frontend.categories-page')
-      @yield('categories-page-content')
-      </div>
-			
-      <div class="filter-panel">
-        <form action="{{ $product_by_cat_id['action_url'] }}" method="get">      
-          <div class="price-filter">
-            <h2>{{ trans('frontend.price_range_label') }} <span class="responsive-accordian"></span></h2>
-            <div class="price-slider-option">
-              <input type="text" class="span2" value="" data-slider-min="{{ get_appearance_settings()['general']['filter_price_min'] }}" data-slider-max="{{ get_appearance_settings()['general']['filter_price_max'] }}" data-slider-step="5" data-slider-value="[{{ $product_by_cat_id['min_price'] }},{{ $product_by_cat_id['max_price'] }}]" id="price_range" ><br />
-              <b>{!! price_html(get_appearance_settings()['general']['filter_price_min'], get_frontend_selected_currency()) !!}</b> <b class="pull-right">{!! price_html(get_appearance_settings()['general']['filter_price_max'], get_frontend_selected_currency()) !!}</b>
-            </div>
-            
-            <input name="price_min" id="price_min" value="{{ $product_by_cat_id['min_price'] }}" type="hidden">
-            <input name="price_max" id="price_max" value="{{ $product_by_cat_id['max_price'] }}" type="hidden">
-          </div>
-						
-          @if(count($colors_list_data) > 0)
-          <div class="colors-filter">
-            <h2>{{ trans('frontend.choose_color_label') }} <span class="responsive-accordian"></span></h2>
-            <div class="colors-filter-option">
-              @foreach($colors_list_data as $terms)
-              <div class="colors-filter-elements">
-                <div class="chk-filter">
-                  @if(count($product_by_cat_id['selected_colors']) > 0 && in_array($terms->slug, $product_by_cat_id['selected_colors']))  
-                  <input type="checkbox" checked class="shopist-iCheck chk-colors-filter" value="{{ $terms->slug }}">
-                  @else
-                  <input type="checkbox" class="shopist-iCheck chk-colors-filter" value="{{ $terms->slug }}">
-                  @endif
-                </div>
-                <div class="filter-terms">
-                  <div class="filter-terms-appearance"><span style="background-color:#{{ $terms->color_code }};width:21px;height:20px;display:block;"></span></div>
-                  <div class="filter-terms-name">&nbsp; {!! $terms->name !!}</div>
-                </div>
-              </div>
-              @endforeach
-            </div>
-            @if($product_by_cat_id['selected_colors_hf'])
-            <input name="selected_colors" id="selected_colors" value="{{ $product_by_cat_id['selected_colors_hf'] }}" type="hidden">
-            @endif
-          </div>
-          @endif
-      
-          @if(count($sizes_list_data) > 0)
-          <div class="size-filter">
-            <h2>{{ trans('frontend.choose_size_label') }} <span class="responsive-accordian"></span></h2>
-            <div class="size-filter-option">
-              @foreach($sizes_list_data as $terms)
-              <div class="size-filter-elements">
-                <div class="chk-filter">
-                  @if(count($product_by_cat_id['selected_sizes']) > 0 && in_array($terms->slug, $product_by_cat_id['selected_sizes']))  
-                  <input type="checkbox" checked class="shopist-iCheck chk-size-filter" value="{{ $terms->slug }}">
-                  @else
-                  <input type="checkbox" class="shopist-iCheck chk-size-filter" value="{{ $terms->slug }}">
-                  @endif
-                </div>
-                <div class="filter-terms">
-                  <div class="filter-terms-name">{!! $terms->name !!}</div>
-                </div>
-              </div>
-              @endforeach
-            </div> 
-            @if($product_by_cat_id['selected_sizes_hf'])
-            <input name="selected_sizes" id="selected_sizes" value="{{ $product_by_cat_id['selected_sizes_hf'] }}" type="hidden">
-            @endif
-          </div>
-          @endif
-          
-          <div class="btn-filter clearfix">
-            <a class="btn btn-sm" href="{{ route('categories-page', $product_by_cat_id['parent_slug']) }}"><i class="fa fa-close" aria-hidden="true"></i>
- {{ trans('frontend.clear_filter_label') }}</a>  
-            <button class="btn btn-sm" type="submit"><i class="fa fa-filter" aria-hidden="true"></i> {{ trans('frontend.filter_label') }}</button>
-          </div>
-        </form>
-      </div>
-    </div>
-
-    <div class="col-xs-12 col-md-8">
-      <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <div class="advertisement-right">
-            <div id="advertisement-right-carousel" class="carousel slide" data-ride="carousel"> 
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <div class="text-center">
-                    <a href=""><img src="{{ asset('public/images/add-sample/girl.jpg') }}" alt="" class="d-block w-100" /></a>
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <div class="text-center">
-                    <a href=""><img src="{{ asset('public/images/add-sample/girl-in-sunglass.jpg') }}" alt="" class="d-block w-100" /></a>
-                  </div>
-                </div> 
-                <div class="carousel-item">
-                  <div class="text-center">
-                    <a href=""><img src="{{ asset('public/images/add-sample/T-shirt.jpg') }}" alt="" class="d-block w-100" /></a>
-                  </div>
-                </div>
-              </div>
-              <div class="slider-control-main text-center">
-                <div class="prev-btn">
-                  <a href="#advertisement-right-carousel" class="control-carousel" data-slide="prev">
-                    <i class="fa fa-angle-left"></i>
-                  </a>
-                </div>
-
-                <div class="next-btn">
-                  <a href="#advertisement-right-carousel" class="control-carousel" data-slide="next">
-                    <i class="fa fa-angle-right"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+@section('title', trans('frontend.shopist_shop_title') .' < '. get_site_title() )
+@section('style')
+    <link rel="stylesheet" href="https://k1ngzed.com/dist/swiper/swiper.min.css" />
+    <link rel="stylesheet" href="https://k1ngzed.com/dist/EasyZoom/easyzoom.css" />
+@endsection
+@section('content') <!-- Breadcrumbs -->
+    <section id="breadcrumb-wrapper" class="position-relative">
+        <div class="image">
+            <img src="{{ asset('public/frontend/assets/images/banner/banner.jpg') }}" alt="breadcrumb-image" class="img-fluid">
         </div>
-      </div> 
-        
-      <div class="products-list-top">
-        <div class="row">  
-          <div class="col-4">
-            <div class="product-views pull-left">
-              @if($product_by_cat_id['selected_view'] == 'grid')
-                <a class="active" href="{{ $product_by_cat_id['action_url_grid_view'] }}" data-toggle="tooltip" data-placement="top" title="{{ trans('frontend.grid_label') }}"><i class="fa fa-th"></i></a> 
-              @else  
-                <a href="{{ $product_by_cat_id['action_url_grid_view'] }}" data-toggle="tooltip" data-placement="top" title="{{ trans('frontend.grid_label') }}"><i class="fa fa-th"></i></a> 
-              @endif
+        <div class="overlay position-absolute">
+            <div class="title p-4">Product Listing</div>
+        </div>
+    </section>
+    <!-- Breadcrumbs Ends -->
 
-              @if($product_by_cat_id['selected_view'] == 'list')
-                <a class="active" href="{{ $product_by_cat_id['action_url_list_view'] }}" data-toggle="tooltip" data-placement="top" title="{{ trans('frontend.list_label') }}"><i class="fa fa-th-list"></i></a>
-              @else  
-                <a href="{{ $product_by_cat_id['action_url_list_view'] }}" data-toggle="tooltip" data-placement="top" title="{{ trans('frontend.list_label') }}"><i class="fa fa-th-list"></i></a>
-              @endif
+    <!-- Product Listing -->
+    <section id="product-listing-wrapper" class="py-5">
+        <div class="container">
+            <div class="product-lists">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-12">
+                        <div class="left-side-wrapper px-4 py-4 d-lg-block d-none">
+                            <!--Categories Start -->
+                            @include('includes.frontend.categories')
+                            @yield('categories-content')
+                            <!--Categories End -->
+                            <!-- Content -->
+                            <div class="card-wrapper mt-4 mb-2">
+                                <div class="card-group-item">
+                                    <div class="card-head">
+                                        <div class="heading d-flex align-items-center text-center flex-wrap">
+                                            <div class="head">
+                                                <h5 class="text-uppercase pl-5 m-0">Product</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="filter-content2">
+                                        <div class="card-body">
+                                            <form>
+                                                <label class="form-check d-flex align-items-center">
+                                                    <input class="form-check-input" type="checkbox" value="">
+                                                    <span class="form-check-label">
+                                                        Chopsop
+                                                    </span>
+                                                </label>
+                                                <!-- form-check.// -->
+                                                <label class="form-check d-flex align-items-center">
+                                                    <input class="form-check-input" type="checkbox" value="">
+                                                    <span class="form-check-label">
+                                                        Den
+                                                    </span>
+                                                </label>
+                                                <!-- form-check.// -->
+                                                <label class="form-check d-flex align-items-center">
+                                                    <input class="form-check-input" type="checkbox" value="">
+                                                    <span class="form-check-label">
+                                                        Locus
+                                                    </span>
+                                                </label>
+                                                <!-- form-check.// -->
+                                                <label class="form-check d-flex align-items-center">
+                                                    <input class="form-check-input" type="checkbox" value="">
+                                                    <span class="form-check-label">
+                                                        Tangi
+                                                    </span>
+                                                </label>
+                                                <!-- form-check.// -->
+                                                <label class="form-check d-flex align-items-center">
+                                                    <input class="form-check-input" type="checkbox" value="">
+                                                    <span class="form-check-label">
+                                                        Erangi
+                                                    </span>
+                                                </label>
+                                                <!-- form-check.// -->
+                                                <label class="form-check d-flex align-items-center">
+                                                    <input class="form-check-input" type="checkbox" value="">
+                                                    <span class="form-check-label">
+                                                        Brand 3
+                                                    </span>
+                                                </label>
+                                                <!-- form-check.// -->
+                                                <div class="collapse" id="expand2">
+                                                    <!-- form-check.// -->
+                                                    <label class="form-check d-flex align-items-center">
+                                                        <input class="form-check-input" type="checkbox" value="">
+                                                        <span class="form-check-label">
+                                                            Brand 3
+                                                        </span>
+                                                    </label>
+                                                    <!-- form-check.// -->
+                                                    <label class="form-check d-flex align-items-center">
+                                                        <input class="form-check-input" type="checkbox" value="">
+                                                        <span class="form-check-label">
+                                                            Brand 3
+                                                        </span>
+                                                    </label>
+                                                    <label class="form-check d-flex align-items-center">
+                                                        <input class="form-check-input" type="checkbox" value="">
+                                                        <span class="form-check-label">
+                                                            Brand 1
+                                                        </span>
+                                                    </label>
+                                                    <!-- form-check.// -->
+                                                    <label class="form-check d-flex align-items-center">
+                                                        <input class="form-check-input" type="checkbox" value="">
+                                                        <span class="form-check-label">
+                                                            Brand 2
+                                                        </span>
+                                                    </label>
+                                                    <!-- form-check.// -->
+                                                    <label class="form-check d-flex align-items-center">
+                                                        <input class="form-check-input" type="checkbox" value="">
+                                                        <span class="form-check-label">
+                                                            Brand 3
+                                                        </span>
+                                                    </label>
+                                                    <!-- form-check.// -->
+                                                    <!-- form-check.// -->
+                                                    <label class="form-check d-flex align-items-center">
+                                                        <input class="form-check-input" type="checkbox" value="">
+                                                        <span class="form-check-label">
+                                                            Brand 3
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <!-- card-body.// -->
+                                    </div>
+                                    <div class="expand text-center">
+                                        <a data-toggle="collapse" href="#expand2" role="button" aria-expanded="false"
+                                            aria-controls="expand2">View more</a>
+                                    </div>
+                                </div>
+                                <!-- card-group-item.// -->
+                            </div>
+                            <!-- Content Ends -->
+                        </div>
+                        <!-- Mobile Filter  -->
+                        <!-- Button trigger modal -->
+                        <button type="button" class="effect d-xl-none d-lg-none d-md-block mb-4" data-toggle="modal"
+                            data-target="#leftsidebarfilter">
+                            Product Filter
+                            <span class="ml-2">
+                                <i class="fa fa-list" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                        <!-- Mobile Filter Ends -->
+                    </div>
+                    <div class="col-xl-9 col-lg-9 col-12 mx-auto text-center">
+                        <div class="row right-side-wrapper">
+                            @if ($all_products_details['products']->count() > 0)
+                            @foreach ($all_products_details['products'] as $products)
+                                    <?php
+                                    $reviews = get_comments_rating_details($products['id'], 'product');
+                                    $reviews_settings = get_reviews_settings_data($products['id']);
+                                    ?>
+                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mt-4 post">
+                                        <div class="product-grid-item">
+                                            <div class="product-grid-image">
+                                                <?php
+                                                if (!empty($products['image_url'])) {
+                                                    $product_image_url = get_image_url($products['image_url']);
+                                                    $_alt = basename(get_image_url($products['image_url']));
+                                                } else {
+                                                    $product_image_url = default_placeholder_img_src();
+                                                    $_alt = '';
+                                                }
+                                                ?>
+
+                                                <a href="#">
+                                                    <img class="pic-1" src="{{ $product_image_url }}"
+                                                        alt="{{ $_alt }}">
+                                                </a>
+                                                <ul class="social single-product-add-to-cart">
+                                                    <li>
+                                                        <a href="" data-id="{{ $products['id'] }}"
+                                                            class="fa fa-shopping-bag product-wishlist"></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="" data-id="{{ $products['id'] }}"
+                                                            class="fa fa-shopping-cart add-to-cart-bg"></a>
+                                                    </li>
+                                                </ul>
+                                                {{-- <span class="product-discount-label">-20%</span> --}}
+                                            </div>
+                                            <div class="product-content">
+                                                <h3 class="title text-center">
+                                                    <a href="{{ route('details-page', $products['slug']) }}"
+                                                        class="font-weight-bold">{!! $products['title'] !!}</a>
+                                                </h3>
+                                                <div class="price text-center mb-3">
+                                                    <?php
+                                                    if ($products['type'] == 'simple_product') {
+                                                        $_product_price = price_html(get_product_price_html_by_filter(get_role_based_price_by_product_id($products['id'], $products['price'])), get_frontend_selected_currency());
+                                                    }
+                                                    ?>
+                                                    {!! $_product_price !!}
+                                                    {{-- <span>£ 10.00</span> --}}
+                                                </div>
+                                                <a class="all-deals effect"
+                                                    href="{{ route('details-page', $products['slug']) }}">View Product
+                                                    <i class="fa fa-angle-right icon"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endif
+                        </div>
+                        <button type="button" class="effect mx-auto mt-4">View More</button>
+
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-8">
-            <div class="sort-filter-options">
-              <span>{{ trans('frontend.sort_filter_label') }} </span>  
-              <select class="form-control select2 sort-by-filter" style="width: 50%;">
-                @if($product_by_cat_id['sort_by'] == 'all')  
-                <option selected="selected" value="all">{{ trans('frontend.sort_filter_all_label') }}</option>
-                @else
-                <option value="all">{{ trans('frontend.sort_filter_all_label') }}</option>
-                @endif
-
-                @if($product_by_cat_id['sort_by'] == 'alpaz')  
-                <option selected="selected" value="alpaz">{{ trans('frontend.sort_filter_alpaz_label') }}</option>
-                @else
-                <option value="alpaz">{{ trans('frontend.sort_filter_alpaz_label') }}</option>
-                @endif
-
-                @if($product_by_cat_id['sort_by'] == 'alpza')  
-                <option selected="selected" value="alpza">{{ trans('frontend.sort_filter_alpza_label') }}</option>
-                @else
-                <option value="alpza">{{ trans('frontend.sort_filter_alpza_label') }}</option>
-                @endif
-
-                @if($product_by_cat_id['sort_by'] == 'low-high')  
-                <option selected="selected" value="low-high">{{ trans('frontend.sort_filter_low_high_label') }}</option>
-                @else
-                <option value="low-high">{{ trans('frontend.sort_filter_low_high_label') }}</option>
-                @endif
-
-                @if($product_by_cat_id['sort_by'] == 'high-low')  
-                <option selected="selected" value="high-low">{{ trans('frontend.sort_filter_high_low_label') }}</option>
-                @else
-                <option value="high-low">{{ trans('frontend.sort_filter_high_low_label') }}</option>
-                @endif
-
-                @if($product_by_cat_id['sort_by'] == 'old-new')  
-                <option selected="selected" value="old-new">{{ trans('frontend.sort_filter_old_new_label') }}</option>
-                @else
-                <option value="old-new">{{ trans('frontend.sort_filter_old_new_label') }}</option>
-                @endif
-
-                @if($product_by_cat_id['sort_by'] == 'new-old')
-                <option selected="selected" value="new-old">{{ trans('frontend.sort_filter_new_old_label') }}</option>
-                @else
-                <option value="new-old">{{ trans('frontend.sort_filter_new_old_label') }}</option>
-                @endif
-              </select>
-            </div>
-          </div>  
-        </div>        
-      </div>
-        
-      <div class="categories-products-list">
-        @include('pages.frontend.frontend-pages.categories-products')
-        @yield('categories-products-content')
-      </div>  
-    </div>
-  </div>
-</div>
-@endsection  
+        </div>
+    </section>
+    <!-- Product Listing Ends -->
+@endsection
+@section('script')
+    <script src="https://k1ngzed.com/dist/swiper/swiper.min.js"></script>
+    <script src="https://k1ngzed.com/dist/EasyZoom/easyzoom.js"></script>
+@endsection
