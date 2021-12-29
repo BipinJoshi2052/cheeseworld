@@ -79,7 +79,7 @@
                                 </div>
                                 <div class="product-content">
                                     <h3 class="title text-center">
-                                        <a href="#" class="font-weight-bold">{!! $latest_product->title !!}</a>
+                                        <a href="{{ route('details-page', $latest_product->slug) }} " class="font-weight-bold">{!! $latest_product->title !!}</a>
                                     </h3>
                                     <div class="price text-center mb-3">
                                         {!! price_html( get_product_price_html_by_filter(get_role_based_price_by_product_id($latest_product->id, $latest_product->price)), get_frontend_selected_currency()) !!}
@@ -159,7 +159,7 @@
                                 </div>
                                 <div class="product-content">
                                     <h3 class="title text-center">
-                                        <a href="#" class="font-weight-bold">{!! $latest_product->title !!}</a>
+                                        <a href="{{ route('details-page', $latest_product->slug) }}" class="font-weight-bold">{!! $latest_product->title !!}</a>
                                     </h3>
                                     <div class="price text-center mb-3">
                                         {!! price_html( get_product_price_html_by_filter(get_role_based_price_by_product_id($latest_product->id, $latest_product->price)), get_frontend_selected_currency()) !!}

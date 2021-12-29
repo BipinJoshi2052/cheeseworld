@@ -123,14 +123,12 @@ class FrontendManagerController extends Controller
     }
       
     $get_cat_product_and_breadcrumb  =  $this->product->getProductByCatSlug($params, array('sort' => $sort, 'price_min' => $price_min, 'price_max' => $price_max, 'selected_colors' => $selected_colors, 'selected_sizes' => $selected_sizes));
-    // dd($get_cat_product_and_breadcrumb);
 
     if(count($get_cat_product_and_breadcrumb) > 0){
       $data = $this->classCommonFunction->get_dynamic_frontend_content_data(); 
       $data['product_by_cat_id']  =   $get_cat_product_and_breadcrumb;
       $data['brands_data']        =   $this->product->getTermData( 'product_brands', false, null, 1 );
       $data['colors_list_data']   =   $this->product->getTermData( 'product_colors', false, null, 1 );
-      $data['all_products_details'] =   $get_cat_product_and_breadcrumb;
       $data['sizes_list_data']    =   $this->product->getTermData( 'product_sizes', false, null, 1 );
     
       if(count($data['product_by_cat_id']) > 0){
@@ -350,7 +348,6 @@ class FrontendManagerController extends Controller
     }
 
     $get_product  =  $this->product->getFilterProductsDataWithPagination(array('srch_term' => $search_term, 'sort' => $sort, 'price_min' => $price_min, 'price_max' => $price_max, 'selected_colors' => $selected_colors, 'selected_sizes' => $selected_sizes));
-    // dd($get_product);
 
     if(count($get_product) > 0){
       $data = $this->classCommonFunction->get_dynamic_frontend_content_data();
