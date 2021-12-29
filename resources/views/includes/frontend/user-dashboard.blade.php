@@ -3,6 +3,7 @@ $profileNav = Request::is('user/account') || Request::is('user/account/my-profil
 $orderNav = Request::is('user/account/my-orders');
 $wishlistNav = Request::is('user/account/my-saved-items');
 $cartNav = Request::is('cart');
+$passwordNav = Request::is('user/change-password');
 ?>
 
 <div class="col-xl-3 col-lg-3 col-md-12 col-12 mb-xl-0 mb-lg-0 mb-3">
@@ -42,7 +43,7 @@ $cartNav = Request::is('cart');
                 <a href="{{ route('my-saved-items-page') }}"><span class="mr-2"><i class="fa fa-shopping-bag"
                             aria-hidden="true"></i></span>Wishlist</a>
             </li>
-            <li class="mb-3 p-2">
+            <li class="{{ $passwordNav ? 'active' : '' }} mb-3 p-2">
                 <a href="{{ route('user-change-password-post') }}"><span class="mr-2"><i
                             class="fa fa-lock" aria-hidden="true"></i></span>Change Password</a>
             </li>
