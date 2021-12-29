@@ -26,14 +26,23 @@
                                 <div class="form-group">
                                     <label class="info-title" for="oldPassword">Old Password <span>*</span></label>
                                     <input type="password" class="form-control unicase-form-control text-input" id="oldPassword" name="oldPassword">
+                                    @error('oldPassword')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label class="info-title" for="newPassword">New Password <span>*</span></label>
                                     <input type="password" class="form-control unicase-form-control text-input" id="newPassword" name="newPassword">
+                                    @error('newPassword')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label class="info-title" for="confirmPassword">Confirm Password <span>*</span></label>
                                     <input type="password" class="form-control unicase-form-control text-input" id="confirmPassword" name="confirmPassword">
+                                    @error('confirmPassword')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="form-group d-flex justify-content-between align-items-center">
                                     <button type="submit" class="effect">Save</button>

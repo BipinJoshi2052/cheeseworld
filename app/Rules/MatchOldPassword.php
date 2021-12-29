@@ -20,6 +20,7 @@ class MatchOldPassword implements Rule
     {
         $id = Session::get('shopist_frontend_user_id');
         $user = User::where('id', $id)->first();
+        // dd(Hash::check($value, $user->password));
         return Hash::check($value, $user->password);
     }
    
@@ -30,6 +31,6 @@ class MatchOldPassword implements Rule
      */
     public function message()
     {
-        return 'The :attribute didnot match with old password.';
+        return 'The current password did not match with old password.';
     }
 }

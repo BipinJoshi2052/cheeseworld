@@ -306,7 +306,7 @@ class UserAccountManageController extends Controller
     
     if($validator->fails()){
       // dd($validator->errors());
-      return redirect()->back();
+      return redirect()->back()->withErrors($validator);
     }
     
     $id = Session::get('shopist_frontend_user_id');
@@ -318,8 +318,8 @@ class UserAccountManageController extends Controller
       if (Session::has('shopist_frontend_user_id')) {
         Session::forget('shopist_frontend_user_id');
         Session::forget('shopist_frontend_user_name');
-        Session::flash('success-message', 'Password Changed. Please Login');
-        return redirect()->route('user-login-page');
+        // Session::flash('success-message', 'Password Changed. Please Login');
+        return redirect()->route('user-login-page')->with(notify("success", "Password Changed. Please Login"));
       }
     }
 
