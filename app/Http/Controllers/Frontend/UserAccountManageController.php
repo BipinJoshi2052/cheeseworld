@@ -12,8 +12,10 @@ use Illuminate\Support\Facades\Input;
 use App\Models\Post;
 use App\Models\PostExtra;
 use App\Models\OrdersItem;
+use App\Rules\MatchOldPassword;
 use Carbon\Carbon;
 use Illuminate\Http\Request as HttpRequest;
+use Illuminate\Support\Facades\Hash;
 
 class UserAccountManageController extends Controller
 {
@@ -280,6 +282,55 @@ class UserAccountManageController extends Controller
     $data['login_user_details'] =  get_current_frontend_user_info();
     
     return view('pages.frontend.user-account.user-account-pages', $data);
+  }
+
+  public function FrontendUserChangePasword(){
+
+    $data = array();
+    
+    $data = $this->classCommonFunction->get_dynamic_frontend_content_data();
+    $get_current_user_id = get_current_frontend_user_info();
+    $data['user_details'] = get_user_details( $get_current_user_id['user_id'] );
+    $data['login_user_details'] =  get_current_frontend_user_info();
+    
+    return view('pages.frontend.user-account.change-password', $data);
+  }
+  
+
+  public function manageFrontendUserChangePasword(HttpRequest $request){
+    $validator = Validator::make($request->all(), [
+      'oldPassword' => ['required', new MatchOldPassword],
+      'newPassword' => ['required'],
+      'confirmPassword' => ['required', 'same:newPassword'],
+    ]);
+    
+    if($validator->fails()){
+      // dd($validator->errors());
+      return redirect()->back()->withErrors($validator);
+    }
+    
+    $id = Session::get('shopist_frontend_user_id');
+    $user = User::where('id', $id)->update([
+      'password' => Hash::make($request->newPassword),
+    ]);
+
+    if($user){
+      if (Session::has('shopist_frontend_user_id')) {
+        Session::forget('shopist_frontend_user_id');
+        Session::forget('shopist_frontend_user_name');
+        // Session::flash('success-message', 'Password Changed. Please Login');
+        return redirect()->route('user-login-page')->with(notify("success", "Password Changed. Please Login"));
+      }
+    }
+
+    $data = array();
+    
+    $data = $this->classCommonFunction->get_dynamic_frontend_content_data();
+    $get_current_user_id = get_current_frontend_user_info();
+    $data['user_details'] = get_user_details( $get_current_user_id['user_id'] );
+    $data['login_user_details'] =  get_current_frontend_user_info();
+    
+    return view('pages.frontend.user-account.change-password', $data);
   }
   
   /**

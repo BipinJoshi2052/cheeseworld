@@ -10,7 +10,7 @@
         @include('includes.frontend.user-dashboard')
         <div class="col-xl-9 col-lg-9 col-md-12 col-12">
           <div class="profile-side-detail-edit">
-            <div class="dashboard-content d-flex align-items-center h-100">
+            <div class="dashboard-content h-100">
               <div>
                 <p>Order Number: #{!! $order_details_by_order_id['order_id'] !!}</p>
                 <p>Order Data: {!! $order_details_by_order_id['order_date'] !!}</p>
@@ -51,7 +51,7 @@
               </div>
               @endif
               
-              <div class="mt-5">
+              <div class="d-flex justify-content-between mt-5">
                 <address class="side_block">
                   <h5 class="mb-3">Shipping Address:</h5>
                     @if(!empty($order_details_by_order_id['customer_address']))
@@ -66,10 +66,8 @@
                       <strong class="mb-2 d-inline-block">Phone Number:</strong><small>{!! $order_details_by_order_id['customer_address']['_shipping_phone'] !!}</small><br>
                       <strong class="mb-2 d-inline-block">Email Address:</strong><small>{!! $order_details_by_order_id['customer_address']['_shipping_email'] !!}</small><br>
                     @endif
-                </address>
-              </div>
-              <div>
-                <address>
+                </address>    
+                    <address>
                   <address class="side_block">
                       <h5 class="mb-3">Billing Address:</h5>
                         @if(!empty($order_details_by_order_id['customer_address']))
@@ -87,6 +85,7 @@
                       </address>
               </address>
               </div>
+          
             </div>
           </div>
         </div>

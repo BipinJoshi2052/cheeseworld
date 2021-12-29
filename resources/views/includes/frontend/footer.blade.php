@@ -33,19 +33,24 @@
                     <div class="heading">
                         <div class="head">
                             <a href="">
-                                <h2>Resources</h2>
+                                <h2>Useful Links</h2>
                             </a>
                         </div>
                     </div>
+                    @if ($pages_list)
+                    @foreach ($pages_list as $page)
                     <li>
-                        <a href="javascript:void(0)">About Us</a></h5>
+                        <a href="{{ route('custom-page-content', $page['post_slug']) }}">{{ $page['post_title'] }}</a></h5>
                     </li>
+                    @endforeach
+                    @else
                     <li>
                         <a href="{{ url('shop') }}">Shop</a></h5>
                     </li>
                     <li>
                         <a href="{{ url('contact-us') }}">Contact Us</a></h5>
                     </li>
+                    @endif
                 </ul>
             </div>
             <div class="col-xl-3 col-lg-3 col-md-6 col-12 mb-2">
