@@ -1727,7 +1727,7 @@
         </div>
       </div> 
         
-      @if(!$is_vendor_login)  
+      {{-- @if(!$is_vendor_login)  
       <div class="box box-solid product-sizes">
         <div class="box-header with-border">
           <i class="fa fa-handshake-o"></i>
@@ -1754,7 +1754,7 @@
           </div>
         </div>
       </div> 
-      @endif  
+      @endif   --}}
     </div>
   </div>
   
