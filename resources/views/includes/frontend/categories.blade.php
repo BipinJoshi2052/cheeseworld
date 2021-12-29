@@ -21,8 +21,10 @@
                       @foreach ($productCategoriesTrees as $data)
                           <li>
                               <div class="item">
-                                  <a href="{{ route('categories-page', $data['slug']) }}" class="category-item py-1 {{ $loop->first ? 'active': '' }}">{!! $data['name'] !!}
+                                  <a href="{{ route('categories-page', $data['slug']) }}" class="category-item py-1 {{ request()->cat_slug == $data['slug'] ? 'active': '' }}">{!! $data['name'] !!}
                                    </a>
+                                  {{-- <a href="{{ route('categories-page', $data['slug']) }}" class="category-item py-1 {{ $loop->first ? 'active': '' }}">{!! $data['name'] !!}
+                                   </a> --}}
                               </div>
                           </li>
                       @endforeach

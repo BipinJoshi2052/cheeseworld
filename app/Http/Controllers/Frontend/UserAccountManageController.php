@@ -15,10 +15,7 @@ use App\Models\OrdersItem;
 use App\Rules\MatchOldPassword;
 use Carbon\Carbon;
 use Illuminate\Http\Request as HttpRequest;
-<<<<<<< HEAD
 use Illuminate\Support\Facades\Hash;
-=======
->>>>>>> main
 
 class UserAccountManageController extends Controller
 {
