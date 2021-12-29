@@ -286,12 +286,12 @@ class LoginController extends Controller
                             }
                         }
                     } else {
-                        Session::flash('error-message', Lang::get('admin.authentication_failed_msg'));
-                        return redirect()->back();
+                        // Session::flash('error-message', Lang::get('admin.authentication_failed_msg'));
+                        return redirect()->back()->with(notify("error", Lang::get('admin.authentication_failed_msg')));
                     }
                 } else {
-                    Session::flash('error-message', Lang::get('admin.authentication_failed_msg'));
-                    return redirect()->back();
+                    // Session::flash('error-message', Lang::get('admin.authentication_failed_msg'));
+                    return redirect()->back()->with(notify("error", Lang::get('admin.authentication_failed_msg')));
                 }
             }
         } else {
