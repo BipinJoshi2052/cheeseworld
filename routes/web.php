@@ -20,6 +20,7 @@ Route::post('get-product-by-title', 'ProductsController@getProductByTitle')->nam
 //banner
 
 Route::resource('/admin/banners',BannerController::class)->middleware('verifyLoginPage', 'admin', 'sufficientPermission');
+Route::resource('/admin/sliders',SliderController::class)->middleware('verifyLoginPage', 'admin', 'sufficientPermission');
 
 //cancel order
 Route::resource('user/account/cancel-orders',\Frontend\CancelOrderController::class)->middleware('userAdmin', 'verifyLoginPage');
@@ -1001,7 +1002,6 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 
-
 //admin upload product related image route
 Route::post('/upload/product-related-image', [
   'uses' => 'Admin\AdminAjaxController@saveRelatedImage',
@@ -1455,6 +1455,17 @@ Route::post( '/blog/{blog_slug}', [
 
 // frontend user account route
 Route::group(['prefix' => 'user', 'namespace' => 'Frontend'], function () {
+  
+  Route::get( '/change-password', [
+    'uses' => 'UserAccountManageController@FrontendUserChangePasword',
+    'as'   => 'user-change-password-post'
+  ])->middleware('userAdmin', 'verifyLoginPage');
+
+  Route::post( '/change-password', [
+    'uses' => 'UserAccountManageController@manageFrontendUserChangePasword',
+    'as'   => 'user-change-password-post'
+  ])->middleware('userAdmin', 'verifyLoginPage');
+
   Route::get( 'account', [
     'uses' => 'UserAccountManageController@userAccountPageContent',
     'as'   => 'user-account-page'
@@ -1528,6 +1539,11 @@ Route::group(['prefix' => 'user', 'namespace' => 'Frontend'], function () {
   Route::post( 'account/my-profile', [
     'uses' => 'UserAccountManageController@updateFrontendUserProfile',
     'as'   => 'update-profile-post'
+  ]);
+
+  Route::post( 'account/my-profile/update-profile-image', [
+    'uses' => 'UserAccountManageController@updateUserProfileImage',
+    'as'   => 'update-user-profile-image'
   ]);
   
   Route::post( 'account/logout', [

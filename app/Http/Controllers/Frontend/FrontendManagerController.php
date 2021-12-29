@@ -24,9 +24,11 @@ use App\Http\Controllers\OptionController;
 use App\Models\OrdersItem;
 use App\Http\Controllers\VendorsController;
 use App\Models\Banner;
+use App\Slider;
 use App\Models\SaveCustomDesign;
 use App\Contact;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class FrontendManagerController extends Controller
 {
@@ -57,19 +59,31 @@ class FrontendManagerController extends Controller
    * @return void 
    */
   public function homePageContent(){
+    $a = Banner::latest()->get()->toArray();
     $data = array();
+
     
     $data = $this->classCommonFunction->get_dynamic_frontend_content_data(); 
     $data['advancedData']        =   $this->product->getAdvancedProducts();
     $data['brands_data']         =   $this->product->getTermData( 'product_brands', false, null, 1 );
     $data['testimonials_data']   =   get_all_testimonial_data();
     $data['selected_currency']   =   get_frontend_selected_currency();
-    $data['banner']   =   Banner::latest()->first();
+    $data['slider']   =   Slider::take(5)->orderBy('id','DESC')->get()->toArray();
 
-
+// dd($data['slider']);
+    if(!empty($a)){
+      foreach($a as $b => $c){
+        if($c['type'] == 'home-banner'){
+          $data['home_banner'] = $c;
+        }
+        if($c['type'] == 'parralex-home-banner'){
+          $data['parralex_home_banner'] = $c;
+        }
+      }
+    }
 
     
-    // dd($data['advancedData']);
+    // dd($data);
 
     return view('pages.frontend.frontend-pages.home', $data);
   }
@@ -110,12 +124,14 @@ class FrontendManagerController extends Controller
     }
       
     $get_cat_product_and_breadcrumb  =  $this->product->getProductByCatSlug($params, array('sort' => $sort, 'price_min' => $price_min, 'price_max' => $price_max, 'selected_colors' => $selected_colors, 'selected_sizes' => $selected_sizes));
+    // dd($get_cat_product_and_breadcrumb);
 
     if(count($get_cat_product_and_breadcrumb) > 0){
       $data = $this->classCommonFunction->get_dynamic_frontend_content_data(); 
       $data['product_by_cat_id']  =   $get_cat_product_and_breadcrumb;
       $data['brands_data']        =   $this->product->getTermData( 'product_brands', false, null, 1 );
       $data['colors_list_data']   =   $this->product->getTermData( 'product_colors', false, null, 1 );
+      $data['all_products_details'] =   $get_cat_product_and_breadcrumb;
       $data['sizes_list_data']    =   $this->product->getTermData( 'product_sizes', false, null, 1 );
     
       if(count($data['product_by_cat_id']) > 0){
@@ -335,6 +351,7 @@ class FrontendManagerController extends Controller
     }
 
     $get_product  =  $this->product->getFilterProductsDataWithPagination(array('srch_term' => $search_term, 'sort' => $sort, 'price_min' => $price_min, 'price_max' => $price_max, 'selected_colors' => $selected_colors, 'selected_sizes' => $selected_sizes));
+    // dd($get_product);
 
     if(count($get_product) > 0){
       $data = $this->classCommonFunction->get_dynamic_frontend_content_data();
@@ -388,8 +405,8 @@ class FrontendManagerController extends Controller
     }
   }
 
-  public function searchProduct( $key = 'a' ){
-    $result = Product::where('title', 'like', '%a%')->get();
+  public function searchProduct($key){
+    $result = Product::where('title', 'like', '%' . $key . '%')->get();
     return response()->json($result);
   }
   
@@ -538,7 +555,6 @@ class FrontendManagerController extends Controller
       else{
         $data['variations_data'] = $get_variation_data;
       }
-      
       return view('pages.frontend.frontend-pages.product-details', $data);
     }
     else{
@@ -678,8 +694,9 @@ class FrontendManagerController extends Controller
 
       $final_unique_cross_sell_products = array_diff($unique_2, $unique_1);
       $data['cross_sell_products'] = $final_unique_cross_sell_products;
+      
     }
-    
+    $data['login_user_details'] =  get_current_frontend_user_info();
     return view('pages.frontend.frontend-pages.cart', $data);
   }
   

@@ -4,7 +4,8 @@
 <!-- Jquery Link Ends-->
 
 <!-- 2nd Popper Js Starts -->
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN " crossorigin="anonymous "></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN " crossorigin="anonymous "></script>
 <!-- Popper Js Ends -->
 
 <!-- 3rd Bootstrap Js Link Starts -->
@@ -35,7 +36,8 @@ integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7
 <!-- Toastr Ends -->
 <script type="text/javascript" src="{{ URL::asset('public/plugins/iCheck/icheck.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('public/frontend/js/jquery.scrollUp.min.js') }}"></script>
-<script type="text/javascript" src="{{ URL::asset('public/designer/scroll/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+<script type="text/javascript"
+src="{{ URL::asset('public/designer/scroll/jquery.mCustomScrollbar.concat.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('public/frontend/js/common.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('public/frontend/js/products-add-to-cart.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('public/sweetalert/sweetalert.min.js') }}"></script>
@@ -78,5 +80,43 @@ integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7
         }
     @endif
 </script>
+<script>
+    function changeProfile() {
+        $("#prf-pic").click();
+    }
 
+    $("#prf-pic").change(function() {
+        if ($(this).val() != "") {
+            upload(this);
+            console.log(this);
+        }
+    });
+
+    function upload(img) {
+        var form_data = new FormData();
+        form_data.append("file", img.files[0]);
+        form_data.append("_token", "{{ csrf_token() }}");
+        $.ajax({
+            url: "{{ route('update-user-profile-image') }}",
+            data: form_data,
+            type: "POST",
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                // return true;
+                // $("body").removeClass("loading");
+                if(data.errors){
+                    toastr.error(data.errors.file[0]);
+                } else {
+                    $('#profile_img').attr('src', '{{ asset('public/uploads/') }}/' + data.profile_image);
+                    toastr.success(data.msg);
+                }
+                
+            },
+            error: function(xhr, status, error) {
+                console.log(xhr.responseText);
+            },
+        });
+    }
+</script>
 @yield('script')

@@ -23,7 +23,6 @@
 
     @include('includes.frontend.script')
     </section>
-
     @include('modal.modals')
 </body>
 
@@ -44,12 +43,16 @@
                         if(response){
                             var list = ''
                             $.each(response, function(i, e){
-                                imageUrl = e.image_url
+                                if(e.image_url){
+                                    imageUrl = '{{ asset('') }}' + e.image_url.substring(1);
+                                }else{
+                                    imageUrl = '{{ asset('/public/images/no-image.png') }}';
+                                }
                                 list += '<li class="mb-2 p-1">' +
                                     '<a href="">' +
                                         '<div class="row">' +
                                             '<div class="col-2">' +
-                                                '<div class="image"> <img src="{{ asset('') }}' + e.image_url.substring(1) + '" class="img-fluid"></div>' +
+                                                '<div class="image"> <img src="' + imageUrl + '" class="img-fluid"></div>' +
                                             '</div>' +
                                             '<div class="col-10 m-auto">' +
                                                 '<p class="m-0">' + e.title + '</p>' +

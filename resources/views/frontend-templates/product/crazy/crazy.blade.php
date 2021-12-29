@@ -1,7 +1,7 @@
  <!-- Breadcrumbs -->
  <section id="breadcrumb-wrapper" class="position-relative">
      <div class="image">
-         <img src="frontend/assets/images/banner/banner.jpg" alt="breadcrumb-image" class="img-fluid">
+         <img src="{{ asset('public/frontend/assets/images/banner/banner.jpg') }}" alt="breadcrumb-image" class="img-fluid">
      </div>
      <div class="overlay position-absolute">
          <div class="title p-4">Product Listing</div>

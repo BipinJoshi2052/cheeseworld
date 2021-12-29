@@ -70,6 +70,98 @@
         height: auto;
     }
 
+    .bg-hippie-green{
+        background-color: #468847 !important;
+    }
+
+    .bg-purple{
+        background-color: purple !important;
+    }
+
+    .bg-navy{
+        background-color: navy !important;
+    }
+
+    .bg-chestnut{
+        background-color: #b94a48 !important;
+    }
+
+    .bg-teal {
+        background-color: teal !important;
+    }
+
+</style>
+
+<style>
+    /*=================================================== TESTIMONIAL START  */
+section#testimonial {
+    padding-bottom: 80px;
+}
+
+section#testimonial span.position-relative::after {
+    content: "";
+    height: 4px;
+    width: 25px;
+    background-color: #aeaeae;
+    position: absolute;
+    left: -38px;
+    top: 22px;
+}
+section#testimonial p {
+	color: var(--black_light);
+}
+
+section#testimonial .slick-w p {
+	font-size: 1rem;
+}
+
+section#testimonial .testimonial-image-content .image-block img {
+	max-width: 150px;
+	min-width: 150px;
+	border-radius: 50%;
+	min-height: 150px;
+	max-height: 150px;
+}
+
+
+/*=================================================== ORDER RECEIVED START  */
+.invoice-title h2, .invoice-title h3 {
+  display: inline-block;
+}
+
+section#order_received .table > tbody > tr > .no-line {
+  border-top: none;
+}
+
+section#order_received .table > thead > tr > .no-line {
+  border-bottom: none;
+}
+
+section#order_received .table > tbody > tr > .thick-line {
+  border-top: 2px solid;
+}
+section#order_received .panel.panel-default.mt-2 {
+  border: 1px solid #dee2e6;
+}
+section#order_received .panel-heading {
+  padding: 10px;
+  background: #80808036;
+}
+section#order_received {
+  background: #83838314;
+}
+section#order_received .row_wrapper {
+  background: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 28px;
+}
+section#order_received address.side_block strong.mb-2.d-inline-block {
+  font-size: 15px !important;
+  display: block;
+  font-weight:500 !important;
+}
+/*=================================================== ORDER RECEIVED END  */
+/*=================================================== TESTIMONIAL END  */
 </style>
 
 @yield('style')

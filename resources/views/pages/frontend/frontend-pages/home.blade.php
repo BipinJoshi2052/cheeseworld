@@ -18,10 +18,12 @@
                             </p>
                         </div>
                         <div class="head">
-                            <h1>{{ ((isset($banner) && !empty($banner->name))?($banner->name):'Cheese World') }}</h1>
+                            <h1>{{ ((isset($home_banner) && !empty($home_banner['name']))?($home_banner['name']):'Cheese World') }}</h1>
                         </div>
                         <div class="discription mb-4">
-                            {{ ((isset($banner) && !empty($banner->description))?($banner->description):'') }}
+                            @php
+                                echo ((isset($home_banner) && !empty($home_banner['description']))?($home_banner['description']):'');
+                            @endphp
                         </div>
                         <div class="buttons">
                             <a href="{{route('shop-page')}}" class="effect anchor-btn">View Products</a>
@@ -32,7 +34,7 @@
             </div>
             <div class="col-lg-6 col-md-6 col-12 mb-2 order-lg-2 order-md-2 order-1">
                 <div class="image">                
-                    <img src="{{ asset('public/frontend/assets/images/banner/'.((isset($banner) && !empty($banner->image))?($banner->image):'')) }}" alt="banner-image"
+                    <img src="{{ asset('public/banner/'.((isset($home_banner) && !empty($home_banner['image']))?($home_banner['image']):'')) }}" alt="banner-image"
                         class="img-fluid">
                 </div>
             </div>
@@ -100,33 +102,23 @@
 <!-- Ads Slider -->
 <section id="ads-banner-wrapper" class="py-5">
     <div class="slick-slider">
-        <div class="slick-item position-relative">
-            <img src="{{ asset('public/frontend/assets/images/product-images/1.jpg') }}" class="img-fluid w-100">
-            <div class="discription px-4 py-3">
-                <div class="head">
-                    <h3><span>Recipes</span> made with love & good taste.</h3>
-                </div>
-                <a href="" class="effect anchor-btn">View Products</a>
-            </div>
-        </div>
-        <div class="slick-item position-relative">
-            <img src="{{ asset('public/frontend/assets/images/product-images/5.jpg') }}" class="img-fluid w-100">
-            <div class="discription px-4 py-3">
-                <div class="head">
-                    <h3><span>Recipes</span> made with love & good taste.</h3>
-                </div>
-                <a href="" class="effect anchor-btn">View Products</a>
-            </div>
-        </div>
-        <div class="slick-item position-relative">
-            <img src="{{ asset('public/frontend/assets/images/product-images/6.jpg') }}" class="img-fluid w-100">
-            <div class="discription px-4 py-3">
-                <div class="head">
-                    <h3><span>Recipes</span> made with love & good taste.</h3>
-                </div>
-                <a href="" class="effect anchor-btn">View Products</a>
-            </div>
-        </div>
+        @if (isset($slider) && !empty($slider))
+            @foreach ($slider as $z => $item)
+                <div class="slick-item position-relative">
+                    <img src="{{ asset('banner/'.$item['image']) }}" class="img-fluid w-100">
+                    <div class="discription px-4 py-3">
+                        <div class="head">
+                            <h3><span>{{$item['name']}}</span> 
+                                @php
+                                 echo  $item['description'];
+                                @endphp
+                            </h3>
+                        </div>
+                        <a href="{{$item['link']}}" class="effect anchor-btn">View Products</a>
+                    </div>
+                </div>                
+            @endforeach
+        @endif
     </div>
 </section>
 <!-- Ads Slider Ends-->
@@ -188,12 +180,25 @@
 </section>
 <!-- Product Listing Ends -->
 <!-- Parallax Starts -->
-<section id="parallax" class="position-relative">
+@if (isset($parralex_home_banner) && !empty($parralex_home_banner['image']))
+    @php
+        $image_path = asset('/public/banner/'.$parralex_home_banner['image']);
+    @endphp
+@endif
+<section id="parallax" class="position-relative" style="background-image:url('{{$image_path ?? ''}}')">
     <div class="discription2 px-4 py-3">
         <div class="head">
-            <h3><span>Recipes</span> made with love &amp; good taste.</h3>
+            <h3>
+                <span>
+                    {{ ((isset($parralex_home_banner) && !empty($parralex_home_banner['name']))?($parralex_home_banner['name']):'Cheese World') }}
+                </span>
+                @php
+                    echo ((isset($parralex_home_banner) && !empty($parralex_home_banner['description']))?($parralex_home_banner['description']):'Cheese World');
+                @endphp
+                
+            </h3>
         </div>
-        <a href="" class="effect anchor-btn" tabindex="0">View all Products</a>
+        <a href="{{url('/shop')}}" class="effect anchor-btn" tabindex="0">View all Products</a>
     </div>
 </section>
 <!-- Parallax Ends -->
@@ -210,63 +215,34 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mt-4 mb-4">
-                    <div class="product-grid-item2">
-                        <div class="product-grid-image2">
-                            <a href="#">
-                                <img class="pic-1"
-                                    src="{{ asset('public/frontend/assets/images/product-images/15.jpg') }}"
-                                    class="img-fluid">
-                            </a>
-                            <ul class="social d-flex flex-column">
-                                <li>
-                                    <a href="" class="effect anchor-btn">View all our Products</a>
-                                </li>
-                            </ul>
-                            <div class="discription3">
-                                <h5 class="m-0"> Cheese Pizza</h5>
+                @if(isset($productCategoriesTree) && $productCategoriesTree)
+                    @foreach ($productCategoriesTree as $index => $category)
+                        @if ($index < 5)
+                            
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mt-4 mb-4">
+                            <div class="product-grid-item2">
+                                <div class="product-grid-image2">
+                                    <a href="{{ url('/product/categories') }}/{{ $category['slug'] }}">
+                                        @if(!empty($category['img_url']))
+                                            <img class="pic-1" src="{{ get_image_url( $category['img_url']) }}" alt="{{ basename( get_image_url( $category['img_url'] ) ) }}" />
+                                        @else
+                                            <img class="pic-1" src="{{ default_placeholder_img_src() }}" alt="" />
+                                        @endif
+                                    </a>
+                                    <ul class="social d-flex flex-column">
+                                        <li>
+                                            <a href="{{ url('/product/categories') }}/{{ $category['slug'] }}" class="effect anchor-btn">View all our Products</a>
+                                        </li>
+                                    </ul>
+                                    <div class="discription3">
+                                        <h5 class="m-0"> {{ $category['name'] }}</h5>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mt-4 mb-4">
-                    <div class="product-grid-item2">
-                        <div class="product-grid-image2">
-                            <a href="#">
-                                <img class="pic-1"
-                                    src="{{ asset('public/frontend/assets/images/product-images/16.jpg') }}"
-                                    class="img-fluid">
-                            </a>
-                            <ul class="social d-flex flex-column">
-                                <li>
-                                    <a href="" class="effect anchor-btn">View all our Products</a>
-                                </li>
-                            </ul>
-                            <div class="discription3">
-                                <h5 class="m-0"> Cheese Burger</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mt-4 mb-4">
-                    <div class="product-grid-item2">
-                        <div class="product-grid-image2">
-                            <a href="#">
-                                <img class="pic-1"
-                                    src="{{ asset('public/frontend/assets/images/product-images/11.jpg') }}"
-                                    class="img-fluid">
-                            </a>
-                            <ul class="social d-flex flex-column">
-                                <li>
-                                    <a href="" class="effect anchor-btn">View all our Products</a>
-                                </li>
-                            </ul>
-                            <div class="discription3">
-                                <h5 class="m-0"> Cheese Platter</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                        @endif
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>

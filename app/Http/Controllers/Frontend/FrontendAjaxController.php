@@ -364,25 +364,25 @@ class FrontendAjaxController extends Controller
 
           $user_details->user_id      =       $get_current_user_id['user_id'];
           $user_details->details      =       json_encode( $account_data_details );
-
           $user_details->save();
-
           $get_data_by_user_id = get_user_account_details_by_user_id( $get_current_user_id['user_id'] );
+         
+          
         }
-        
+        // $count_wishlist = collect(json_decode($get_data_by_user_id[0]['details']))->count('wishlists_details');
         if(count($get_data_by_user_id) > 0){
           $array_shift   = array_shift($get_data_by_user_id );
           $parse_details = json_decode($array_shift['details'], true);
-          
+          $count_wishlist = count($parse_details['wishlists_details']) + 1;
           if(isset($parse_details['wishlists_details'])){
             $get_wishlist = $parse_details['wishlists_details'];
-            
             if(!empty($get_wishlist) && count($get_wishlist) > 0 && array_key_exists(key($wishlist_data['details']), $get_wishlist)){
-              return response()->json(array('status' => 'error', 'notice_type' => 'item_already_exists'));
+              return response()->json(array('status' => 'error', 'notice_type' => 'item_already_exists','count_wishlist'=>$count_wishlist));
             }
             else{
               if($this->classCommonFunction->frontendUserAccountDataProcess( $wishlist_data )){
-                return response()->json(array('status' => 'success', 'notice_type' => 'user_wishlist_saved'));
+                
+                return response()->json(array('status' => 'success', 'notice_type' => 'user_wishlist_saved', 'count_wishlist'=>$count_wishlist));
               }
             }
           }

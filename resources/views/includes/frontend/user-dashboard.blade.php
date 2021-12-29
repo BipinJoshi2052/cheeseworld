@@ -1,37 +1,62 @@
+<?php 
+$profileNav = Request::is('user/account') || Request::is('user/account/my-profile');
+$orderNav = Request::is('user/account/my-orders');
+$wishlistNav = Request::is('user/account/my-saved-items');
+$cartNav = Request::is('cart');
+$passwordNav = Request::is('user/change-password');
+?>
+
 <div class="col-xl-3 col-lg-3 col-md-12 col-12 mb-xl-0 mb-lg-0 mb-3">
     <div class="dashboard-list py-lg-5 px-lg-3 d-lg-block d-none">
         <div class="d-user-avater text-center mb-4">
-            <img src="{{ asset('public/frontend/assets/images/product-images/1.jpg') }}"
-                class="img-fluid avater" alt="profile-image">
-            <h5>Adam Harshvardhan</h5>
-            <a href=""> <span class="mr-1"><i class="fa fa-pencil"
+            <?php 
+                if($login_user_details['user_photo_url']){
+                    $user_photo = get_image_url($login_user_details['user_photo_url']);
+                } else {
+                    $user_photo = default_avatar_img_src();
+                }
+                    
+            ?>
+            <img src="{{ $user_photo }}"
+                class="img-fluid avater" alt="profile-image" id="profile_img">
+            <h5>{{ $login_user_details['user_display_name'] }}</h5>
+            <form>
+                <a href="javascript:void(0)" onclick="changeProfile()"> <span class="mr-1"><i class="fa fa-pencil"
                         aria-hidden="true"></i></span> Upload Image</a>
+                <input type="file" id="prf-pic" style="display: none"/>
+            </form>
         </div>
         <ul class="sidebar">
-            <li class="active mb-3 p-2">
-                <a href="dashboard-profile.html"><span class="mr-2"><i class="fa fa-user"
+            <li class="{{ $profileNav ? 'active' : '' }} mb-3 p-2">
+                <a href="{{ route('my-profile-page') }}"><span class="mr-2"><i class="fa fa-user"
                             aria-hidden="true"></i></span>Profile</a>
             </li>
-            <li class="mb-3 p-2">
-                <a href="dashboard-order-status.html"><span class="mr-2"><i class="fa fa-sort"
+            <li class="{{ $orderNav ? 'active' : '' }} mb-3 p-2">
+                <a href="{{ route('my-orders-page') }}"><span class="mr-2"><i class="fa fa-sort"
                             aria-hidden="true"></i></span>Order Status</a>
             </li>
-            <li class="mb-3 p-2">
-                <a href="dashboard-cart.html"><span class="mr-2"><i class="fa fa-shopping-bag"
+            <li class="{{ $cartNav ? 'active' : '' }} mb-3 p-2">
+                <a href="{{ route('cart-page') }}"><span class="mr-2"><i class="fa fa-shopping-bag"
                             aria-hidden="true"></i></span>My Cart</a>
             </li>
-            <li class="mb-3 p-2">
-                <a href="dashboard-wishlist.html"><span class="mr-2"><i class="fa fa-shopping-bag"
+            <li class="{{ $wishlistNav ? 'active' : '' }} mb-3 p-2">
+                <a href="{{ route('my-saved-items-page') }}"><span class="mr-2"><i class="fa fa-shopping-bag"
                             aria-hidden="true"></i></span>Wishlist</a>
             </li>
-            <li class="mb-3 p-2">
-                <a href="dashboard-change-password.html"><span class="mr-2"><i
+            <li class="{{ $passwordNav ? 'active' : '' }} mb-3 p-2">
+                <a href="{{ route('user-change-password-post') }}"><span class="mr-2"><i
                             class="fa fa-lock" aria-hidden="true"></i></span>Change Password</a>
             </li>
-            <li class="mb-3 p-2">
-                <a href="index.html"><span class="mr-2"><i class="fa fa-sign-out"
-                            aria-hidden="true"></i></span>Logout</a>
-            </li>
+            <form action="{{ route('user-logout') }}" method="post">
+                @include('includes.csrf-token')
+                <li class="mb-3 p-2">
+                    <button type="submit"><span class="mr-2"><i class="fa fa-sign-out"
+                        aria-hidden="true"></i></span>Logout</button>
+                    {{-- <a href=""><span class="mr-2"><i class="fa fa-sign-out"
+                                aria-hidden="true"></i></span>Logout</a> --}}
+                </li>
+            </form>
+            
         </ul>
     </div>
     <!-- Mobile Profile Nav -->

@@ -12,20 +12,26 @@
                 <form class="px-3 py-4" action="" method="post">
                     <div class="text-center">
                         <h1 class="font-weight-bold my-xl-4 my-md-3 my-4">Login</h1>
-                        @include('pages-message.notify-msg-error')
-                        @include('pages-message.form-submit')
+                        {{-- @include('pages-message.notify-msg-error') --}}
+                        {{-- @include('pages-message.form-submit') --}}
                         @csrf
                         <div class="form-group position-relative mb-xl-4 mb-md-3 mb-2">
                             <input type="text"
                                 class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none bg-transparent"
                                 name="login_username" id="login_username" placeholder="Username">
                             <i class="fa fa-user-o" aria-hidden="true"></i>
+                            @error('login_username')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="form-group position-relative mb-xl-4 mb-md-3 mb-2">
                             <input type="password"
                                 class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none bg-transparent"
                                 name="login_password" id="login_password" placeholder="Password">
                             <i class="fa fa-key" aria-hidden="true"></i>
+                            @error('login_password')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="row my-2">
                             <div class="col-md-6">
@@ -73,9 +79,9 @@
                     method="post">
                     <div class="text-center">
                         <h1 class="font-weight-bold my-xl-4 my-md-3 my-4">Register</h1>
-                        @include('pages-message.notify-msg-error')
+                        {{-- @include('pages-message.notify-msg-error')
                         @include('pages-message.form-submit')
-                        @include('pages-message.notify-msg-success')
+                        @include('pages-message.notify-msg-success') --}}
                         @csrf
                         <div class="form-group position-relative mb-xl-4 mb-md-3 mb-2">
                             <input type="text"
@@ -83,6 +89,9 @@
                                 value="{{ old('user_reg_display_name') }}" id="user_reg_display_name"
                                 name="user_reg_display_name" placeholder="Fullname">
                             <i class="fa fa-user-o" aria-hidden="true"></i>
+                            @error('user_reg_display_name')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="form-group position-relative mb-xl-4 mb-md-3 mb-2">
                             <input type="text"
@@ -90,6 +99,9 @@
                                 value="{{ old('user_reg_name') }}" id="user_reg_name" name="user_reg_name"
                                 placeholder="Username">
                             <i class="fa fa-user-o" aria-hidden="true"></i>
+                            @error('user_reg_name')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="form-group position-relative mb-xl-4 mb-md-3 mb-2">
                             <input type="email"
@@ -97,12 +109,18 @@
                                 id="reg_email_id" value="{{ old('reg_email_id') }}" name="reg_email_id"
                                 placeholder="Email">
                             <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                            @error('reg_email_id')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="form-group position-relative mb-xl-4 mb-md-3 mb-2">
                             <input type="text"
                                 class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none bg-transparent"
                                 id="reg_password" name="reg_password" placeholder="Password">
                             <i class="fa fa-key" aria-hidden="true"></i>
+                            @error('reg_password')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="form-group position-relative mb-xl-4 mb-md-3 mb-2">
                             <input type="text"
@@ -110,6 +128,9 @@
                                 id="reg_password_confirmation" name="reg_password_confirmation"
                                 placeholder="Re-type Password">
                             <i class="fa fa-key" aria-hidden="true"></i>
+                            @error('reg_password_confirmation')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <button type="submit" name="user_reg_submit" id="user_reg_submit"
                             class="effect px-5 text-uppercase ">
