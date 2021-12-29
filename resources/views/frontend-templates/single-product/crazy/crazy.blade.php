@@ -140,7 +140,7 @@
                     </div>
                     <form class="product-types">
                         <div class="form-row">
-                            <div class="form-group col-md-4">
+                            {{-- <div class="form-group col-md-4">
                                 <label>Weight</label>
                                 <select id="size" class="form-control">
                                     <option selected>Choose...</option>
@@ -148,7 +148,7 @@
                                     <option>2kg</option>
                                     <option>3kg</option>
                                 </select>
-                            </div>
+                            </div> --}}
                             <div class="form-group col-md-4">
                                 <div class="quantity mb-3">
                                     <label>Quantity</label>
@@ -163,7 +163,7 @@
                         </div>
                         <button class="effect add-to-cart-bg" data-id="{{ $single_product_details['id'] }}">Add to
                             Cart</button>
-                        <button class="effect">Buy Now</button>
+                        <button class="effect product-wishlist" data-id="{{ $single_product_details['id'] }}">Add to Wishlist</button>
                     </form>
                 </div>
             </div>
