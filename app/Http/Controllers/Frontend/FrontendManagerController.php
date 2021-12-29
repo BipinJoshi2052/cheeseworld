@@ -422,6 +422,8 @@ class FrontendManagerController extends Controller
       $get_current_user_data  =  get_current_frontend_user_info();
       
       $data = $this->classCommonFunction->get_dynamic_frontend_content_data();
+      
+      // dd($data);
       $data['single_product_details']  =  $this->product->getProductDataById( $product_id );
       
       if(is_frontend_user_logged_in() && isset($get_current_user_data['user_role_slug']) && $data['single_product_details']['_is_role_based_pricing_enable'] == 'yes'){
