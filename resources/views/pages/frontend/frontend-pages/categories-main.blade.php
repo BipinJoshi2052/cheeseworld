@@ -218,7 +218,8 @@
                                 @endforeach
                             @endif
                         </div>
-                        <button type="button" class="effect mx-auto mt-4">View More</button>
+                        {{-- <button type="button" class="effect mx-auto mt-4">View More</button> --}}
+                        <div class="effect mx-auto mt-4">{!! $product_by_cat_id['products']->appends(Request::capture()->except('page'))->render() !!}</div>
 
                     </div>
                 </div>
