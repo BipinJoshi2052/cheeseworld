@@ -41,11 +41,53 @@ transform: unset !important;
         outline: 0;
         box-shadow: unset !important;
     }
+
+    #shadow-layer {
+  position: fixed;
+  min-height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(67, 87, 121, 0.6);
+  cursor: pointer;
+  z-index:999;
+  display: none;
+}
+
+  .esewa-payment-loader{
+  width: 300px;
+  height: 100px;
+  background: #f7f7f7;
+  position: fixed;
+  top:50%;
+  left: 50%;
+  margin-top: -75px;
+  margin-left: -150px;
+  display: none;
+  text-align: center;
+  z-index: 9999;
+}
+
+.esewa-payment-loader img, .esewa-payment-loader .esewa_ordering_msg{
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.esewa-payment-loader .esewa_ordering_msg{
+  font-size: 12px;
+  color: #3d4246;
+  font-weight: bold;
+
+}
   
 </style>
 <body onload="myFunction()">
     <div id="loading"></div>
-    
+    <div id="shadow-layer"></div>
+    <div class="esewa-payment-loader">
+        <img src="{{ asset('public/images/ajax-loader.gif') }}" id="img-load" />
+        <div class="esewa_ordering_msg">Your order is submitting</div>
+    </div>
     <!-- Whole Body Wrapper Starts -->
     <section id="@yield('page-wrapper')">
         
