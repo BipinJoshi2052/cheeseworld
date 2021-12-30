@@ -52,7 +52,7 @@
                         <p class="text-center mt-4">
                             Don't have an account?
                             <span>
-                                <a href="register-login.html">Register</a>
+                                <a href="{{ route('user-registration-page') }}">Register</a>
                             </span>
                         </p>
                         <div class="row mb-4 px-3 justify-content-center align-items-center">
@@ -114,7 +114,7 @@
                             @enderror
                         </div>
                         <div class="form-group position-relative mb-xl-4 mb-md-3 mb-2">
-                            <input type="text"
+                            <input type="password"
                                 class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none bg-transparent"
                                 id="reg_password" name="reg_password" placeholder="Password">
                             <i class="fa fa-key" aria-hidden="true"></i>
@@ -123,7 +123,7 @@
                             @enderror
                         </div>
                         <div class="form-group position-relative mb-xl-4 mb-md-3 mb-2">
-                            <input type="text"
+                            <input type="password"
                                 class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none bg-transparent"
                                 id="reg_password_confirmation" name="reg_password_confirmation"
                                 placeholder="Re-type Password">
@@ -139,7 +139,7 @@
                         <p class="text-center mt-4">
                             Already have an account?
                             <span>
-                                <a href="login.html">Login</a>
+                                <a href="{{ route('user-login-page') }}">Login</a>
                             </span>
                         </p>
                         <div class="row mb-4 px-3 justify-content-center align-items-center">
