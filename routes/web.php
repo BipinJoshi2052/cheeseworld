@@ -1310,6 +1310,11 @@ Route::get( '/shop', [
   'as'   => 'shop-page'
 ]);
 
+Route::get( '/ajax-shop', [
+  'uses' => 'Frontend\FrontendManagerController@productsAjaxPageContent',
+  'as'   => 'ajax-shop-page'
+]);
+
 Route::get( '/contact-us', [
   'uses' => 'Frontend\FrontendManagerController@getContact',
   'as'   => 'contact-us'

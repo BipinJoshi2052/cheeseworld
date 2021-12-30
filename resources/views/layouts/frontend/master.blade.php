@@ -5,7 +5,44 @@
 <head>
     @include('includes.frontend.head')
 </head>
+<style>
+.pagination {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.25rem;
+}
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color 0.3s;
 
+}
+.pagination li:hover
+{
+transform: unset !important;
+}
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: var(--third-color);
+    border-color: var(--third-color);
+    border: 2px solid var(--third-color);
+
+
+    }
+    .page-item.active .page-link:focus {
+        outline: 0;
+        box-shadow: unset !important;
+    }
+  
+</style>
 <body onload="myFunction()">
     <div id="loading"></div>
     
