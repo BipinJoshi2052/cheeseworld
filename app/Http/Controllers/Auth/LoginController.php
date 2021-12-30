@@ -251,9 +251,10 @@ class LoginController extends Controller
                 ->withInput()
                 ->withErrors($validator);
             } else {
+                $fieldType = filter_var(Request::Input('login_username'), FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
                 $username = Request::Input('login_username');
                 $password = bcrypt(Request::Input('login_password'));
-                $userdata = ['name' => $username, 'user_status' => 1];
+                $userdata = [$fieldType => $username, 'user_status' => 1];
                 $data = User::where($userdata)->first();
                 if (!empty($data) && isset($data->password) && isset($data->id)) {
                     $get_user_role = get_user_details($data->id);

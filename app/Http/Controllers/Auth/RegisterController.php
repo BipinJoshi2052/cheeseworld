@@ -499,18 +499,18 @@ class RegisterController extends Controller
                   $this->classGetFunction->sendCustomMail( array('source' => 'new_customer_account', 'email' => Request::Input('reg_email_id')) );
                 }
                 Session::flash('success-message', 'User Registered. Please Login');
-                return redirect()->route('user-login-page');
+                return redirect()->route('user-login-page')->with(notify('success', 'User Registered. Please Login'));
               }
             }
           }
           else{
             Session::flash('error-message', Lang::get('frontend.user_role_not_selected_msg'));
-            return redirect()-> back();
+            return redirect()-> back()->with(notify('error', Lang::get('frontend.user_role_not_selected_msg')));
           }
         }
         else{
           Session::flash('error-message', Lang::get('frontend.user_role_not_selected_msg'));
-          return redirect()-> back();
+          return redirect()-> back()->with(notify('error', Lang::get('frontend.user_role_not_selected_msg')));
         }
       }
     }
