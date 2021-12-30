@@ -32,56 +32,64 @@
                                     <div class="card-head">
                                         <div class="heading d-flex align-items-center text-center flex-wrap">
                                             <div class="head">
-                                                <h5 class="text-uppercase pl-5 m-0">Product</h5>
+                                                <h5 class="text-uppercase pl-5 m-0">Filter</h5>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="filter-content2">
-                                        <div class="card-body">
-                                            <form>
+                                        <div class="card-body sort-filter-option">
+                                            {{-- <form> --}}
                                                 <label class="form-check d-flex align-items-center">
-                                                    <input class="form-check-input" type="checkbox" value="">
+                                                    <input class="form-check-input sort-by-filter" type="checkbox" value="all" {{ $all_products_details['sort_by'] == 'all' ? 'checked' : '' }}>
                                                     <span class="form-check-label">
-                                                        Chopsop
+                                                        All
                                                     </span>
                                                 </label>
                                                 <!-- form-check.// -->
                                                 <label class="form-check d-flex align-items-center">
-                                                    <input class="form-check-input" type="checkbox" value="">
+                                                    <input class="form-check-input sort-by-filter" type="checkbox" value="alpaz" {{ $all_products_details['sort_by'] == 'alpaz' ? 'checked' : '' }}>
                                                     <span class="form-check-label">
-                                                        Den
+                                                        {{ trans('frontend.sort_filter_alpaz_label') }}
                                                     </span>
                                                 </label>
                                                 <!-- form-check.// -->
                                                 <label class="form-check d-flex align-items-center">
-                                                    <input class="form-check-input" type="checkbox" value="">
+                                                    <input class="form-check-input sort-by-filter" type="checkbox" value="alpza" {{ $all_products_details['sort_by'] == 'alpza' ? 'checked' : '' }}>
                                                     <span class="form-check-label">
-                                                        Locus
+                                                        {{ trans('frontend.sort_filter_alpza_label') }}
                                                     </span>
                                                 </label>
                                                 <!-- form-check.// -->
                                                 <label class="form-check d-flex align-items-center">
-                                                    <input class="form-check-input" type="checkbox" value="">
+                                                    <input class="form-check-input sort-by-filter" type="checkbox" value="low-high" {{ $all_products_details['sort_by'] == 'low-high' ? 'checked' : '' }}>
                                                     <span class="form-check-label">
-                                                        Tangi
+                                                        {{ trans('frontend.sort_filter_low_high_label') }}
                                                     </span>
                                                 </label>
                                                 <!-- form-check.// -->
                                                 <label class="form-check d-flex align-items-center">
-                                                    <input class="form-check-input" type="checkbox" value="">
+                                                    <input class="form-check-input sort-by-filter" type="checkbox" value="high-low" {{ $all_products_details['sort_by'] == 'high-low' ? 'checked' : '' }}>
                                                     <span class="form-check-label">
-                                                        Erangi
+                                                        {{ trans('frontend.sort_filter_high_low_label') }}
                                                     </span>
                                                 </label>
                                                 <!-- form-check.// -->
                                                 <label class="form-check d-flex align-items-center">
-                                                    <input class="form-check-input" type="checkbox" value="">
+                                                    <input class="form-check-input sort-by-filter" type="checkbox" value="old-new" {{ $all_products_details['sort_by'] == 'old-new' ? 'checked' : '' }}>
                                                     <span class="form-check-label">
-                                                        Brand 3
+                                                        {{ trans('frontend.sort_filter_old_new_label') }}
                                                     </span>
                                                 </label>
                                                 <!-- form-check.// -->
-                                                <div class="collapse" id="expand2">
+                                                <!-- form-check.// -->
+                                                <label class="form-check d-flex align-items-center">
+                                                    <input class="form-check-input sort-by-filter" type="checkbox" value="new-old" {{ $all_products_details['sort_by'] == 'new-old' ? 'checked' : '' }}>
+                                                    <span class="form-check-label">
+                                                        {{ trans('frontend.sort_filter_new_old_label') }}
+                                                    </span>
+                                                </label>
+                                                <!-- form-check.// -->
+                                                {{-- <div class="collapse" id="expand2">
                                                     <!-- form-check.// -->
                                                     <label class="form-check d-flex align-items-center">
                                                         <input class="form-check-input" type="checkbox" value="">
@@ -124,15 +132,15 @@
                                                             Brand 3
                                                         </span>
                                                     </label>
-                                                </div>
-                                            </form>
+                                                </div> --}}
+                                            {{-- </form> --}}
                                         </div>
                                         <!-- card-body.// -->
                                     </div>
-                                    <div class="expand text-center">
+                                    {{-- <div class="expand text-center">
                                         <a data-toggle="collapse" href="#expand2" role="button" aria-expanded="false"
                                             aria-controls="expand2">View more</a>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <!-- card-group-item.// -->
                             </div>

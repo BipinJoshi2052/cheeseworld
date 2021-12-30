@@ -798,11 +798,18 @@ shopist_frontend.init =
       $("#shipping_method_dropdown").select2();
       shopist_frontend.event.shipping_method_dropdown_option();
     }
+
+    $('.sort-by-filter').on('change', function() {
+      window.location.href = commonReplaceUrlParam(window.location.href, "sort_by", $(this).val());
+    });
     
     if($('#product-category').length>0){
       $(".sort-by-filter").select2();
       
       $('.sort-by-filter').select2().on('change', function() {
+        window.location.href = commonReplaceUrlParam(window.location.href, "sort_by", $(this).val());
+      });
+      $('.sort-by-filter').on('click', function() {
         window.location.href = commonReplaceUrlParam(window.location.href, "sort_by", $(this).val());
       });
     }
