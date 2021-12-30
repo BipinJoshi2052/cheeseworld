@@ -3,9 +3,13 @@
     $getDataByUserId = get_user_account_details_by_user_id($getCurrentUserId['user_id']);
     if(Session::get('shopist_frontend_user_id') != null){
         $shiftData = array_shift($getDataByUserId);
-        // dd($shiftData);
-        $myData = json_decode($shiftData['details'])->wishlists_details;
-        $countWishlist = count((array)$myData);
+        if($shiftData != null){
+            $myData = json_decode($shiftData['details'])->wishlists_details;
+            $countWishlist = count((array)$myData);
+        } else {
+            $countWishlist = 0;
+        }
+        
     } else {
         $countWishlist = 0;
     }
