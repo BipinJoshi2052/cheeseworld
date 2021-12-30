@@ -1354,7 +1354,7 @@ Route::get('/cart', [
 Route::get('/checkout', [
   'uses' => 'Frontend\FrontendManagerController@checkoutPageContent',
   'as'   => 'checkout-page'
-]);
+])->middleware('userAdmin', 'verifyLoginPage');;
 
 Route::get( '/page/{page_slug}', [
   'uses' => 'Frontend\FrontendManagerController@singlePageContent',

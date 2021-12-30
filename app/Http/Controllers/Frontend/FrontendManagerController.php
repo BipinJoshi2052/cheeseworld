@@ -569,6 +569,20 @@ class FrontendManagerController extends Controller
    * @return void 
    */
   public function checkoutPageContent(){
+    // Added by Muniraj
+    $getCurrentUserId = get_current_frontend_user_info();
+    $getDataByUserId = get_user_account_details_by_user_id( $getCurrentUserId['user_id'] );
+    
+    $getArrayShiftData = array_shift($getDataByUserId);
+
+    if(!empty($getArrayShiftData)){
+      $frontend_account_details = json_decode($getArrayShiftData['details']);
+    }
+    // End by Muniraj
+    if(!empty($frontend_account_details) && !empty($frontend_account_details->address_details)){
+
+    
+    // if(Session::has('shopist_frontend_user_id'))
     $data = array();
     $vendor_details  = array();
     $is_user_login = false;
@@ -630,6 +644,9 @@ class FrontendManagerController extends Controller
     $data['_settings_data']   = $this->option->getSettingsData();
     
     return view('pages.frontend.frontend-pages.checkout', $data);
+    } else {
+      return redirect()->route('my-address-page')->with(notify('error', 'Please add billing and shipping address first'));
+    }
   }
   
   /**

@@ -4,6 +4,7 @@ $orderNav = Request::is('user/account/my-orders');
 $wishlistNav = Request::is('user/account/my-saved-items');
 $cartNav = Request::is('cart');
 $passwordNav = Request::is('user/change-password');
+$addressNav = Request::is('user/account/my-address*');
 ?>
 
 <div class="col-xl-3 col-lg-3 col-md-12 col-12 mb-xl-0 mb-lg-0 mb-3">
@@ -30,6 +31,10 @@ $passwordNav = Request::is('user/change-password');
             <li class="{{ $profileNav ? 'active' : '' }} mb-3 p-2">
                 <a href="{{ route('my-profile-page') }}"><span class="mr-2"><i class="fa fa-user"
                             aria-hidden="true"></i></span>Profile</a>
+            </li>
+            <li class="{{ $addressNav ? 'active' : '' }} mb-3 p-2">
+                <a href="{{ route('my-address-page') }}"><span class="mr-2"><i class="fa fa-map-marker"
+                            aria-hidden="true"></i></span>My Address</a>
             </li>
             <li class="{{ $orderNav ? 'active' : '' }} mb-3 p-2">
                 <a href="{{ route('my-orders-page') }}"><span class="mr-2"><i class="fa fa-sort"
