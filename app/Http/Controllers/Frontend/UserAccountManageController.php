@@ -417,7 +417,7 @@ class UserAccountManageController extends Controller
         if($validator->fails()){
           return redirect()-> back()
           ->withInput()
-          ->withErrors( $validator );
+          ->withErrors($validator);
         }
         else{
           
@@ -460,7 +460,7 @@ class UserAccountManageController extends Controller
       }
     }
     else{
-      return redirect()-> back();
+      return redirect()->route('my-address-page');
     }
   }
   

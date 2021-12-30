@@ -84,7 +84,7 @@
                                 </div>
                                 <!-- table end  -->
                             </div>
-                            <div class="col-xl-12">
+                            {{-- <div class="col-xl-12">
                                 <div class="my-car-title d-flex mb-3 mt-4">
                                     <div class="my-cart-number">2</div>
                                     <div class="my-cart-order">
@@ -129,8 +129,7 @@
                                                 @endif
                                             @endforeach
                                         </select>
-                                        {{-- <input type="text" class="form-control w-100" name="account_bill_select_country"
-                                        id="account_bill_select_country" placeholder="Nepal" /> --}}
+                                        
                                     </div>
                                     <div class="col-md-6">
                                         <label for="" class="text_gray mt-3">Postal Code</label>
@@ -139,7 +138,7 @@
                                             placeholder="5468" />
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="col-md-12">
                                 <div class="my-car-title d-flex mt-5">
                                     <div class="my-cart-number">3</div>
