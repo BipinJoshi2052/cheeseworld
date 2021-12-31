@@ -1104,6 +1104,8 @@ class ProductsController extends Controller
           $url_slug = string_slug_format(Request::Input('product_name'));
         }
 
+        $recent_product_slug = string_slug_format(Request::Input('product_name'));
+
         $post        =  new Product;
         $post_slug   =  '';
 
@@ -1124,7 +1126,8 @@ class ProductsController extends Controller
           $post->author_id          =   $author_id;
           $post->content            =   string_encode(Request::Input('eb_description_editor'));
           $post->title              =   strip_tags(Request::Input('product_name'));
-          $post->slug               =   $post_slug;
+          $post->slug               =   create_unique_slug('product', $recent_product_slug);
+          // $post->slug               =   $post_slug;
           $post->status             =   Request::Input('product_visibility');
           $post->sku                =   strip_tags(Request::Input('ProductSKU'));
           $post->regular_price      =   $regular_price;
@@ -1135,7 +1138,8 @@ class ProductsController extends Controller
           $post->type               =   Request::Input('change_product_type');
           $post->image_url          =   $product_image;
 
-          if($post->save()){  
+          if($post->save()){ 
+            $params = $post->slug; 
             if(ProductExtra::insert(array(
                                       array(
                                           'product_id'    =>  $post->id,
@@ -1507,8 +1511,10 @@ class ProductsController extends Controller
                         'stock_qty'          =>  $stock_qty,
                         'stock_availability' =>  $stock_availability,
                         'type'               =>  Request::Input('change_product_type'),
-                        'image_url'          =>  $product_image
+                        'image_url'          =>  $product_image,
+                        'slug'               =>  create_unique_slug('product', $recent_product_slug),
           );
+          $params = $data['slug'];
           if( Product::where('id', $product_id)->update($data)){
             $data_related_url = array(
                               'key_value'    =>  Request::Input('hf_uploaded_all_images')
@@ -1789,6 +1795,7 @@ class ProductsController extends Controller
             }
 
             Session::flash('success-message', Lang::get('admin.successfully_updated_msg' ));
+            // dd($params);
             return redirect()->route('admin.update_product', $params);
           }
         }

@@ -6,11 +6,15 @@
     </div>
     <div class="overlay position-absolute">
         <div class="title p-4">
+            <?php 
+                $product_name = App\Models\Product::where("slug", request()->details_slug)->first()->title;
+            ?>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="{{ route('home-page') }}"><i class="fa fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="{{ route('shop-page') }}">Products</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">{{ Str::title(str_replace('-', ' ', request()->details_slug)) }}</li>
+                  <li class="breadcrumb-item active" aria-current="page">{{ $product_name }}</li>
+                  {{-- <li class="breadcrumb-item active" aria-current="page">{{ Str::title(str_replace('-', ' ', request()->details_slug)) }}</li> --}}
                 </ol>
               </nav>
         </div>
