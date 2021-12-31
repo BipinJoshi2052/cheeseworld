@@ -125,12 +125,15 @@
                           </tbody>
                           <!-- /tbody -->
                       </table>
+                      
                       <div class="d-flex justify-content-around align-items-center w-100 my-3 flex-wrap">
                           {{-- <form
                               class="coupon-field d-flex flex-wrap align-items-center justify-content-center"> --}}
-                              <input type="text" placeholder="Apply Coupon Code" class="mr-2" id="apply_coupon_code" name="apply_coupon">
-                              <button type="button" class="effect mt-xl-0 mt-md-0 mt-2" name="apply_coupon_post" id="apply_coupon_post">Apply
+                                <input type="text" placeholder="Apply Coupon Code" class="mr-2" id="apply_coupon_code" name="apply_coupon">
+                                <button type="button" class="effect mt-xl-0 mt-md-0 mt-2" name="apply_coupon_post" id="apply_coupon_post">Apply
                                   Coupon</button>
+                                <input type="submit" name="empty_cart" class="effect mt-xl-0 mt-md-0 mt-2 empty buttoninput" value="{{ trans('frontend.empty_cart') }}">  
+                                <input type="submit" name="update_cart" class="effect mt-xl-0 mt-md-0 mt-2 update buttoninput" value="{{ trans('frontend.update_cart') }}">
                           {{-- </form> --}}
                           <div class="total-amount font-weight-bold mt-xl-0 mt-md-0 mt-2">
                               Total Amount : <span>{!! price_html(get_product_price_html_by_filter(Cart::getTotal()), get_frontend_selected_currency()) !!}</span>

@@ -60,6 +60,7 @@
 <link rel="stylesheet" href="{{ asset('public/frontend/assets/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('public/frontend/assets/css/responsive.css') }}">
 <link rel="stylesheet" href="{{ URL::asset('public/frontend/css/toastr.min.css') }}">
+<link rel="icon" type="image/x-icon" href="{{ URL::asset('public/frontend/assets/images/logo/4.png') }}">
 
 <style>
     .toast-top-container {

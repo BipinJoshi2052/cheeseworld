@@ -3048,9 +3048,11 @@ class ProductsController extends Controller
         $parent_cat = $this->getTermDataById( $cat_data['parent_id'] );
         
         $str = '<nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="'. route('home-page') .'"><i class="fa fa-home"></i></a></li><li class="breadcrumb-item"><a href="'. route('shop-page') .'">'. Lang::get('frontend.all_products_label' ) .'</a></li><li class="breadcrumb-item"><a href="'. route('categories-page', $parent_cat[0]['slug']) .'">'. $parent_cat[0]['name'] .'</a></li><li class="breadcrumb-item active" aria-current="page">'. $cat_data['name'] .'</li></ol></nav>';
+        // $str = '<span class="fa fa-home" onclick="window.location.href="'.route('home-page').'""></span> / <span>Products</span>';
       }
       else{
         $str = '<nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="'. route('home-page') .'"><i class="fa fa-home"></i></a></li><li class="breadcrumb-item"><a href="'. route('shop-page') .'">'. Lang::get('frontend.all_products_label' ) .'</a></li><li class="breadcrumb-item active" aria-current="page">'. $cat_data['name'] .'</li></ol></nav>';
+        // $str = '<a href="'.route('home-page').'" class="breadcrumb-href"><i class="fa fa-home"></i></a> / <span><a href="'.route('shop-page').'">Products</a></span> / <span>'.$cat_data['name'].'</span>';
       }
 
       $post_array['products']        =  $posts_object;

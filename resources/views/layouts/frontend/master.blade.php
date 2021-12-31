@@ -79,7 +79,30 @@ transform: unset !important;
   font-weight: bold;
 
 }
+
+.breadcrumb{
+    background: transparent;
+    margin: 0;
+}
   
+</style>
+<style>
+    .buttoninput{
+      background-color: var(--main-color);
+      color: white;
+      padding: 10px 15px;
+      text-decoration: none;
+      box-shadow: 0px 8px 12px 0px #d7d7d7;
+      /* box-shadow: rgb(0 0 0 / 20%) 0px 60px 40px -7px; */
+      margin-right: 10px;
+      display: inline-block;
+      transition: all 0.5s;
+      position: relative;
+      overflow: hidden;
+      outline: 0;
+      border: 0;
+      z-index: 1;
+}
 </style>
 <body onload="myFunction()">
     <div id="loading"></div>
@@ -130,8 +153,10 @@ transform: unset !important;
                                 }else{
                                     imageUrl = '{{ asset('/public/images/no-image.png') }}';
                                 }
+                                var detail_route = "{{ route('details-page', ":details_slug") }}";
+                                detail_route = detail_route.replace(':details_slug', e.slug);
                                 list += '<li class="mb-2 p-1">' +
-                                    '<a href="">' +
+                                    '<a href="'+ detail_route +'">' +
                                         '<div class="row">' +
                                             '<div class="col-2">' +
                                                 '<div class="image"> <img src="' + imageUrl + '" class="img-fluid"></div>' +

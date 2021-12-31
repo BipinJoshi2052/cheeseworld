@@ -11,7 +11,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <input type="text" id="search-product">
+                <input type="text" id="search-product" autocomplete="off">
             </div>
             <div class="modal-footer my-auto border-0 w-100" hidden>
                 <ul class="search-list-wrapper w-100" id="search-result-list">
