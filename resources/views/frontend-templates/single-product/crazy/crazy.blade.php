@@ -195,7 +195,9 @@
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active p-3 w-75 mx-auto" id="first" role="tabpanel"
-                        aria-labelledby="first-tab">Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi,
+                        aria-labelledby="first-tab">
+                        {!! html_entity_decode($single_product_details['post_content']) !!}
+                        {{-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi,
                         non praesentium corrupti illum, repudiandae adipisci, fuga nesciunt deserunt ipsam inventore ad
                         fugit beatae necessitatibus maiores mollitia rem officiis tenetur!
                         Corrupti.
@@ -213,7 +215,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="tab-pane fade p-3" id="second" role="tabpanel" aria-labelledby="second-tab">
                         <div class="row">
