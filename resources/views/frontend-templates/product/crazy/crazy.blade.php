@@ -4,7 +4,14 @@
          <img src="{{ asset('public/frontend/assets/images/banner/banner.jpg') }}" alt="breadcrumb-image" class="img-fluid">
      </div>
      <div class="overlay position-absolute">
-         <div class="title p-4">Product Listing</div>
+         <div class="title p-4">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{{ route('home-page') }}"><i class="fa fa-home"></i></a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Products</li>
+                </ol>
+              </nav>
+         </div>
      </div>
  </section>
  <!-- Breadcrumbs Ends -->

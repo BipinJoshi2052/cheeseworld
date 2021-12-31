@@ -4,13 +4,21 @@
     <link rel="stylesheet" href="https://k1ngzed.com/dist/swiper/swiper.min.css" />
     <link rel="stylesheet" href="https://k1ngzed.com/dist/EasyZoom/easyzoom.css" />
 @endsection
-@section('content') <!-- Breadcrumbs -->
+@section('content') 
+<!-- Breadcrumbs -->
+<style>
+    .breadcrumb{
+    background: transparent;
+}
+</style>
     <section id="breadcrumb-wrapper" class="position-relative">
         <div class="image">
             <img src="{{ asset('public/frontend/assets/images/banner/banner.jpg') }}" alt="breadcrumb-image" class="img-fluid">
         </div>
         <div class="overlay position-absolute">
-            <div class="title p-4">Product Listing</div>
+            <div class="title p-4">
+                {!! $product_by_cat_id['breadcrumb_html'] !!}
+            </div>
         </div>
     </section>
     <!-- Breadcrumbs Ends -->

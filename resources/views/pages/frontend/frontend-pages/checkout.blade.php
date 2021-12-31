@@ -22,7 +22,7 @@
             <div class="checkout-wrapper box_shado px-4 pt-4">
                 @if (Cart::count() > 0)
                     <div class="row">
-                        <form method="post" action="" id="checkoutForm" enctype="multipart/form-data">
+                        <form method="post" action="" id="checkoutForm" class="col-xl-12" enctype="multipart/form-data">
                             @include('includes.csrf-token')
                             <div class="col-xl-12">
                                 <div class="my-car-title d-flex mb-3">
@@ -141,7 +141,7 @@
                             </div> --}}
                             <div class="col-md-12">
                                 <div class="my-car-title d-flex mt-5">
-                                    <div class="my-cart-number">3</div>
+                                    <div class="my-cart-number">2</div>
                                     <div class="my-cart-order">
                                         <h4>Payment Information</h4>
                                     </div>
@@ -203,7 +203,7 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="my-car-title d-flex mb-3">
-                                    <div class="my-cart-number">4</div>
+                                    <div class="my-cart-number">3</div>
                                     <div class="my-cart-order">
                                         <h4>Confirm Order</h4>
                                     </div>

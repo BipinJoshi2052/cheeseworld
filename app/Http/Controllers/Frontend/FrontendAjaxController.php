@@ -373,7 +373,12 @@ class FrontendAjaxController extends Controller
         if(count($get_data_by_user_id) > 0){
           $array_shift   = array_shift($get_data_by_user_id );
           $parse_details = json_decode($array_shift['details'], true);
-          $count_wishlist = count($parse_details['wishlists_details']) + 1;
+          if(!empty($parse_details['wishlists_details'])){
+            $count_wishlist = count($parse_details['wishlists_details']) + 1;
+          } else {
+            $count_wishlist = 1;
+          }
+          
           if(isset($parse_details['wishlists_details'])){
             $get_wishlist = $parse_details['wishlists_details'];
             if(!empty($get_wishlist) && count($get_wishlist) > 0 && array_key_exists(key($wishlist_data['details']), $get_wishlist)){

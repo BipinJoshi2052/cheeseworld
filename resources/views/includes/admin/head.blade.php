@@ -2,7 +2,7 @@
 <meta charset="UTF-8">
 <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<link rel="icon" href="{{ URL::asset('public/favicon.png') }}">
+{{-- <link rel="icon" href="{{ URL::asset('public/favicon.png') }}"> --}}
 <link rel="stylesheet" href="{{ URL::asset('public/bootstrap/css/bootstrap.min.css') }}" />
 <link rel="stylesheet" href="{{ URL::asset('public/font-awesome/css/font-awesome.min.css') }}" />
 <link rel="stylesheet" href="{{ URL::asset('public/plugins/datatable/dataTables.bootstrap4.min.css') }}" />
@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="{{ URL::asset('public/plugins/morris/morris.css') }}" />
 <link rel="stylesheet" href="{{ URL::asset('public/editor/summernote.css') }}" />
 <link rel="stylesheet" href="{{ URL::asset('public/input-tag/tagmanager.min.css') }}" />
+<link rel="icon" type="image/x-icon" href="{{ URL::asset('public/frontend/assets/images/logo/4.png') }}">
 
 <script type="text/javascript" src="{{ URL::asset('public/jquery/jquery-1.10.2.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('public/jquery/jquery-ui-1.11.4.js') }}"></script>
